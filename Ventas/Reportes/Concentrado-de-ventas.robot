@@ -10,7 +10,7 @@ ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
 ${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Mega12345
+${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
@@ -144,9 +144,6 @@ Checkbox agrupar
     Click Element    ${Checkbox_agrupar}
 
 Boton aceptar
-    Sleep    4s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    4s
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 

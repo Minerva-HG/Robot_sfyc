@@ -8,17 +8,17 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui
+${Pagina}  https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Megajos202
+${Pass}  Mega12345
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #drops de Ventas
-${ventas}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]
+${ventas}    xpath=//div[@class='dx-item-content dx-treeview-item-content'][contains(.,'Ventas')]
 #menu
 ${menu}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
-${Catalogo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]/ul/li[2]
-${TipoVendedor}      xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]/ul/li[2]/ul/li[2]
+${Catalogo}    xpath=(//div[contains(.,'Catálogos')])[9]
+${TipoVendedor}      xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[1]/ul/li[2]
 
 #Agrega
 ${Agregarbotton}    xpath=//i[contains(@class,'dx-icon dx-icon-edit-button-addrow')]
@@ -54,7 +54,7 @@ Validacion de usuarios e ingreso a la pantalla
     [Tags]    Validar que entre al navegador
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a Catalogos Generales
+    #Ingresar a Catalogos Generales
     Ingresar a Catalogos
 
 

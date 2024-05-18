@@ -8,18 +8,18 @@ Library    SeleniumLibrary
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui   
+${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Megacable2023                                           
+${Pass}  Mega12345                        
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
-${Ventas}    xpath=(//div[contains(.,'Ventas')])[11]
+${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reporte}    xpath=//span[contains(.,'Reportes')]
 #Reportes
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
-${Reportes}    xpath=//span[contains(.,'Reportes')]
+${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Auxiliar_de_ventas_semanal_recalculo}    xpath=//td[contains(.,'Auxiliar de Ventas Semanal Recalculo')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    Auxiliar de Ventas Semanal Recalculo
@@ -45,7 +45,7 @@ Auxiliar de Ventas Semanal Recalculo
     [Tags]    Validando Reporte Auxiliar de Ventas Semanal Recalculo
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ventas
+    #Ventas
     Reportes
     Auxiliar de ventas semanal recalculo
     Fecha desde
@@ -73,13 +73,8 @@ Ingresar usuario contrasena
     Sleep    10s
 
 Ventas
-    Sleep    4s
-    ${Bandera_ventas_activo}=    Run Keyword And Return Status    Click Element    ${Ventas}
-    IF    '${Bandera_ventas_activo}' == 'True'
-        Sleep    2s
-    ELSE
-        Ventas
-    END    
+    Wait Until Element Is Visible    ${Ventas}
+    Click Element    ${Ventas} 
     
 Reportes
     Wait Until Element Is Visible    ${Reportes}
@@ -118,15 +113,13 @@ Combo al
     Click Element    ${Al}
 
 Boton aceptar
-    Sleep    3s
-    Scroll Element Into View    ${Boton_aceptar}
-    #Wait Until Element Is Visible    ${Boton_aceptar}
-    Sleep    3s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Checkbox todos los vendedores
     Wait Until Element Is Visible    ${Checkbox_todos_los_vendedores}
     Click Element    ${Checkbox_todos_los_vendedores}
+
 
 
 

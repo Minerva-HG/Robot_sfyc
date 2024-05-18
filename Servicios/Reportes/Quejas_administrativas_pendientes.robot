@@ -11,16 +11,16 @@ Library    SeleniumLibrary
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}    Chrome  
 ${user}    xpath=//input[@id='Username']
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui       #https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+${Pagina}    https://servicios.qa-cluster.sfycnextgen.com.mx/ui       #https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
 @{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
-@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*                                                                                                                                                                                                                                                                                                                                                         
+@{passL}=    Create List    Mega12345   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*                                                                                                                                                                                                                                                                                                                                                         
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #########################Pantalla quejas administrativas pendientes###################################################################
-${Boton_servicios}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[6]
-${Boton_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[6]/ul/li[6]
-${Boton_reportes_idividual}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[8]
-${Combo_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
+${Boton_servicios}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[5]
+${Boton_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[5]/ul/li[6]
+${Boton_reportes_idividual}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[7]
+${Combo_reportes}    xpath=//input[contains(@aria-expanded,'false')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    Quejas administrativas
 ${Reporte_quejas_administrativas_pendientes}    xpath=//td[contains(.,'Quejas administrativas pendientes')]
@@ -33,18 +33,10 @@ ${Combo_sucursal}    xpath=(//input[contains(@autocomplete,'off')])[6]
 ${Combo_fecha_desde}    xpath=(//i[contains(@class,'dx-icon dx-icon-event')])[1]
 ${Combo_fecha_hasta}    xpath=(//i[contains(@class,'dx-icon dx-icon-event')])[2]
 #######################################Fechas##################################################################################################
-${Mes_anterior_desde}    xpath=//i[@class='dx-icon dx-icon-chevronleft']
-${Mes_anterior_hasta}    xpath=(//i[@class='dx-icon dx-icon-chevronleft'])[2]
 ${Fecha_desde}    xpath=(//span[contains(.,'2')])[2]
 ${Fecha_hasta}    xpath=(//span[contains(.,'15')])[4]
 ######################################Sucursal########################################################################################
-${Sucursal_los_mochis}    xpath=//td[contains(.,'Los Mochis')]
-@{Sucursal}=    Create List    ${Sucursal1}    ${Sucursal2}    ${Sucursal3}    ${Sucursal4}    ${Sucursal5}
-${Sucursal1}    xpath=//td[contains(.,'Hermosillo')]
-${Sucursal2}    xpath=//td[contains(.,'Guaymas')]
-${Sucursal3}    xpath=//td[contains(.,'Cd. Obregon')]
-${Sucursal4}    xpath=//td[contains(.,'Navojoa')]
-${Sucursal5}    xpath=//td[contains(.,'Huatabampo')]
+${Sucursal}    xpath=//td[contains(.,'Hermosillo')]
 ######################################Filtros###############################################################################################
 ${Campo_id_sucursal}    xpath=//input[contains(@inputmode,'decimal')]
 ${id_sucursal}    21
@@ -56,20 +48,45 @@ ${Caracteres_invalidos}    @$%&/_
 ${Checkbox_todas_las_sucursales}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
 
 *** Test Cases ***
-Quejas administrativas pendientes
+Usuarios con permisos a la pantalla 
     [Documentation]    Reporte quejas administrativas pendientes
-    [Tags]    Validando reporte quejas administrativas pendientes
+    [Tags]    Ingresar usuario
     Validacion de usuarios
+
+Reporte con todas las sucursales
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Reporte con todas las sucursales
     Test checkbox todas las sucursales
+
+Combo sucursal
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Combo sucursal
     Test combo sucursal
+
+Rango de fechas
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Rango de fechas
     Fecha desde
     Fecha hasta
-    FOR    ${counter}    IN RANGE    1    6
-        Generando reporte con diferentes sucursal     ${Sucursal}[${counter}]
-        Test boton aceptar    
-    END
+
+Quejas administrativas pendientes
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Boton aceptar
+    Test boton aceptar
+
+Boton limpiar
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Boton limpiar
     Test boton limpiar 
+
+Filtros
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Filtros
     Test filtros
+
+Boton cancelar
+    [Documentation]    Reporte quejas administrativas pendientes
+    [Tags]    Boton cancelar
     Test boton cancelar 
     
 
@@ -89,14 +106,14 @@ Validacion de usuarios
         Click Element    ${SFyC}
         Wait Until Element Is Visible    name:button
         Click Element    name:button
-        Sleep    15s
+        Sleep    10s
         Click Element    ${Boton_servicios}
         Sleep    5s
         Scroll Element Into View    ${Boton_reportes}
         Sleep    5s
         Click Element    ${Boton_reportes}
         #Click Element    ${Boton_reportes_idividual}
-        Sleep    7s
+        Wait Until Element Is Visible    ${Combo_reportes}
         Click Element    ${Combo_reportes}
         Wait Until Element Is Visible    ${Campo_descripcion}
         Input Text    ${Campo_descripcion}    ${Descripcion_reporte}
@@ -119,23 +136,19 @@ Test combo sucursal
     Click Element    ${Checkbox_todas_las_sucursales}
     Wait Until Element Is Visible    ${Combo_sucursal}
     Click Element    ${Combo_sucursal}
-    Sleep    5s
-    Click Element    ${Sucursal_los_mochis} 
+    Wait Until Element Is Visible    ${Sucursal}
+    Click Element    ${Sucursal}
     
 Fecha desde
     Wait Until Element Is Visible    ${Combo_fecha_desde}
     Click Element    ${Combo_fecha_desde}
-    Sleep    5s
-    Click Element    ${Mes_anterior_desde}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Fecha_desde}
     Click Element    ${Fecha_desde}
 
 Fecha hasta
     Wait Until Element Is Visible    ${Combo_fecha_hasta}
     Click Element    ${Combo_fecha_hasta}
-    Sleep    5s
-    Click Element    ${Mes_anterior_hasta}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Fecha_hasta}
     Click Element    ${Fecha_hasta}
 
 Test boton aceptar
@@ -161,11 +174,3 @@ Test filtros
     Input Text    ${Campo_descripción}    ${Descripcion_sucursal}
     Sleep    5s
     Clear Element Text    ${Campo_descripción} 
-
-Generando reporte con diferentes sucursal
-    [Documentation]    Seleccionando sucursal
-    [Arguments]     ${Sucursal}
-    Wait Until Element Is Visible    ${Combo_sucursal}
-    Click Element    ${Combo_sucursal}
-    Wait Until Element Is Visible    ${Sucursal}
-    Click Element    ${Sucursal} 

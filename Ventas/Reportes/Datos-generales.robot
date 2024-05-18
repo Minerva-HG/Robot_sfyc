@@ -35,7 +35,7 @@ ${Combo_sucursales}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-d
 ${Fecha_Desde}    xpath=(//span[contains(.,'1')])[2]
 ${Fecha_hasta}    xpath=(//span[contains(.,'21')])[3]
 ${Estatus}    xpath=//td[contains(.,'Activo')]
-${Sucursal}    xpath=(//td[contains(.,'PACIFICO')])[3]
+${Sucursal}    xpath=(//td[@aria-describedby='dx-col-3'][contains(.,'PACIFICO')])[1]
 #Botones
 ${Boton_aceptar}    xpath=//span[contains(.,'Aceptar')]
 ${Boton_cancelar}    xpath=//span[contains(.,'Cancelar')]
@@ -120,9 +120,7 @@ Sucursal
     Click Element    ${Sucursal}
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Checkbox resumen
@@ -134,3 +132,5 @@ Estatus
     Click Element    ${Combo_estatus}
     Wait Until Element Is Visible    ${Estatus}
     Click Element    ${Estatus}
+
+

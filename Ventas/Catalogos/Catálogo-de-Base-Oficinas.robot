@@ -8,13 +8,13 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui    
-${Usuario}    MBELTRANG      
-${Pass}    Mega2022                        
+${Pagina}  https://ventas.qa-cluster.sfycnextgen.com.mx/ui
+${Usuario}  softteck01
+${Pass}  123456c
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #drops de Ventas
-${ventas}    xpath=(//div[contains(.,'Ventas')])[11]
+${ventas}    xpath=//div[@class='dx-item-content dx-treeview-item-content'][contains(.,'Ventas')]
 #menu
 ${menu}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
 ${Catalogo}    xpath=(//div[contains(.,'Catálogos')])[9]
@@ -53,7 +53,7 @@ ${Enviar}    xpath=//span[@class='dx-button-text'][contains(.,'Enviar')]
 ${mensaje}    xpath=(//div[contains(.,'¡Aviso del sistema!')])[8]
 ${Etiqueta}    xpath=//strong[contains(.,'Proceso terminado con éxito')]
 ${Etiqueta2}    xpath=//strong[normalize-space()='El nivel de vendedor ya existe']
-${Cerrar}    xpath=/html/body/div[2]/div/div[1]/div/div[3]/div
+${Cerrar}    xpath=//i[@class='dx-icon dx-icon-close']
 ${Cerrar2}    xpath=/html/body/div/div/div[1]/div/div[3]/div/div/div/div/i
 #mensaje de confirmacion
 ${mensajeE}    xpath=//div[@class='dx-dialog-message'][contains(.,'¿Estás seguro de continuar el proceso?')]
@@ -66,7 +66,7 @@ Validacion de usuarios e ingreso a la pantalla
     [Tags]    Validar inicio de sesion y navegación a la pantalla
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a Catalogos Generales
+    #Ingresar a Catalogos Generales
     Ingresar a Catalogos
 
 #Steep 3.1 
@@ -78,9 +78,8 @@ Validar CRUD Base de Oficinas y Grupos Ventas
         Ingresar Lista de Oficina    ${Identificador}[${counter}]   ${TipoOficina}[${counter}]    ${Descripcion}[${counter}]    ${Direccion}[${counter}]    
         Sleep    ${time}
         #Wait Until Element Is Visible       ${mensaje}
-        #Cerrar mensaje
-        #Sleep    711s
-        #Click Element    ${Cancelar} 
+        Cerrar mensaje
+        Click Element    ${Cancelar} 
         
     END
        
@@ -103,8 +102,8 @@ Validar CRUD Base de Oficinas y Grupos Ventas
         Sleep    2s
         Editar oficna       ${TipoOficina}[${counter}]    ${Descripcion}[${counter}]    ${Direccion}[${counter}]    
         Sleep    ${time}
-        #Wait Until Element Is Visible       ${mensaje}
-        #Cerrar mensaje
+        Wait Until Element Is Visible       ${mensaje}
+        Cerrar mensaje
         Click Element    ${Cancelar} 
         
     END
@@ -138,8 +137,6 @@ Ingresar a Catalogos
     #Click Element    ${menu}
     #Sleep    ${time}
     Click Element    ${Catalogo}
-    Sleep    ${time}
-    Scroll Element Into View    ${BOficinas}
     Sleep    ${time}
     Click Element    ${BOficinas}
 
@@ -179,7 +176,8 @@ Ingresar Lista de Oficina
 
 Cerrar mensaje
     [Documentation]    Cerrar los mensajes
-    Wait Until Element Is Visible    ${Cerrar}
+    #Wait Until Element Is Visible    ${mensaje}
+    Sleep    2s 
     Click Element    ${Cerrar}
     
 Editar oficna

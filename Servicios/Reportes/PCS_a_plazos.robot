@@ -11,16 +11,16 @@ Library    SeleniumLibrary
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}    Chrome  
 ${user}    xpath=//input[@id='Username']
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui       #https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+${Pagina}    https://servicios.qa-cluster.sfycnextgen.com.mx/ui       #https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
 @{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
-@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*                                                                                                                                                                                                                                                                                                                                                         
+@{passL}=    Create List    Mega12345   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*                                                                                                                                                                                                                                                                                                                                                         
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #########################Pantalla reporte pc's a plazos###################################################################
-${Boton_servicios}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[6]
-${Boton_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[6]/ul/li[6]
+${Boton_servicios}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[5]
+${Boton_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[5]/ul/li[6]
 ${Boton_reportes_idividual}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[7]
-${Combo_reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
+${Combo_reportes}    xpath=//input[contains(@aria-expanded,'false')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    PC
 ${Reporte_pcs_a_plazos}    xpath=//td[contains(.,'PC`s a plazos')]
@@ -31,13 +31,7 @@ ${Boton_limpiar}    xpath=//div[@class='dx-button-content'][contains(.,'Limpiar'
 ######################################Combo sucursal##################################################################################
 ${Combo_sucursal}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-app-reporting-deadline-pcs-form/form/div/div/app-branch-parameter/div/div/div/div/app-filter-branch-dropdown/app-base-dropdown/dx-drop-down-box/div/div/div[1]/input
 ######################################Sucursal########################################################################################
-${Sucursal_los_mochis}    xpath=//td[contains(.,'Los Mochis')]
-@{Sucursal}=    Create List    ${Sucursal1}    ${Sucursal2}    ${Sucursal3}    ${Sucursal4}    ${Sucursal5}
-${Sucursal1}    xpath=//td[contains(.,'Hermosillo')]
-${Sucursal2}    xpath=//td[contains(.,'Guaymas')]
-${Sucursal3}    xpath=//td[contains(.,'Cd. Obregon')]
-${Sucursal4}    xpath=//td[contains(.,'Navojoa')]
-${Sucursal5}    xpath=//td[contains(.,'Huatabampo')]
+${Sucursal}    xpath=//td[contains(.,'Cd. Obregon')]
 ######################################Filtros###############################################################################################
 ${Campo_id_sucursal}    xpath=//input[contains(@inputmode,'decimal')]
 ${id_sucursal}    21
@@ -60,10 +54,7 @@ Combo sucursal
 PC`s a plazos
     [Documentation]    Reporte pcs a plazos
     [Tags]    Boton preeliminar
-    FOR    ${counter}    IN RANGE    1    6
-        Generando reporte con diferentes sucursal     ${Sucursal}[${counter}]
-        Boton aceptar    
-    END
+    Boton aceptar
 
 Boton limpiar
     [Documentation]    Reporte pcs a plazos
@@ -125,8 +116,8 @@ Validacion de usuarios
 Test combo sucursal
     Wait Until Element Is Visible    ${Combo_sucursal}
     Click Element    ${Combo_sucursal}
-    Wait Until Element Is Visible    ${Sucursal_los_mochis}
-    Click Element    ${Sucursal_los_mochis}
+    Wait Until Element Is Visible    ${Sucursal}
+    Click Element    ${Sucursal}
 
 Boton aceptar
     Wait Until Element Is Visible    ${Boton_aceptar}
@@ -159,11 +150,3 @@ Caracteres invalidos
     Input Text    ${Campo_descripción}    ${Caracteres_invalidos}
     Sleep    7s
     Click Element    ${Combo_sucursal}
-
-Generando reporte con diferentes sucursal
-    [Documentation]    Seleccionando sucursal
-    [Arguments]     ${Sucursal}
-    Wait Until Element Is Visible    ${Combo_sucursal}
-    Click Element    ${Combo_sucursal}
-    Wait Until Element Is Visible    ${Sucursal}
-    Click Element    ${Sucursal}  

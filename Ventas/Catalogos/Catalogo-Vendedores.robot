@@ -8,9 +8,9 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui    #https://global.dev-cluster.sfycnextgen.com.mx/ui/
+${Pagina}    https://ventas.qa-cluster.sfycnextgen.com.mx/ui      #https://global.dev-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  joriospe
-${Pass}  Megajos202
+${Pass}  Mega12345
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Consultar
@@ -19,11 +19,11 @@ ${Empresa}    xpath=//td[contains(.,'SAOSA')]
 ${Campo_numero_de_empleado}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-salesman-form/div/div[1]/form/div[1]/div[2]/dx-number-box/div/div[1]/input
 ${Numero_empleado}    239540    
 #drops de Ventas
-${ventas}    xpath=(//div[contains(.,'Ventas')])[11]
+${ventas}    xpath=//div[@class='dx-item-content dx-treeview-item-content'][contains(.,'Ventas')]
 #menu
 ${menu}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
 ${Catalogo}    xpath=(//div[contains(.,'Catálogos')])[9]
-${Vendedores}    xpath=(//span[contains(.,'Vendedores')])[1]
+${Vendedores}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[1]/ul/li[3]
 #Tiempo
 ${time}    10s
 #Editar registros
@@ -49,7 +49,7 @@ Validacion de usuarios e ingreso a la pantalla
     [Tags]    Validar que entre al navegador, validé las credenciales y que Ingresé al menú de catalogos
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a Catalogos Generales
+    #Ingresar a Catalogos Generales
     Ingresar a Catalogos
 
 Validar Catalogo de Vendedores
@@ -90,15 +90,12 @@ Ingresar a Catalogos Generales
 
 Ingresar a Catalogos
     [Documentation]    Ingresamos al modulo de Catalogos
-    Sleep    ${time}
-    #Click Element    ${menu}
     #Sleep    ${time}
+    #Click Element    ${menu}
+    Sleep    ${time}
     Click Element    ${Catalogo}
     Sleep    ${time}
-    Scroll Element Into View    ${Vendedores}
-    Sleep    ${time}
-    Wait Until Element Is Visible    ${Vendedores}
-    Click Element    ${Vendedores}
+    Click Element    ${Vendedores} 
 
 
 Consultar vendedor
@@ -119,8 +116,7 @@ Actualizar datos
     Click Element    ${Combo_periodo_nomina}
     Wait Until Element Is Visible    ${Periodo_mensual}
     Click Element    ${Periodo_mensual}
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Validando si existe alguna notificacion
@@ -142,16 +138,11 @@ Periodo semanal
     Click Element    ${Combo_periodo_nomina}
     Wait Until Element Is Visible    ${Periodo_semanal}
     Click Element    ${Periodo_semanal}
-    Sleep    3s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Campos erroneos
-    Sleep    3s
-    Scroll Element Into View    ${Campos_vacios}
-    Sleep    3s    
-    #Wait Until Element Is Visible    ${Campos_vacios}
+    Wait Until Element Is Visible    ${Campos_vacios}
     Click Element    ${Campos_vacios}
     Sleep    3s
 
@@ -181,8 +172,5 @@ Actualizar datos vendedor nuevo
     Click Element    ${Combo_periodo_nomina}
     Wait Until Element Is Visible    ${Periodo_semanal}
     Click Element    ${Periodo_semanal}
-    Sleep    4s
-    Scroll Element Into View    ${Boton_aceptar}
-    #Wait Until Element Is Visible    ${Boton_aceptar}
-    Sleep    4s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
