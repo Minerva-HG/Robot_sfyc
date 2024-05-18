@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.5 on win32)" generated="20221020 17:42:12.636" rpa="false" schemaversion="3">
+<suite id="s1" name="CargaPallets" source="C:\Proyectos\Robot_sfyc\Opereaciones Equipos\carga de pallets\CargaPallets.robot">
+<test id="s1-t1" name="Ingresar usuario" line="17">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20221020 17:42:13.693" level="INFO">Opening browser 'Chrome' to base url 'https://qa.sfycnextgen.com.mx/equipments/ui/'.</msg>
+<status status="PASS" starttime="20221020 17:42:13.693" endtime="20221020 17:42:56.790"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20221020 17:42:56.790" endtime="20221020 17:43:02.305"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:07.307" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:02.305" endtime="20221020 17:43:07.307"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Username</arg>
+<arg>${Usuario}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:07.308" level="INFO">Typing text 'softteck01' into text field 'name:Username'.</msg>
+<status status="PASS" starttime="20221020 17:43:07.307" endtime="20221020 17:43:10.136"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Password</arg>
+<arg>${Pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:10.137" level="INFO">Typing text '123456c' into text field 'name:Password'.</msg>
+<status status="PASS" starttime="20221020 17:43:10.136" endtime="20221020 17:43:13.384"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:15.386" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:13.384" endtime="20221020 17:43:15.386"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:15.387" level="INFO">Clicking button 'name:button'.</msg>
+<status status="PASS" starttime="20221020 17:43:15.386" endtime="20221020 17:43:24.738"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:07.307" endtime="20221020 17:43:24.738"/>
+</kw>
+<status status="PASS" starttime="20221020 17:42:13.691" endtime="20221020 17:43:24.738"/>
+</test>
+<test id="s1-t2" name="Navegar menu" line="23">
+<kw name="Sleep" library="BuiltIn">
+<arg>15s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:39.742" level="INFO">Slept 15 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:24.740" endtime="20221020 17:43:39.742"/>
+</kw>
+<kw name="Seleccionar menu">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Bottonmenu}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:39.743" level="INFO">Clicking element 'xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]'.</msg>
+<status status="PASS" starttime="20221020 17:43:39.742" endtime="20221020 17:43:43.353"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:39.742" endtime="20221020 17:43:43.353"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:48.355" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:43.353" endtime="20221020 17:43:48.355"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:24.739" endtime="20221020 17:43:48.355"/>
+</test>
+<test id="s1-t3" name="Seleccionar operaciones equipos" line="28">
+<kw name="Seleccionar Bottonoperacionesequipos">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Bottonoperacionesequipos}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:48.359" level="INFO">Clicking element 'xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]'.</msg>
+<status status="PASS" starttime="20221020 17:43:48.358" endtime="20221020 17:43:48.532"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:48.357" endtime="20221020 17:43:48.532"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:53.535" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:48.533" endtime="20221020 17:43:53.535"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:48.356" endtime="20221020 17:43:53.535"/>
+</test>
+<test id="s1-t4" name="Seleccionar Carga de Pallets" line="32">
+<kw name="Seleccionar Carga Pallet">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${CargaPalles}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221020 17:43:53.538" level="INFO">Clicking element 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[16]/div[1]/div[1]/span[1]'.</msg>
+<status status="PASS" starttime="20221020 17:43:53.538" endtime="20221020 17:43:53.974"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:53.537" endtime="20221020 17:43:53.974"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221020 17:43:58.977" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20221020 17:43:53.974" endtime="20221020 17:43:58.978"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20221020 17:43:58.978" endtime="20221020 17:44:01.619"/>
+</kw>
+<status status="PASS" starttime="20221020 17:43:53.536" endtime="20221020 17:44:01.620"/>
+</test>
+<status status="PASS" starttime="20221020 17:42:12.642" endtime="20221020 17:44:01.623"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="CargaPallets">CargaPallets</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,16 @@
+1683224996444	geckodriver	INFO	Listening on 127.0.0.1:58031
+1683224997015	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58032" "--remote ... t" "-no-remote" "-profile" "C:\\Users\\mihernandezg\\AppData\\Local\\robocorp\\temp\\4d65822107fce0ce\\rust_mozprofileorO4WX"
+1683224998317	Marionette	INFO	Marionette enabled
+1683224998325	Marionette	INFO	Listening on port 58044
+Read port: 58044
+WebDriver BiDi listening on ws://127.0.0.1:58032
+1683224998483	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\mihernandezg\\AppData\\Local\\robocorp\\temp\\4d65822107fce0ce\\rust_mozprofileorO4WX\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:58032/devtools/browser/bb45276d-039f-4748-804b-dbaec8f2a688
+JavaScript warning: https://global.dev-cluster.sfycnextgen.com.mx/ui/main-es2015.4d13d16c6065c4d04cca.js, line 10078: unreachable code after return statement
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://idp.dev-cluster.sfycnextgen.com.mx."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://idp.dev-cluster.sfycnextgen.com.mx."
+JavaScript warning: https://global.dev-cluster.sfycnextgen.com.mx/ui/main-es2015.4d13d16c6065c4d04cca.js, line 10078: unreachable code after return statement
+JavaScript warning: https://global.dev-cluster.sfycnextgen.com.mx/ui/main-es2015.4d13d16c6065c4d04cca.js, line 10078: unreachable code after return statement
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1683225095417	Marionette	INFO	Stopped listening on port 58044

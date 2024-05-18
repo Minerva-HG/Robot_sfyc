@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0 (Python 3.10.8 on win32)" generated="20221104 20:28:53.954" rpa="false" schemaversion="3">
+<suite id="s1" name="AsignarEquiposCuadrilla" source="C:\Proyectos\Robot_sfyc\Opereaciones Equipos\Asignar equipos a Caudrilla\AsignarEquiposCuadrilla.robot">
+<test id="s1-t1" name="Ingresar usuario" line="19">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20221104 20:28:54.139" level="INFO">Opening browser 'Chrome' to base url 'https://qa.sfycnextgen.com.mx/equipments/ui/'.</msg>
+<msg timestamp="20221104 20:29:37.492" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221104 20:29:37.492" level="FAIL">WebDriverException: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=107.0.5304.88)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00F8ACD3+2075859]
+	Ordinal0 [0x00F1EE61+1633889]
+	Ordinal0 [0x00E1B7BD+571325]
+	Ordinal0 [0x00E17CD2+556242]
+	Ordinal0 [0x00E0EC5D+519261]
+	Ordinal0 [0x00E0FAEC+522988]
+	Ordinal0 [0x00E0EF27+519975]
+	Ordinal0 [0x00E0E2EB+516843]
+	Ordinal0 [0x00E0E231+516657]
+	Ordinal0 [0x00E0D0A3+512163]
+	Ordinal0 [0x00E0D5AD+513453]
+	Ordinal0 [0x00E1D0CE+577742]
+	Ordinal0 [0x00E7BC7D+965757]
+	Ordinal0 [0x00E6731C+881436]
+	Ordinal0 [0x00E7B56A+963946]
+	Ordinal0 [0x00E67136+880950]
+	Ordinal0 [0x00E3FEFD+720637]
+	Ordinal0 [0x00E40F3F+724799]
+	GetHandleVerifier [0x0123EED2+2769538]
+	GetHandleVerifier [0x01230D95+2711877]
+	GetHandleVerifier [0x0101A03A+521194]
+	GetHandleVerifier [0x01018DA0+516432]
+	Ordinal0 [0x00F2682C+1665068]
+	Ordinal0 [0x00F2B128+1683752]
+	Ordinal0 [0x00F2B215+1683989]
+	Ordinal0 [0x00F36484+1729668]
+	BaseThreadInitThunk [0x74ECFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x76F77BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x76F77B8E+238]
+</msg>
+<status status="FAIL" starttime="20221104 20:28:54.139" endtime="20221104 20:29:37.525"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:37.525" endtime="20221104 20:29:37.525"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:37.525" endtime="20221104 20:29:37.525"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<status status="NOT RUN" starttime="20221104 20:29:37.525" endtime="20221104 20:29:37.525"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:28:54.139" endtime="20221104 20:29:37.525">WebDriverException: Message: unknown error: net::ERR_CONNECTION_TIMED_OUT
+  (Session info: chrome=107.0.5304.88)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00F8ACD3+2075859]
+	Ordinal0 [0x00F1EE61+1633889]
+	Ordinal0 [0x00E1B7BD+571325]
+	Ordinal0 [0x00E17CD2+556242]
+	Ordinal0 [0x00E0EC5D+519261]
+	Ordinal0 [0x00E0FAEC+522988]
+	Ordinal0 [0x00E0EF27+519975]
+	Ordinal0 [0x00E0E2EB+516843]
+	Ordinal0 [0x00E0E231+516657]
+	Ordinal0 [0x00E0D0A3+512163]
+	Ordinal0 [0x00E0D5AD+513453]
+	Ordinal0 [0x00E1D0CE+577742]
+	Ordinal0 [0x00E7BC7D+965757]
+	Ordinal0 [0x00E6731C+881436]
+	Ordinal0 [0x00E7B56A+963946]
+	Ordinal0 [0x00E67136+880950]
+	Ordinal0 [0x00E3FEFD+720637]
+	Ordinal0 [0x00E40F3F+724799]
+	GetHandleVerifier [0x0123EED2+2769538]
+	GetHandleVerifier [0x01230D95+2711877]
+	GetHandleVerifier [0x0101A03A+521194]
+	GetHandleVerifier [0x01018DA0+516432]
+	Ordinal0 [0x00F2682C+1665068]
+	Ordinal0 [0x00F2B128+1683752]
+	Ordinal0 [0x00F2B215+1683989]
+	Ordinal0 [0x00F36484+1729668]
+	BaseThreadInitThunk [0x74ECFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x76F77BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x76F77B8E+238]
+</status>
+</test>
+<test id="s1-t2" name="Navegar menu" line="25">
+<kw name="Sleep" library="BuiltIn">
+<arg>15s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221104 20:29:52.535" level="INFO">Slept 15 seconds</msg>
+<status status="PASS" starttime="20221104 20:29:37.527" endtime="20221104 20:29:52.535"/>
+</kw>
+<kw name="Seleccionar menu">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Bottonmenu}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221104 20:29:52.535" level="INFO">Clicking element 'xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]'.</msg>
+<msg timestamp="20221104 20:29:52.633" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221104 20:29:52.633" level="FAIL">Element with locator 'xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]' not found.</msg>
+<status status="FAIL" starttime="20221104 20:29:52.535" endtime="20221104 20:29:52.641"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.535" endtime="20221104 20:29:52.641"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:52.641" endtime="20221104 20:29:52.641"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:37.526" endtime="20221104 20:29:52.641">Element with locator 'xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]' not found.</status>
+</test>
+<test id="s1-t3" name="Seleccionar operaciones equipos" line="30">
+<kw name="Seleccionar Bottonoperacionesequipos">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Bottonoperacionesequipos}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221104 20:29:52.641" level="INFO">Clicking element 'xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]'.</msg>
+<msg timestamp="20221104 20:29:52.752" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221104 20:29:52.754" level="FAIL">Element with locator 'xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]' not found.</msg>
+<status status="FAIL" starttime="20221104 20:29:52.641" endtime="20221104 20:29:52.754"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.641" endtime="20221104 20:29:52.754"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:52.754" endtime="20221104 20:29:52.754"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.641" endtime="20221104 20:29:52.754">Element with locator 'xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]' not found.</status>
+</test>
+<test id="s1-t4" name="Seleccionar Equipos Cuadrilla" line="34">
+<kw name="Seleccionar Asignar Equipos">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${AsignarEquiposC}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221104 20:29:52.754" level="INFO">Clicking element 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[4]/div[1]/div[1]/span[1]'.</msg>
+<msg timestamp="20221104 20:29:52.843" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221104 20:29:52.844" level="FAIL">Element with locator 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[4]/div[1]/div[1]/span[1]' not found.</msg>
+<status status="FAIL" starttime="20221104 20:29:52.754" endtime="20221104 20:29:52.844"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.754" endtime="20221104 20:29:52.844"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:52.844" endtime="20221104 20:29:52.844"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.754" endtime="20221104 20:29:52.845">Element with locator 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[4]/div[1]/div[1]/span[1]' not found.</status>
+</test>
+<test id="s1-t5" name="Seleccionar drop TipoEquipos" line="38">
+<kw name="Seleccionar tipos equipos">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${TipoEquipos}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221104 20:29:52.847" level="INFO">Clicking element 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container[1]/div[1]/div[1]/div[1]/app-assign-equipment-crew-form[1]/form[1]/div[1]/div[2]/app-type-equipment-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]'.</msg>
+<msg timestamp="20221104 20:29:52.935" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221104 20:29:52.935" level="FAIL">Element with locator 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container[1]/div[1]/div[1]/div[1]/app-assign-equipment-crew-form[1]/form[1]/div[1]/div[2]/app-type-equipment-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]' not found.</msg>
+<status status="FAIL" starttime="20221104 20:29:52.847" endtime="20221104 20:29:52.936"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Tipos}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20221104 20:29:52.936" endtime="20221104 20:29:52.936"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.846" endtime="20221104 20:29:52.936"/>
+</kw>
+<status status="FAIL" starttime="20221104 20:29:52.845" endtime="20221104 20:29:52.936">Element with locator 'xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container[1]/div[1]/div[1]/div[1]/app-assign-equipment-crew-form[1]/form[1]/div[1]/div[2]/app-type-equipment-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]' not found.</status>
+</test>
+<status status="FAIL" starttime="20221104 20:28:53.969" endtime="20221104 20:29:52.936"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="5" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="5" skip="0" id="s1" name="AsignarEquiposCuadrilla">AsignarEquiposCuadrilla</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
