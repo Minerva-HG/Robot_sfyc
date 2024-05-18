@@ -15,11 +15,11 @@ ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
-${Reporte}    xpath=(//span[contains(.,'Reportes')])[1]
+${Reporte}    xpath=//span[contains(.,'Reportes')]
 #Reportes
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
-${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[9]
+${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Comisiones_por_vendedor_reproceso}    xpath=//td[contains(.,'Comisiones por vendedor reproceso')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    Comisiones por vendedor reproceso  
@@ -45,7 +45,7 @@ ${Boton_limpiar}    xpath=//span[contains(.,'Limpiar')]
 
 *** Test Cases ***
 Comisiones por vendedor reproceso
-    [Tags]    Validando Reporte Comisiones por vendedor reproceso
+    [Tags]    Validando Reporte Comisiones por vendedor semanal
     Ingresar al Navegador
     Ingresar usuario contrasena
     #Ventas
@@ -122,10 +122,7 @@ Combo al
     Click Element    ${Al}
 
 Boton aceptar
-    Sleep    3s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    3s
-    #Wait Until Element Is Visible    ${Boton_aceptar}
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Checkbox todos los vendedores
@@ -141,3 +138,5 @@ Combo los que dependen de
     Click Element    ${Combo_los_que_dependen_de}
     Wait Until Element Is Visible    ${Los_que_dependen_de}
     Click Element    ${Los_que_dependen_de}
+
+

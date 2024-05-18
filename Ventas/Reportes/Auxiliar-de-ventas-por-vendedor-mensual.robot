@@ -11,7 +11,7 @@ ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
 ${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Mega12345
+${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
@@ -21,8 +21,6 @@ ${Reporte}    xpath=//span[contains(.,'Reportes')]
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
-${Campo_reporte}    xpath=//input[contains(@maxlength,'7081')]
-${Descripcion_reporte}    Metrocarrier-Auxiliar de ventas por vendedor mensual
 ${Auxiliar_de_ventas_por_vendedor_mensual}    xpath=//td[contains(.,'Metrocarrier-Auxiliar de ventas por vendedor mensual')]
 #seleccionar Elements
 ${Combo_del}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-auxiliary-sale-monthly-form/form/div/app-reporting-start-end-salesman-parameter/div/div/div[1]/div[2]/app-salesman-dropdown/dx-drop-down-box/div/div/div[1]/input
@@ -77,9 +75,7 @@ Reportes
 Auxiliar de ventas por vendedor mensual
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    5s
-    Input Text    ${Campo_reporte}    ${Descripcion_reporte}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Auxiliar_de_ventas_por_vendedor_mensual}
     Click Element    ${Auxiliar_de_ventas_por_vendedor_mensual}
 
 Vendedor 1
@@ -103,8 +99,6 @@ Seleccionar Fecha
     Sleep   2s
 
 Aceptar
-    Sleep    4s
-    Scroll Element Into View    ${aceptar}
-    Sleep    4s
-    Wait Until Element Is Visible    ${aceptar}
     Click Element    ${aceptar} 
+
+    

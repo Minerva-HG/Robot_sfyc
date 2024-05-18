@@ -9,8 +9,8 @@ Library    SeleniumLibrary
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
 ${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  joriospe
-${Pass}  Mega12345   
+${Usuario}  MBELTRANG
+${Pass}  Mega2022                        
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
@@ -21,8 +21,6 @@ ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-dr
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Totales_de_ventas_por_canal}    xpath=//td[contains(.,'Total de ventas por canal')]
-${Campo_reportes}    xpath=//input[@maxlength='7081']
-${Descripcion_reporte}    Total de ventas por canal  
 #Combos
 ${Combo_sucursal}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-total-by-channel-form/form/div/div/div/app-all-branch-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Combo_fecha_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-total-by-channel-form/form/div/app-reporting-start-end-date-parameter/div/div/div[2]/div[1]/dx-date-box/div/div/div[1]/input
@@ -76,8 +74,6 @@ Reportes
 Totales de ventas por canal
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    5s
-    Input Text    ${Campo_reportes}    ${Descripcion_reporte}
     Wait Until Element Is Visible    ${Totales_de_ventas_por_canal}
     Click Element    ${Totales_de_ventas_por_canal}
 
@@ -102,7 +98,6 @@ Sucursal
 Boton aceptar
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
-
 
 
 

@@ -8,18 +8,18 @@ Library    SeleniumLibrary
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui   
+${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Megacable2023                                        
+${Pass}  Mega12345                        
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
-${Ventas}    xpath=(//span[contains(.,'Ventas')])[1]
+${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reporte}    xpath=//span[contains(.,'Reportes')]
 #Reportes
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
-${Reportes}    xpath=(//span[contains(.,'Reportes')])[1]
+${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Comisiones_diferidas}    xpath=//td[contains(.,'Comisiones diferidas')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    Comisiones diferidas 
@@ -48,7 +48,7 @@ Comisiones Diferidas
     [Tags]    Validando Reporte Comisiones Diferidas
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ventas
+    #Ventas
     Reportes    
     Comisiones diferidas
     Fecha desde
@@ -85,14 +85,8 @@ Ingresar usuario contrasena
     Sleep    10s
 
 Ventas
-    Sleep    3s
-    ${Bandera_opcion_Ventas}=    Run Keyword And Return Status    Click Element    ${Ventas}
-    IF    '${Bandera_opcion_Ventas}' == 'True'
-        Sleep    2s
-    ELSE
-        Ventas
-    END
-   
+    Wait Until Element Is Visible    ${Ventas}
+    Click Element    ${Ventas} 
     
 Reportes
     Wait Until Element Is Visible    ${Reportes}
@@ -140,10 +134,9 @@ Radio button todo lo que faltan de primera mensualidad
     Click Element    ${Radio_button_todo_lo_que_faltan_de_primera_mensualidad}
 
 Boton aceptar
-    Sleep    4s
-    Scroll Element Into View    ${Boton_aceptar}    
-    Sleep    3s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+
 
 
 

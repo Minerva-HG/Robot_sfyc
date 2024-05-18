@@ -8,14 +8,13 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui  
-${Usuario}    joriospe
-${Pass}    Megajos202
+${Pagina}  https://ventas.qa-cluster.sfycnextgen.com.mx/ui
+${Usuario}  softteck01
+${Pass}  123456c
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #drops de Ventas
-${Ventas}    xpath=(//div[contains(.,'Ventas')])[11]
-${Catalogos}    xpath=//span[contains(.,'Catálogos')]
+${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 #menu
 ${menu}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
 ${Catalogo}    xpath=(//div[contains(.,'Catálogos')])[9]
@@ -23,7 +22,7 @@ ${NivelVendedor}    xpath=//span[contains(.,'Nivel de Vendedor')]
 #Agrega
 ${Agregarbotton}    xpath=//i[@class='dx-icon dx-icon-edit-button-addrow']
 ${Nivel}    xpath=(//input[@class='dx-texteditor-input'])[6]
-${Descripcion}    xpath=(//input[contains(@autocomplete,'off')])[7]
+${Descripcion}    xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-level-salesman-grid[1]/div[1]/dx-data-grid[1]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/div[1]/div[1]/div[1]/input[1]
 ${Guardar}    xpath=//a[@aria-label='Guardar']
 @{NivelInput}=    Create List     ERT     ERW     ABC     ABD     ABE     ABF 
 @{DesInput}=    Create List    ZYX    ZYW    ZYV    ZYU   ZYT    ZYR
@@ -54,9 +53,8 @@ Validacion de usuarios e ingreso a la pantalla
     [Tags]    Validar que entre al navegador
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a Catalogos Generales
+    #Ingresar a Catalogos Generales
     Ingresar a Catalogos
-    
 
 Validar CRUD Nivel de Vendedor
     [Tags]    Validar CRUD nivel de vendedor
@@ -123,9 +121,9 @@ Ingresar a Catalogos Generales
 Ingresar a Catalogos
     [Documentation]    Ingresamos a a los catalgos de ventas
     #Sleep    ${time}
-    #Click Element    ${Ventas}
+    #Click Element    ${menu}
     Sleep    5s
-    Click Element    ${Catalogos}
+    Click Element    ${Catalogo}
     Sleep    ${time}
     Click Element    ${NivelVendedor} 
 

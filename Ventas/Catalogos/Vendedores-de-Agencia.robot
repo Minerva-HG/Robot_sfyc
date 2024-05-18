@@ -9,13 +9,13 @@ Library    RPA.Windows
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui 
+${Pagina}  https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Megajos202
+${Pass}  Mega12345
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #drops de Ventas
-${ventas}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]
+${ventas}    xpath=//div[@class='dx-item-content dx-treeview-item-content'][contains(.,'Ventas')]
 #menu
 ${menu}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
 ${Catalogo}    xpath=(//div[contains(.,'Catálogos')])[9]
@@ -65,7 +65,7 @@ Validacion de usuarios e ingreso a la pantalla
     [Tags]    Validar inicio de sesion y navegación a la pantalla
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a Catalogos Generales
+    #Ingresar a Catalogos Generales
     Ingresar a Catalogos
 
 Vendedores de Agencia Buscar
@@ -80,23 +80,23 @@ Validar Reporte y otros botones
     [Tags]    Validando botones
     Validacion de botones
 
+#Vendedores de Agencia Nuevo
+    #[Tags]    Validar la nueva lista
+    #Sleep    14s
+    #FOR    ${counter}    IN RANGE    1    7    
+        #Ingresar Lista de niveles    ${NivelInput}[${counter}]    ${DesInput}[${counter}]
+        #Sleep    ${time}
+        #Wait Until Element Is Visible       ${mensaje}
+        #Cerrar mensaje       
+    #END
+       
+    
 Vendedores de Agencia Editar
     [Tags]    Validar Datos ya Agregados
     [Documentation]     Agregar un nuevo nivel de Vendedor
     Buscar
     Cambiar estatus
     Cerrar mensaje
-
-Vendedores de Agencia Nuevo
-    [Tags]    Validar la nueva lista
-    Sleep    5s
-    FOR    ${counter}    IN RANGE    1    7    
-        Ingresar Lista de niveles    ${NivelInput}[${counter}]    ${DesInput}[${counter}]
-        Sleep    ${time}
-        Wait Until Element Is Visible       ${mensaje}
-        Cerrar mensaje       
-    END
-       
 
 
 *** Keywords ***
@@ -123,8 +123,6 @@ Ingresar a Catalogos
     #Click Element    ${menu}
     Sleep    ${time}
     Click Element    ${Catalogo}
-    Sleep    ${time}
-    Scroll Element Into View    ${VAgencia}
     Sleep    ${time}
     Click Element    ${VAgencia} 
 
