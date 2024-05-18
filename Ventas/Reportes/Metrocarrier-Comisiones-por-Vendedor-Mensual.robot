@@ -10,7 +10,7 @@ ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
 ${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}  Mega12345
+${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
@@ -21,8 +21,6 @@ ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-dr
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Metrocarrier_Comisiones_por_vendedor_mensual}    xpath=//td[contains(.,'Metrocarrier-Comisiones por Vendedor Mensual')]
-${Campo_reportes}    xpath=//input[@maxlength='7081']
-${Descripcion_reporte}    Metrocarrier-Comisiones por Vendedor Mensual    
 #Checkbox
 ${Todos_los_que_dependen_de}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
 #Combos
@@ -58,7 +56,7 @@ Consultar Reporte metrocarrier - Comisiones por vendedor mensual
     Checkbox los que dependen de
     Vendedor
     Boton aceptar
-    Sleep    12s
+    
 
 
 *** Keyword ***
@@ -87,8 +85,6 @@ Reportes
 Metrocarrier-Comisiones por vendedor mensual
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    5s
-    Input Text    ${Campo_reportes}    ${Descripcion_reporte}
     Wait Until Element Is Visible    ${Metrocarrier_Comisiones_por_vendedor_mensual}
     Click Element    ${Metrocarrier_Comisiones_por_vendedor_mensual}
 
@@ -128,8 +124,6 @@ Al
 
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+

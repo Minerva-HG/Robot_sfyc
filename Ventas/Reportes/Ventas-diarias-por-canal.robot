@@ -103,3 +103,6 @@ Sucursal
 Boton aceptar
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+
+
+

@@ -9,8 +9,8 @@ Library    SeleniumLibrary
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
 ${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  joriospe
-${Pass}  Mega12345                        
+${Usuario}  MBELTRANG
+${Pass}  Mega2022                        
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
@@ -20,16 +20,14 @@ ${Reporte}    xpath=//span[contains(.,'Reportes')]
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
-${Ventas_canceladas}    xpath=(//td[contains(.,'Ventas canceladas')])[2]
-${Campo_reporte}    xpath=//input[@maxlength='7081']
-${Descripcion_reporte}    Ventas canceladas
+${Ventas_canceladas}    xpath=(//td[contains(.,'Ventas canceladas')])[1]
 #Checkbox
 ${Checkbox_todos_los_vendedores}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
 #Combos
 ${Combo_del}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-canceled-form/form/div/app-reporting-start-end-salesman-parameter/div/div/div[1]/div[2]/app-salesman-dropdown/dx-drop-down-box/div/div/div[1]/input
 ${Combo_al}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-canceled-form/form/div/app-reporting-start-end-salesman-parameter/div/div/div[2]/app-salesman-dropdown/dx-drop-down-box/div/div/div[1]/input
-${Combo_fecha_desde}    xpath=(//i[@class='dropdown-icon dx-icon dx-icon-event dx-template-wrapper dx-button-content'])[1]
-${Combo_fecha_hasta}    xpath=(//i[contains(@class,'dropdown-icon dx-icon dx-icon-event dx-template-wrapper dx-button-content')])[2]
+${Combo_fecha_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-canceled-form/form/div/app-reporting-start-end-date-parameter/div/div/div[2]/div[1]/dx-date-box/div/div/div[1]/input
+${Combo_fecha_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-canceled-form/form/div/app-reporting-start-end-date-parameter/div/div/div[2]/div[2]/dx-date-box/div/div/div[1]/input
 #Registros
 ${Del}    xpath=//td[contains(.,'COINTSA S. A. DE C. V.')]
 ${Al}    xpath=(//td[contains(.,'ACERO VIRAMONTES DIANA ILAYALI')])[2]
@@ -85,8 +83,6 @@ Reportes
 Ventas canceladas
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    3s
-    Input Text    ${Campo_reporte}    ${Descripcion_reporte}   
     Wait Until Element Is Visible    ${Ventas_canceladas} 
     Click Element    ${Ventas_canceladas} 
 
@@ -107,7 +103,6 @@ Checkbox todos los vendedores
     Click Element    ${Checkbox_todos_los_vendedores}
 
 Combo del
-    Sleep    25s
     Wait Until Element Is Visible    ${Combo_del}
     Click Element    ${Combo_del}
     Wait Until Element Is Visible    ${Del}
@@ -122,5 +117,6 @@ Combo al
 Boton aceptar
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+
 
 

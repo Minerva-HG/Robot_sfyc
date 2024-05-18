@@ -1,7 +1,6 @@
 *** Settings ***
 Library    String
 Library    SeleniumLibrary
-Library    RPA.Salesforce
 #Library    RPA.Desktop
 
 
@@ -21,7 +20,7 @@ ${Reporte}    xpath=//span[contains(.,'Reportes')]
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
-${Ventas_canceladas_mensual}    xpath=//td[contains(.,'Metrocarrier-Ventas canceladas mensual')]
+${Ventas_canceladas_mensual}    xpath=//td[@aria-describedby='dx-col-1'][contains(.,'Metrocarrier-Ventas canceladas mensual')]
 ${Campo_descripcion}    xpath=//input[contains(@maxlength,'7081')]
 ${Descripcion_reporte}    Metrocarrier-Ventas canceladas     
 #Checkbox
@@ -88,7 +87,6 @@ Metrocarrier - Ventas canceladas mensual
     Click Element    ${Combo_reportes}
     Sleep    5s
     Input Text    ${Campo_descripcion}    ${Descripcion_reporte}
-    Sleep    5s
     Wait Until Element Is Visible    ${Ventas_canceladas_mensual}
     Click Element    ${Ventas_canceladas_mensual}
 
@@ -121,10 +119,8 @@ Combo al
     Click Element    ${Al}
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+
 
 

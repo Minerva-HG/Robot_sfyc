@@ -56,7 +56,6 @@ Reporte ventas canceladas semanal
     Sleep    6s
     Checkbox todos los vendedores
     Boton aceptar
-    Sleep    80s
 
 *** Keyword ***
 Ingresar al Navegador
@@ -120,10 +119,6 @@ Boton aceptar
 Checkbox todos los vendedores
     Wait Until Element Is Visible    ${Checkbox_todos_los_vendedores}
     Click Element    ${Checkbox_todos_los_vendedores}
-
-
-
-
 
 
 
