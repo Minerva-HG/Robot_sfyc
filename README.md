@@ -1,14 +1,41 @@
-# Template: Standard Robot Framework
+# Repositorio
+https://github.com/Minerva-HG/Robot_sfyc
 
-This is the simplest template to start from.
 
-- Get started from a simple task template in `tasks.robot`.
-  - Uses [Robot Framework](https://robocorp.com/docs/languages-and-frameworks/robot-framework/basics) syntax.
-- You can configure your robot `robot.yaml`.
-- You can configure dependencies in `conda.yaml`.
+# About Robot Framework
+-  https://robotframework.org/
 
-## Learning materials
+# Install Robot on visual studio
+1.- Descargar Visual Studio Code
+2.- Descargar la extencion de paython
+3.- Descargar la extension de robot framework
+4.- Descargar Chromedriver actualizado a la version de tu navegador chrome
+-  https://googlechromelabs.github.io/chrome-for-testing/
+5.- 
 
-- [Robocorp Developer Training Courses](https://robocorp.com/docs/courses)
-- [Documentation links on Robot Framework](https://robocorp.com/docs/languages-and-frameworks/robot-framework)
-- [Example bots in Robocorp Portal](https://robocorp.com/portal)
+
+# Install a robot manually
+- https://github.com/robotframework/robotframework/blob/master/INSTALL.rst
+---
+
+# Cursos
+
+https://www.youtube.com/watch?v=aHqFIVO2oaQ
+
+https://www.youtube.com/watch?v=zcT8hSipe2A&list=PLL34mf651faORDOyJrk0E6k9FM-wKgfPV
+
+https://www.udemy.com/course/qa-testing-guia-basica-para-qa-y-robot-framework/?couponCode=LEADERSALE24B
+
+https://www.udemy.com/course/master-robot-framework-nivel-1-en-espanol/?couponCode=LEADERSALE24B
+
+--- 
+
+
+
+
+## Documentary Selenium
+https://github.com/robotframework/SeleniumLibrary/?tab=readme-ov-file
+
+
+
+

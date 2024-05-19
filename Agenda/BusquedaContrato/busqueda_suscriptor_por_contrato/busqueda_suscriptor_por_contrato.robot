@@ -5,9 +5,9 @@ Library  String
 *** Variables ***
 
 ${Navegador}  Chrome
-${Pagina}  https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
-${Usuario}  softteck01
-${Pass}  123456c
+${Pagina}   https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
+${Usuario}  MBELTRANG
+${Pass}  Mega2022
 ${Cajadetextoserie}  xpath=//input[@name='subscriber']
 ${Contrato}  0120063814
 ${BotonConsultar}  Xpath: //div[@class='add-subscriber-buttons']
