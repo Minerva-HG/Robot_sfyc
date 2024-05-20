@@ -4,16 +4,19 @@ https://github.com/Minerva-HG/Robot_sfyc
 
 # About Robot Framework
 -  https://robotframework.org/
-
+---
 # Install Robot on visual studio
 1.- Descargar Visual Studio Code
 2.- Descargar la extencion de paython
 3.- Descargar la extension de robot framework
-4.- Descargar Chromedriver actualizado a la version de tu navegador chrome
--  https://googlechromelabs.github.io/chrome-for-testing/
-5.- 
+4.- Descargar Chromedriver actualizado a la version de tu navegador chrome -  https://googlechromelabs.github.io/chrome-for-testing/
+5.- Crear el proyecto en la unidad C:
+6.- Clonar el proyecto [git clone https://github.com/Minerva-HG/Robot_sfyc]
 
+7.- agregar el chromedriver en le proyecto
+8.- Descargar extensiones en chrome de XPATH
 
+---
 # Install a robot manually
 - https://github.com/robotframework/robotframework/blob/master/INSTALL.rst
 ---
