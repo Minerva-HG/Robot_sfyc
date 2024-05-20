@@ -7,16 +7,16 @@ Library      String
 ############################################################Login System################################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}  https://global.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  joriospe
-${Pass}    Megajos202
+${Pagina}  https://ventas.qa-cluster.sfycnextgen.com.mx/ui
+${Usuario}  softteck01
+${Pass}  123456c
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #############################################################Drops de Ventas########################################################################################
-${ventas}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]
+${ventas}    xpath=//div[@class='dx-item-content dx-treeview-item-content'][contains(.,'Ventas')]
 ############################################################Menu###############################################################################################################
 ${Operaciones}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]/ul/li[1]
-${Portaciones_numericas}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]/ul/li[1]/ul/li[1]
+${Portaciones_numericas}    xpath=(//div[contains(.,'Reg. de Portaciones Numéricas')])[10]
 ##############################################################Tiempo##########################################################################################################
 ${time}    10s
 ##############################################################Combos########################################################################################################################
@@ -45,8 +45,8 @@ Pantalla registro de portaciones numericas y usuarios con permisos
     [Tags]    Validar inicio de sesion y navegación a la pantalla
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ingresar a ventas
-    Operaciones
+    #Ingresar a ventas
+    #Operaciones
     Ingresar a registros de portaciones numericas
 
 Registros Vacios

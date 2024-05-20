@@ -1,21 +1,216 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20240519 16:09:25.832" rpa="false" schemaversion="3">
 <suite id="s1" name="Megaportal" source="c:\Proyectos\Robot\sfyc-b\Global Productivo\Megaportal.robot">
 <test id="s1-t1" name="Ingresar Portal" line="20">
+=======
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20231116 19:12:03.872" rpa="false" schemaversion="3">
+<suite id="s1" name="Busqueda Suscriptor Por Folio Llamada Queja" source="c:\proyectos\robotFramework\Robot_sfyc\agenda\busquedacontrato\busqueda_suscriptor_por_folio_llamada_queja\busqueda_suscriptor_por_folio_llamada_queja.robot">
+<test id="s1-t1" name="Ingresar Sistema" line="30">
+>>>>>>> cb0a305dc01d8a0aa9e3531f00fac8545d8bcb7d
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${Pagina}</arg>
 <arg>${Navegador}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
+<<<<<<< HEAD
 <msg timestamp="20240519 16:09:26.105" level="INFO">Opening browser 'Chrome' to base url 'https://global.sfycnextgen.com.mx/ui/'.</msg>
 <status status="PASS" starttime="20240519 16:09:26.104" endtime="20240519 16:09:30.437"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
 <status status="PASS" starttime="20240519 16:09:30.438" endtime="20240519 16:09:30.481"/>
+=======
+<msg timestamp="20231116 19:12:04.397" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<status status="PASS" starttime="20231116 19:12:04.396" endtime="20231116 19:12:09.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:11.559" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:09.546" endtime="20231116 19:12:11.559"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20231116 19:12:11.560" endtime="20231116 19:12:11.703"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:13.712" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:11.704" endtime="20231116 19:12:13.712"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:18.725" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:13.714" endtime="20231116 19:12:18.725"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Localizadorpagina}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231116 19:12:18.726" endtime="20231116 19:12:18.742"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Username</arg>
+<arg>${Usuario}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:18.743" level="INFO">Typing text 'dhernandezd' into text field 'name:Username'.</msg>
+<status status="PASS" starttime="20231116 19:12:18.742" endtime="20231116 19:12:18.847"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Password</arg>
+<arg>${Pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:18.848" level="INFO">Typing text 'Omega12345' into text field 'name:Password'.</msg>
+<status status="PASS" starttime="20231116 19:12:18.848" endtime="20231116 19:12:18.955"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Botondominio}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:18.956" level="INFO">Clicking element 'xpath=//select[@id='Domain']'.</msg>
+<status status="PASS" starttime="20231116 19:12:18.955" endtime="20231116 19:12:19.021"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SFyC}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:19.023" level="INFO">Clicking element 'xpath=//*[@id="Domain"]/option[3]'.</msg>
+<status status="PASS" starttime="20231116 19:12:19.022" endtime="20231116 19:12:19.066"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:19.066" level="INFO">Clicking element 'name:button'.</msg>
+<status status="PASS" starttime="20231116 19:12:19.066" endtime="20231116 19:12:35.841"/>
+</kw>
+<status status="PASS" starttime="20231116 19:12:13.714" endtime="20231116 19:12:35.841"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:37.855" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:35.845" endtime="20231116 19:12:37.855"/>
+</kw>
+<kw name="Ingresa llamada suscriptor">
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:47.863" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:37.857" endtime="20231116 19:12:47.863"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Combo_llamada}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:47.864" level="INFO">Clicking element 'xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/dx-accordion[1]/div[1]/div[7]/div[1]'.</msg>
+<status status="PASS" starttime="20231116 19:12:47.863" endtime="20231116 19:12:48.013"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231116 19:12:51.027" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20231116 19:12:48.013" endtime="20231116 19:12:51.027"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Campo_sucursal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231116 19:12:51.028" level="INFO">Clicking element 'xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/dx-accordion[1]/div[1]/div[7]/dxi-item[1]/div[1]/app-subscriber-search-folio-call-folio-complaint-technical[1]/form[1]/div[1]/div[1]/app-branch-dropdown[1]/app-base-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]'.</msg>
+<msg timestamp="20231116 19:12:51.128" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-35.png"&gt;&lt;img src="selenium-screenshot-35.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20231116 19:12:51.129" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=119.0.6045.124)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6954C82B2+55298]
+	(No symbol) [0x00007FF695435E02]
+	(No symbol) [0x00007FF6952F045D]
+	(No symbol) [0x00007FF695332B4C]
+	(No symbol) [0x00007FF6953287BF]
+	(No symbol) [0x00007FF6953520AA]
+	(No symbol) [0x00007FF6953280CF]
+	(No symbol) [0x00007FF6953522C0]
+	(No symbol) [0x00007FF69536AAA4]
+	(No symbol) [0x00007FF695351E83]
+	(No symbol) [0x00007FF69532670A]
+	(No symbol) [0x00007FF695327964]
+	GetHandleVerifier [0x00007FF695840AAB+3694587]
+	GetHandleVerifier [0x00007FF69589728E+4048862]
+	GetHandleVerifier [0x00007FF69588F173+4015811]
+	GetHandleVerifier [0x00007FF6955647D6+695590]
+	(No symbol) [0x00007FF695440CE8]
+	(No symbol) [0x00007FF69543CF34]
+	(No symbol) [0x00007FF69543D062]
+	(No symbol) [0x00007FF69542D3A3]
+	BaseThreadInitThunk [0x00007FFB2D517034+20]
+	RtlUserThreadStart [0x00007FFB2F502651+33]
+</msg>
+<status status="FAIL" starttime="20231116 19:12:51.028" endtime="20231116 19:12:51.134"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.134" endtime="20231116 19:12:51.135"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Lista_sucursal}</arg>
+<arg>${Sucursal}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.135" endtime="20231116 19:12:51.135"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.136" endtime="20231116 19:12:51.136"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Seleccion_sucursal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.136" endtime="20231116 19:12:51.136"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.137" endtime="20231116 19:12:51.137"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Select_tipo_folio}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.137" endtime="20231116 19:12:51.137"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.137" endtime="20231116 19:12:51.138"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Tipo_folio}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.138" endtime="20231116 19:12:51.138"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.138" endtime="20231116 19:12:51.138"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Input_folio}</arg>
+<arg>${Folio}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.138" endtime="20231116 19:12:51.139"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.139" endtime="20231116 19:12:51.139"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>${BtnConsultar}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.139" endtime="20231116 19:12:51.139"/>
+>>>>>>> cb0a305dc01d8a0aa9e3531f00fac8545d8bcb7d
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
+<<<<<<< HEAD
 <msg timestamp="20240519 16:09:35.489" level="INFO">Slept 5 seconds</msg>
 <status status="PASS" starttime="20240519 16:09:30.481" endtime="20240519 16:09:35.489"/>
 </kw>
@@ -96,11 +291,80 @@
 <statistics>
 <total>
 <stat pass="2" fail="0" skip="0">All Tests</stat>
+=======
+<status status="NOT RUN" starttime="20231116 19:12:51.139" endtime="20231116 19:12:51.140"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${BtnConsultar}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.140" endtime="20231116 19:12:51.140"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.140" endtime="20231116 19:12:51.140"/>
+</kw>
+<status status="FAIL" starttime="20231116 19:12:37.856" endtime="20231116 19:12:51.141"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.142" endtime="20231116 19:12:51.142"/>
+</kw>
+<kw name="Selecciona contrato">
+<status status="NOT RUN" starttime="20231116 19:12:51.143" endtime="20231116 19:12:51.143"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>15s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.144" endtime="20231116 19:12:51.145"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" starttime="20231116 19:12:51.145" endtime="20231116 19:12:51.146"/>
+</kw>
+<status status="FAIL" starttime="20231116 19:12:04.394" endtime="20231116 19:12:51.147">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=119.0.6045.124)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6954C82B2+55298]
+	(No symbol) [0x00007FF695435E02]
+	(No symbol) [0x00007FF6952F045D]
+	(No symbol) [0x00007FF695332B4C]
+	(No symbol) [0x00007FF6953287BF]
+	(No symbol) [0x00007FF6953520AA]
+	(No symbol) [0x00007FF6953280CF]
+	(No symbol) [0x00007FF6953522C0]
+	(No symbol) [0x00007FF69536AAA4]
+	(No symbol) [0x00007FF695351E83]
+	(No symbol) [0x00007FF69532670A]
+	(No symbol) [0x00007FF695327964]
+	GetHandleVerifier [0x00007FF695840AAB+3694587]
+	GetHandleVerifier [0x00007FF69589728E+4048862]
+	GetHandleVerifier [0x00007FF69588F173+4015811]
+	GetHandleVerifier [0x00007FF6955647D6+695590]
+	(No symbol) [0x00007FF695440CE8]
+	(No symbol) [0x00007FF69543CF34]
+	(No symbol) [0x00007FF69543D062]
+	(No symbol) [0x00007FF69542D3A3]
+	BaseThreadInitThunk [0x00007FFB2D517034+20]
+	RtlUserThreadStart [0x00007FFB2F502651+33]
+</status>
+</test>
+<status status="FAIL" starttime="20231116 19:12:03.881" endtime="20231116 19:12:51.155"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+>>>>>>> cb0a305dc01d8a0aa9e3531f00fac8545d8bcb7d
 </total>
 <tag>
 </tag>
 <suite>
+<<<<<<< HEAD
 <stat pass="2" fail="0" skip="0" id="s1" name="Megaportal">Megaportal</stat>
+=======
+<stat pass="0" fail="1" skip="0" id="s1" name="Busqueda Suscriptor Por Folio Llamada Queja">Busqueda Suscriptor Por Folio Llamada Queja</stat>
+>>>>>>> cb0a305dc01d8a0aa9e3531f00fac8545d8bcb7d
 </suite>
 </statistics>
 <errors>

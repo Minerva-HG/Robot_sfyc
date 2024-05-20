@@ -20,8 +20,6 @@ ${Reporte}    xpath=//span[contains(.,'Reportes')]
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
-${Campo_reportes}    xpath=//input[@maxlength='7081']
-${Descripcion_reporte}    Resumen de ventas por canal    
 ${Resumen_de_ventas_por_canal}    xpath=//td[contains(.,'Resumen de ventas por canal')]
 #Combos
 ${Combo_fecha_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-sale-summary-by-channel-form/form/div/app-reporting-start-end-date-parameter/div/div/div[2]/div[1]/dx-date-box/div/div/div[1]/input
@@ -76,8 +74,6 @@ Reportes
 Resumen de ventas por canal
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    5s
-    Input Text    ${Campo_reportes}    ${Descripcion_reporte}
     Wait Until Element Is Visible    ${Resumen_de_ventas_por_canal}
     Click Element    ${Resumen_de_ventas_por_canal}
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20231116 10:55:42.792" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo" source="C:\proyectos\robotFramework\Robot_sfyc\Agenda\Demo\Demo.robot">
+<test id="s1-t1" name="Visitar google" line="5">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.google.com/</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231116 10:55:43.056" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com/'.</msg>
+<msg timestamp="20231116 10:55:44.671" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20231116 10:55:44.672" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20231116 10:55:43.055" endtime="20231116 10:55:44.674"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:55:44.675" endtime="20231116 10:55:44.675"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" starttime="20231116 10:55:44.675" endtime="20231116 10:55:44.675"/>
+</kw>
+<status status="FAIL" starttime="20231116 10:55:43.054" endtime="20231116 10:55:44.675">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<status status="FAIL" starttime="20231116 10:55:42.794" endtime="20231116 10:55:44.675"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Demo">Demo</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

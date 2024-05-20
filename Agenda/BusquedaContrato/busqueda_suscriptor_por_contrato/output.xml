@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20231116 10:40:28.873" rpa="false" schemaversion="3">
+<suite id="s1" name="Busqueda Suscriptor Por Contrato" source="C:\proyectos\robotFramework\Robot_sfyc\Agenda\BusquedaContrato\busqueda_suscriptor_por_contrato\busqueda_suscriptor_por_contrato.robot">
+<test id="s1-t1" name="Ingresar usuario" line="18">
+<kw name="Abrir navegador">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231116 10:40:29.112" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<msg timestamp="20231116 10:40:30.882" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20231116 10:40:30.882" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20231116 10:40:29.112" endtime="20231116 10:40:30.885"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Atención a Clientes Web</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<status status="FAIL" starttime="20231116 10:40:29.111" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Seleccionar dominio">
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+</kw>
+<kw name="Ingresar suscriptor por contrato">
+<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+</kw>
+<kw name="Seleccionar boton consultar">
+<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+</kw>
+<kw name="Cerrar navegador">
+<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+</kw>
+<status status="FAIL" starttime="20231116 10:40:29.111" endtime="20231116 10:40:30.887">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<status status="FAIL" starttime="20231116 10:40:28.876" endtime="20231116 10:40:30.888"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Busqueda Suscriptor Por Contrato">Busqueda Suscriptor Por Contrato</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

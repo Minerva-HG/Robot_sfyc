@@ -8,16 +8,15 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui    
+${Pagina}    https://ventas.dev-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
 ${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Solicitudes
-${Ventas}    xpath=(//div[contains(.,'Ventas')])[11]
-${Operaciones}    xpath=//span[contains(.,'Operaciones')]
-${Solicitudes}    xpath=//span[contains(.,'Solicitudes')]
-${busqueda}    xpath=//i[contains(@class,'dx-icon dx-icon-find')]
+${Ventas}    xpath=//li[@aria-label='Ventas']
+${Solicitudes}    xpath=(//div[contains(.,'Solicitudes')])[9]
+${busqueda}    xpath=//i[@class='dx-icon dx-icon-find']
 #Vendedor
 ${SOLVEN}    xpath=//input[@role='spinbutton']
 ${Aceptar}    xpath=//span[normalize-space()='Aceptar']
@@ -39,6 +38,7 @@ Busquedad Avanzada
     Ingresar a Consulta de Solicitudes
     FOR    ${counter}    IN RANGE    1    6    
         Buscar Folio     ${folio}[${counter}]
+
     END
 
 
@@ -56,23 +56,18 @@ Ingresar usuario contrasena
     Click Element    ${SFyC}
     Click Element    name:button
 Ingresar a Catalogos Generales
-    [Documentation]    Ingresamos a SFYC General
+    #[Documentation]    Ingresamos a SFYC General
     Sleep    5s
     Click Element    ${ventas}
 
 
 Ingresar a Consulta de Solicitudes
     [Documentation]    Ingresamos a Consulta de ventas por solicitud
-    Wait Until Page Contains Element    ${Ventas}
-    Click Element    ${Ventas}
-    Wait Until Element Is Visible    ${Operaciones}
-    Click Element    ${Operaciones}
-    Wait Until Element Is Visible    ${Solicitudes}    
+    Sleep    5s
     Click Element   ${Solicitudes}
-    Wait Until Element Is Visible    ${busqueda}
+    Sleep    2s
     Click Element    ${busqueda}
     Sleep    2s
-
 Buscar Folio
     [Arguments]    ${folio}
     Input Text    ${SOLVEN}     ${folio} 

@@ -8,21 +8,20 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui
+${Pagina}    https://ventas.dev-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
 ${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Solicitudes
-${Ventas}    xpath=(//div[contains(.,'Ventas')])[11]
-${Operaciones}    xpath=(//div[contains(.,'Operaciones')])[10]
-${Solicitudes}    xpath=//span[contains(.,'Solicitudes')]
-${Traspaso}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-request-sale-main-container/div/app-request-sale-menu-options/dx-button-group/div/div[2]
+${ventas}    xpath=//li[@aria-label='Ventas']
+${Solicitudes}    xpath=(//div[contains(.,'Solicitudes')])[9]
+${Traspaso}    xpath=//i[contains(@class,'dx-icon dx-icon-refresh')]
 #Vendedor
 ${SalesmanDrop}    xpath=//dx-drop-down-box[@id='salesmanDropdown']//div[@class='dx-dropdowneditor-icon']
 ${Drop2}    xpath=(//div[@class='dx-dropdowneditor-icon'])[3]
-${Salesman}    xpath=//td[contains(.,'COINTSA S. A. DE C. V.')]
-${SalesmanM}    xpath=(//td[contains(.,'ABRAJAN CORTES CARLOS ALBERTO')])[2]
+${Salesman}    xpath=//td[contains(.,'LIZARRAGA ROSALES JUAN ALFONSO')]
+${SalesmanM}    xpath=//td[contains(.,'ABEDOY SILVA JOSE ROBERTO')]
 ${Label}    xpath=//label[@class='field-label description']
 #folios
 ${Nfolios}    xpath=//input[contains(@max,'undefined')]
@@ -58,6 +57,9 @@ Traspasar Solicitudes
 
 
 
+
+
+
 *** Keywords ***
 Ingresar al Navegador
     Open browser    ${Pagina}   ${Navegador}
@@ -77,16 +79,13 @@ Ingresar a Catalogos Generales
     Sleep    5s
     Click Element    ${ventas}
 
+
 Ingresar a Consulta de Solicitudes
     [Documentation]    Ingresamos a Consulta de ventas por solicitud
-    Wait Until Element Is Visible    ${Ventas}
-    Click Element    ${Ventas}
-    Wait Until Element Is Visible    ${Operaciones}
-    Click Element    ${Operaciones}
-    Wait Until Element Is Visible    ${Solicitudes}
-    Click Element   ${Solicitudes}
     Sleep    5s
-    Click Element    ${Traspaso}
+    Click Element   ${Solicitudes}
+    Sleep    2s
+   Click Element    ${Traspaso}
     
 Agregar vendedor 1
     Wait Until Element Is Visible    ${SalesmanDrop}
@@ -98,8 +97,8 @@ Agregar vendedor 2
     Sleep    5s
     Click Element    ${Drop2}
     Sleep    5s
-    #Input Text    xpath=(//input[@type='text'])[9]    299417
-    #Sleep    5s
+    Input Text    xpath=(//input[@type='text'])[9]    299417
+    Sleep    5s
     Click Element    ${SalesmanM}
     Sleep    5s
 
@@ -111,7 +110,7 @@ Agregar Folios
     Sleep    5s
 
 Finalizar
-    Wait Until Element Is Visible    ${Aceptar}
     Click Element    ${Aceptar}
     Sleep    5s
     Click Element    ${Close} 
+    Click Element    ${Clean}

@@ -8,15 +8,14 @@ Library      String
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui  
+${Pagina}    https://ventas.dev-cluster.sfycnextgen.com.mx/ui    
 ${Usuario}    joriospe 
 ${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Solicitudes
-${ventas}    xpath=(//div[contains(.,'Ventas')])[11]
-${Operaciones}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[4]/ul/li[1]
-${Solicitudes}    xpath=//span[contains(.,'Solicitudes')]
+${Ventas}    xpath=//li[@aria-label='Ventas']
+${Solicitudes}    xpath=(//div[contains(.,'Solicitudes')])[9]
 ${solicitud}    xpath=//i[contains(@class,'dx-icon dx-icon-redo')]
 #Vendedor
 ${SalesmanDrop}    xpath=//dx-drop-down-box[@id='salesmanDropdown']//div[@class='dx-dropdowneditor-icon']
@@ -69,10 +68,8 @@ Asignar una solicitud Automática
 
 Limite de folios digitales a entregar automáticamente(100)
     [Tags]    Validando que establezca un limite de folios de 100 de manera automatica
-    Sleep    1200s
     Agregar vendedor tipo dis
     Agregar Folios mayor a 100
-    Verificando si existe alguna notificacion
 
 Limite de folios asignación manual(100)
     [Tags]    Validando que establezca un limite de folios de 100 de manera manual
@@ -102,17 +99,12 @@ Ingresar a Catalogos Generales
 
 Ingresar a Consulta de Solicitudes
     [Documentation]    Ingresamos a Consulta de ventas por solicitud
-    Sleep    20s
-    Click Element    ${Ventas}
-    Wait Until Page Contains Element    ${Operaciones}
-    Click Element    ${Operaciones}
-    Wait Until Element Is Visible    ${Solicitudes}  
+    Sleep    5s
     Click Element   ${Solicitudes}
-    Wait Until Element Is Visible    ${solicitud}
-    Click Element    ${solicitud}
+    Sleep    2s
+   Click Element    ${solicitud}
     
 Agregar vendedor
-    Sleep    5s
     Click Element    ${SalesmanDrop}
     Sleep    5s
     Click Element    ${Salesman}
@@ -120,7 +112,6 @@ Agregar vendedor
 Agregar Folios
     Wait Until Element Is Visible    ${Label}
     Input Text    ${Nfolios}    1
-    Wait Until Element Is Visible    ${Aceptar}
     Click Element    ${Aceptar}
 
 Verificando si existe alguna notificacion
@@ -135,18 +126,16 @@ Verificando si existe alguna notificacion
 Agregar de manera manual
     Wait Until Element Is Visible   ${Manual}
     Click Element    ${Manual}
-    Sleep    4s
     Input Text    ${DEL}    ${fol}
-    Sleep    4s
     Input Text    ${AL}    3495
     Sleep    5s
 
 Agregar vendedor automatico
-    Wait Until Element Is Visible    ${SalesmanDrop}    
     Click Element    ${SalesmanDrop}
     Sleep    5s
     Click Element    ${SalesmanM}
     Sleep    5s
+
 
 Boton aceptar
     Sleep    5s
@@ -160,29 +149,26 @@ Boton limpiar
     Click Element    ${Boton_limpiar}
 
 Checkbox cambiar a asignacion manual
-    Scroll Element Into View    ${Checkbox_cambiar_asignacion_manual}
     Wait Until Element Is Visible    ${Checkbox_cambiar_asignacion_manual}
     Click Element    ${Checkbox_cambiar_asignacion_manual}
 
 Agregar Folios mayor a 100
-    Wait Until Element Is Visible    ${Nfolios}
+    Wait Until Element Is Visible    ${Label}
     Input Text    ${Nfolios}    100
     Sleep    3s
-    ${Bandera_boton_aceptar_activo}=    Run Keyword And Return Status    Click Element    ${Aceptar}
-    IF    '${Bandera_boton_aceptar_activo}' == 'True'
-        Sleep    5s
-    ELSE
+    ${Bandera_boton_aceptar_inactivo}=    Run Keyword And Return Status    Click Element    ${Aceptar}
+    IF    '${Bandera_boton_aceptar_inactivo}' == 'True'
         Fail
+    ELSE
+        Boton limpiar
     END
     
 Agregar vendedor tipo dis
-    Wait Until Element Is Visible    ${SalesmanDrop}
     Click Element    ${SalesmanDrop}
     Sleep    5s
     Click Element    ${Vendedor_dis}
 
 Agregar de manera manual mas de 100 folios
-    Sleep    6s
     Input Text    ${DEL}    ${fol}
     Input Text    ${AL}    3557
     Sleep    5s

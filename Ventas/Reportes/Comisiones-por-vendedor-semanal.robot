@@ -123,9 +123,6 @@ Combo al
     Click Element    ${Al}
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
     Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
@@ -142,3 +139,5 @@ Combo los que dependen de
     Click Element    ${Combo_los_que_dependen_de}
     Wait Until Element Is Visible    ${Los_que_dependen_de}
     Click Element    ${Los_que_dependen_de}
+
+

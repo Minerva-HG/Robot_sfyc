@@ -8,14 +8,14 @@ Library    SeleniumLibrary
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui   
-${Usuario}  MBELTRANG      
-${Pass}    Mega2022                        
+${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
+${Usuario}  joriospe
+${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Reporte auxiliar de solicitudes
-${Ventas}    xpath=(//div[contains(.,'Ventas')])[11]
-${Reportes}    xpath=//span[contains(.,'Reportes')]
+${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
+${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Auxiliar_de_solicitudes}    xpath=//td[contains(.,'Auxiliar de solicitudes')]
 #Checkbox
 ${Checkbox_todos_vendedores}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
@@ -46,7 +46,7 @@ Consultar Reporte Auxiliares de solicitudes
     Ingresar al Navegador
     Ingresar usuario contrasena 
     Sleep    5s
-    Ventas 
+    #Ventas 
     Reportes 
     Auxiliar de solicitudes 
     Checkbox todos los vendedores
@@ -134,9 +134,7 @@ Estado vendidas
     Click Element    ${Estado_vendidas}
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s    
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Vendedor desde

@@ -8,18 +8,18 @@ Library    SeleniumLibrary
 #Login System
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}    https://global.qa-cluster.sfycnextgen.com.mx/ui   
+${Pagina}   https://ventas.qa-cluster.sfycnextgen.com.mx/ui
 ${Usuario}  joriospe
-${Pass}    Megacable2023
+${Pass}  Megajos202
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 #Ventas
-${Ventas}    xpath=//div[@class='tree-view-custom-item'][contains(.,'Ventas')]
+${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reporte}    xpath=//span[contains(.,'Reportes')]
 #Reportes
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
-${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[2]/div/div/div[1]/ul/li[5]/ul/li[3]
+${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
 ${Auxiliar_de_ventas_semanal}    xpath=//td[contains(.,'Auxiliar de ventas semanal')]
 #Checkbox
 ${Todos_los_vendedores}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
@@ -46,13 +46,13 @@ Consultar Reporte Auxiliar de ventas por vendedor semanal
     [Tags]    Validando Reporte Auxiliar de ventas por vendedor semanal
     Ingresar al Navegador
     Ingresar usuario contrasena
-    Ventas
+    #Ventas
     Reportes
     Auxiliar de ventas semanal
     Del
     Al
     Fecha desde
-    #Fecha hasta
+    Fecha hasta
     Boton aceptar
     Checkbox los que dependen de
     Dependen de
@@ -76,13 +76,8 @@ Ingresar usuario contrasena
     Sleep    10s
 
 Ventas
-    Sleep    3s
-    ${Bande_modulo_de_ventas_activo}=    Run Keyword And Return Status    Click Element    ${Ventas}    
-    IF    '${Bande_modulo_de_ventas_activo}' == 'True'
-        Sleep    2s    
-    ELSE
-        Ventas
-    END
+    Wait Until Element Is Visible    ${Ventas}
+    Click Element    ${Ventas} 
     
 Reportes
     Wait Until Element Is Visible    ${Reportes}
@@ -133,7 +128,6 @@ Dependen de
     Click Element    ${Dependen_de} 
 
 Boton aceptar
-    Sleep    5s
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
+

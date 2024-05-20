@@ -20,8 +20,6 @@ ${Reporte}    xpath=//span[contains(.,'Reportes')]
 ${Combo_reportes}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ventas}    xpath=(//div[contains(.,'Ventas')])[9]
 ${Reportes}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[9]
-${Campo_reportes}    xpath=//input[@maxlength='7081']
-${Descripcion_reporte}    Solicitudes con folio pago    
 ${Solicitudes_con_folio_de_pago}    xpath=//td[contains(.,'Solicitudes con folio pago')]
 #Combos
 ${Combo_del}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-request-with-payment-folio-form/form/div/app-reporting-start-end-salesman-parameter/div/div/div[1]/div[2]/app-salesman-dropdown/dx-drop-down-box/div/div/div[1]/input
@@ -92,8 +90,6 @@ Reportes
 Solicitudes con folio de pago
     Wait Until Element Is Visible    ${Combo_reportes}
     Click Element    ${Combo_reportes}
-    Sleep    5s    
-    Input Text    ${Campo_reportes}    ${Descripcion_reporte}
     Wait Until Element Is Visible    ${Solicitudes_con_folio_de_pago}
     Click Element    ${Solicitudes_con_folio_de_pago}
 
@@ -118,9 +114,7 @@ Checkbox todas las sucursales
     Click Element    ${Checkbox_todas_las_sucursales}
 
 Boton aceptar
-    Sleep    5s    
-    Scroll Element Into View    ${Boton_aceptar}
-    Sleep    5s
+    Wait Until Element Is Visible    ${Boton_aceptar}
     Click Element    ${Boton_aceptar}
 
 Checkbox resumen
@@ -138,3 +132,4 @@ Vendedor al
     Click Element    ${Combo_al}
     Wait Until Element Is Visible    ${Al}
     Click Element    ${Al}
+
