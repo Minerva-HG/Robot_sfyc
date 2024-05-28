@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20240527 19:02:16.683" rpa="false" schemaversion="3">
+<suite id="s1" name="Busqueda Suscriptor Por Telefono" source="C:\proyectos\robotFramework\Robot-LastVersion\Robot_sfyc\agenda\BusquedaContrato\busqueda_suscriptor_por_telefono\busqueda_suscriptor_por_telefono.robot">
+<test id="s1-t1" name="Ingresar usuario" line="23">
+<kw name="Abrir navegador">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240527 19:02:16.933" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<status status="PASS" starttime="20240527 19:02:16.932" endtime="20240527 19:02:19.994"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Atención a Clientes</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20240527 19:02:20.159" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.113)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7633C1F22+60322]
+	(No symbol) [0x00007FF76333CE99]
+	(No symbol) [0x00007FF7631F7EBA]
+	(No symbol) [0x00007FF7631CD5A5]
+	(No symbol) [0x00007FF7632736B7]
+	(No symbol) [0x00007FF76328B331]
+	(No symbol) [0x00007FF76326BFC3]
+	(No symbol) [0x00007FF763239617]
+	(No symbol) [0x00007FF76323A211]
+	GetHandleVerifier [0x00007FF7636D946D+3301613]
+	GetHandleVerifier [0x00007FF763723693+3605267]
+	GetHandleVerifier [0x00007FF763719410+3563664]
+	GetHandleVerifier [0x00007FF7634742F6+790390]
+	(No symbol) [0x00007FF7633474DF]
+	(No symbol) [0x00007FF7633433D4]
+	(No symbol) [0x00007FF763343562]
+	(No symbol) [0x00007FF763332F6F]
+	BaseThreadInitThunk [0x00007FFA11A67034+20]
+	RtlUserThreadStart [0x00007FFA12002651+33]
+</msg>
+<msg timestamp="20240527 19:02:20.165" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.113)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7633C1F22+60322]
+	(No symbol) [0x00007FF76333CE99]
+	(No symbol) [0x00007FF7631F7EBA]
+	(No symbol) [0x00007FF7631CD5A5]
+	(No symbol) [0x00007FF7632736B7]
+	(No symbol) [0x00007FF76328B331]
+	(No symbol) [0x00007FF76326BFC3]
+	(No symbol) [0x00007FF763239617]
+	(No symbol) [0x00007FF76323A211]
+	GetHandleVerifier [0x00007FF7636D946D+3301613]
+	GetHandleVerifier [0x00007FF763723693+3605267]
+	GetHandleVerifier [0x00007FF763719410+3563664]
+	GetHandleVerifier [0x00007FF7634742F6+790390]
+	(No symbol) [0x00007FF7633474DF]
+	(No symbol) [0x00007FF7633433D4]
+	(No symbol) [0x00007FF763343562]
+	(No symbol) [0x00007FF763332F6F]
+	BaseThreadInitThunk [0x00007FFA11A67034+20]
+	RtlUserThreadStart [0x00007FFA12002651+33]
+</msg>
+<status status="FAIL" starttime="20240527 19:02:19.995" endtime="20240527 19:02:20.168"/>
+</kw>
+<status status="FAIL" starttime="20240527 19:02:16.932" endtime="20240527 19:02:20.168"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20240527 19:02:20.169" endtime="20240527 19:02:20.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:02:20.169" endtime="20240527 19:02:20.169"/>
+</kw>
+<kw name="Seleccionar dominio">
+<status status="NOT RUN" starttime="20240527 19:02:20.169" endtime="20240527 19:02:20.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:02:20.170" endtime="20240527 19:02:20.170"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<status status="NOT RUN" starttime="20240527 19:02:20.170" endtime="20240527 19:02:20.170"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:02:20.170" endtime="20240527 19:02:20.170"/>
+</kw>
+<kw name="Ingresar contrato">
+<status status="NOT RUN" starttime="20240527 19:02:20.179" endtime="20240527 19:02:20.179"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:02:20.202" endtime="20240527 19:02:20.203"/>
+</kw>
+<kw name="Cerrar navegador">
+<status status="NOT RUN" starttime="20240527 19:02:20.213" endtime="20240527 19:02:20.213"/>
+</kw>
+<status status="FAIL" starttime="20240527 19:02:16.932" endtime="20240527 19:02:20.214">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.113)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7633C1F22+60322]
+	(No symbol) [0x00007FF76333CE99]
+	(No symbol) [0x00007FF7631F7EBA]
+	(No symbol) [0x00007FF7631CD5A5]
+	(No symbol) [0x00007FF7632736B7]
+	(No symbol) [0x00007FF76328B331]
+	(No symbol) [0x00007FF76326BFC3]
+	(No symbol) [0x00007FF763239617]
+	(No symbol) [0x00007FF76323A211]
+	GetHandleVerifier [0x00007FF7636D946D+3301613]
+	GetHandleVerifier [0x00007FF763723693+3605267]
+	GetHandleVerifier [0x00007FF763719410+3563664]
+	GetHandleVerifier [0x00007FF7634742F6+790390]
+	(No symbol) [0x00007FF7633474DF]
+	(No symbol) [0x00007FF7633433D4]
+	(No symbol) [0x00007FF763343562]
+	(No symbol) [0x00007FF763332F6F]
+	BaseThreadInitThunk [0x00007FFA11A67034+20]
+	RtlUserThreadStart [0x00007FFA12002651+33]
+</status>
+</test>
+<status status="FAIL" starttime="20240527 19:02:16.685" endtime="20240527 19:02:20.219"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Busqueda Suscriptor Por Telefono">Busqueda Suscriptor Por Telefono</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20240527 19:02:20.159" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=125.0.6422.113)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7633C1F22+60322]
+	(No symbol) [0x00007FF76333CE99]
+	(No symbol) [0x00007FF7631F7EBA]
+	(No symbol) [0x00007FF7631CD5A5]
+	(No symbol) [0x00007FF7632736B7]
+	(No symbol) [0x00007FF76328B331]
+	(No symbol) [0x00007FF76326BFC3]
+	(No symbol) [0x00007FF763239617]
+	(No symbol) [0x00007FF76323A211]
+	GetHandleVerifier [0x00007FF7636D946D+3301613]
+	GetHandleVerifier [0x00007FF763723693+3605267]
+	GetHandleVerifier [0x00007FF763719410+3563664]
+	GetHandleVerifier [0x00007FF7634742F6+790390]
+	(No symbol) [0x00007FF7633474DF]
+	(No symbol) [0x00007FF7633433D4]
+	(No symbol) [0x00007FF763343562]
+	(No symbol) [0x00007FF763332F6F]
+	BaseThreadInitThunk [0x00007FFA11A67034+20]
+	RtlUserThreadStart [0x00007FFA12002651+33]
+</msg>
+</errors>
+</robot>

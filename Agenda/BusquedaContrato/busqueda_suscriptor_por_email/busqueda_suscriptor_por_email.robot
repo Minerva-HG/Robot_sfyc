@@ -1,73 +1,69 @@
 *** Settings ***
 Library  SeleniumLibrary
-Library  String  
+Library  String
 
 *** Variables ***
-#Login System
-${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+
 ${Navegador}  Chrome
-${Pagina}   https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
+${Pagina}  https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  dhernandezd
-${Pass}  Omega12345
-${Botondominio}    xpath=//select[@id='Domain']
-${SFyC}    xpath=//*[@id="Domain"]/option[3]
-${Combo_correo}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/dx-accordion[1]/div[1]/div[5]/div[1]/div[1]
-${Campo_sucursal}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/dx-accordion[1]/div[1]/div[4]/dxi-item[1]/div[1]/app-subscriber-search-phone-form[1]/form[1]/div[1]/div[1]/app-branch-dropdown[1]/app-base-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
-${Lista_sucursal}    xpath=/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/dx-data-grid[1]/div[1]/div[5]/div[1]/table[1]/tbody[1]/tr[2]/td[1]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]
+${Pass}  Mega12345
+${Contrato}  0120063814
+${btnEmail}  xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/dx-tab-panel[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/span[1]
+${btnConsultar}  xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/div[1]/div[1]/dx-button[2]/div[1]/span[1]
+${Lista_sucursal}  xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[1]/app-subscriber-search-email-form[1]/form[1]/div[1]/div[1]/app-branch-dropdown[1]/app-base-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
+${Campo_sucursal}  xpath=//div[contains(@class, "dx-state-focused")]/div/div[1]/input
 ${Sucursal}  12
-${Seleccion_sucursal}    xpath=//td[normalize-space()='Tepic']
-${Input_correo}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/dx-accordion[1]/div[1]/div[5]/dxi-item[1]/div[1]/app-subscriber-search-email-form[1]/form[1]/div[1]/div[2]/dx-text-box[1]/div[1]/div[1]/input[1]
-${Correo}  herli16@gmail.com   
-${BtnConsultar}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/div[1]/div[1]/dx-button[1]/div[1]/span[1]
-${Seleccionar_contrato}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/div[1]/div[2]/app-subscriber-search-grid[1]/dx-data-grid[1]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]
-${Cargar_contrato}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-subscriber-search-container[1]/div[1]/div[2]/app-subscriber-search-grid[1]/dx-data-grid[1]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[4]/td[1]
-${Filtro_correo}    xpath=
+${Seleccion_sucursal}  xpath=//td[normalize-space()='Tepic']
+${Input_Email}  xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[1]/app-subscriber-search-email-form[1]/form[1]/div[1]/div[2]/dx-text-box[1]/div[1]/div[1]/input[1]
+${Email}  devherli16@gmail.com
+${Seleccionar_contrato}  xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/app-subscriber-search-grid[1]/div[1]/dx-data-grid[1]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[3]
 
 *** Test Cases ***
-Ingresar Sistema
-    Open browser    ${Pagina}   ${Navegador}
-    Sleep   2s
+Ingresar usuario
+    Abrir navegador
     Maximize Browser Window
-    Sleep   2s
-    Ingresar usuario contrasena
-    Sleep   2s
-    Ingresa correo suscriptor
     Sleep   5s
-    Selecciona contrato
-    Sleep   15s
-    Close browser
+    Seleccionar dominio
+    Sleep   5s
+    Ingresar usuario contrasena
+    Sleep   5s
+    Ingresar contrato
+    Sleep   5s
+    Cerrar navegador
 
 
-*** Keyword ***
-Ingresar usuario contrasena
-    Sleep    5s
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text     name:Username   ${Usuario}
-    Input Text     name:Password   ${Pass}
-    Click Element    ${Botondominio}
-    Click Element    ${SFyC}
-    Click Element    name:button
+*** Keywords ***
+Cerrar navegador
+    Sleep   3s
+    close browser
 
-Ingresa correo suscriptor
-    Sleep    3s
-    Click Element    ${Combo_correo} 
-    Sleep    3s
-    Click Element    ${Campo_sucursal}
-    Sleep    3s
-    Input Text   ${Lista_sucursal}   ${Sucursal} 
+Ingresar contrato
+    Click Element    ${btnEmail}
+    Sleep   2s
+    Click Element    ${Lista_sucursal}
+    Sleep   8s
+    Input Text    ${Campo_sucursal}   ${Sucursal} 
     Sleep    3s
     Click Element    ${Seleccion_sucursal}
-    Sleep    3s
-    Input Text    ${Input_correo}    ${Correo}
-    Sleep    3s
-    Wait Until Element Is Enabled    ${BtnConsultar}    timeout=5s
-    Sleep    5s
-    Click Element    ${BtnConsultar}
-    Sleep    10s
-
-Selecciona contrato
-    Sleep    10s
-    Input Text    ${Filtro_correo}    ${Telefono}
-    Sleep    5s
+    Sleep   2s
+    Input Text    ${Input_Email}   ${Email}
+    Sleep   2s
+    Click Element    ${btnConsultar}
+    Sleep   90s
     Double Click Element    ${Seleccionar_contrato}
 
+Ingresar usuario contrasena
+    Input text    name:Username   ${Usuario}
+    Input text    name:Password   ${Pass}
+    Sleep   3s
+    Click Button    name:button
+
+Seleccionar dominio
+    Select From List By Label     name:Domain   SFYC
+
+
+
+Abrir navegador
+    Open browser    ${Pagina}   ${Navegador}
+    title should be  Atención a Clientes

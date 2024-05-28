@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20240527 12:37:30.698" rpa="false" schemaversion="3">
+<suite id="s1" name="Iniciar Sesion" source="C:\proyectos\robotFramework\Robot-LastVersion\Robot_sfyc\agenda\InicioSesion\iniciar_sesion.robot">
+<test id="s1-t1" name="Ingresar usuario" line="13">
+<kw name="Abrir navegador">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240527 12:37:30.946" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<status status="PASS" starttime="20240527 12:37:30.945" endtime="20240527 12:37:35.063"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Atención a Clientes</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20240527 12:37:35.073" level="INFO">Page title is 'Atención a Clientes'.</msg>
+<status status="PASS" starttime="20240527 12:37:35.063" endtime="20240527 12:37:35.073"/>
+</kw>
+<status status="PASS" starttime="20240527 12:37:30.945" endtime="20240527 12:37:35.073"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240527 12:37:35.074" endtime="20240527 12:37:35.127"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 12:37:40.128" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 12:37:35.127" endtime="20240527 12:37:40.128"/>
+</kw>
+<kw name="Seleccionar dominio">
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name:Domain</arg>
+<arg>SFYC</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20240527 12:37:40.129" level="INFO">Selecting options from selection list 'name:Domain' by label SFYC.</msg>
+<status status="PASS" starttime="20240527 12:37:40.129" endtime="20240527 12:37:40.226"/>
+</kw>
+<status status="PASS" starttime="20240527 12:37:40.128" endtime="20240527 12:37:40.227"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 12:37:45.228" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 12:37:40.227" endtime="20240527 12:37:45.228"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Username</arg>
+<arg>${Usuario}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 12:37:45.229" level="INFO">Typing text 'dhernandezd' into text field 'name:Username'.</msg>
+<status status="PASS" starttime="20240527 12:37:45.229" endtime="20240527 12:37:45.358"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Password</arg>
+<arg>${Pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 12:37:45.359" level="INFO">Typing text 'Mega12345' into text field 'name:Password'.</msg>
+<status status="PASS" starttime="20240527 12:37:45.358" endtime="20240527 12:37:45.458"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 12:37:48.460" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 12:37:45.458" endtime="20240527 12:37:48.460"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240527 12:37:48.460" level="INFO">Clicking button 'name:button'.</msg>
+<status status="PASS" starttime="20240527 12:37:48.460" endtime="20240527 12:37:50.086"/>
+</kw>
+<status status="PASS" starttime="20240527 12:37:45.229" endtime="20240527 12:37:50.086"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 12:38:10.088" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240527 12:37:50.087" endtime="20240527 12:38:10.088"/>
+</kw>
+<kw name="Cerrar navegador">
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 12:38:13.090" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 12:38:10.088" endtime="20240527 12:38:13.090"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240527 12:38:13.090" endtime="20240527 12:38:15.726"/>
+</kw>
+<status status="PASS" starttime="20240527 12:38:10.088" endtime="20240527 12:38:15.726"/>
+</kw>
+<status status="PASS" starttime="20240527 12:37:30.944" endtime="20240527 12:38:15.727"/>
+</test>
+<status status="PASS" starttime="20240527 12:37:30.699" endtime="20240527 12:38:15.730"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Iniciar Sesion">Iniciar Sesion</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

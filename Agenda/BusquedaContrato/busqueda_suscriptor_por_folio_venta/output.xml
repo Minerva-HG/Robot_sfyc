@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20240527 19:20:08.083" rpa="false" schemaversion="3">
+<suite id="s1" name="Busqueda Suscriptor Por Folio Venta" source="C:\proyectos\robotFramework\Robot-LastVersion\Robot_sfyc\agenda\BusquedaContrato\busqueda_suscriptor_por_folio_venta\busqueda_suscriptor_por_folio_venta.robot">
+<test id="s1-t1" name="Ingresar usuario" line="23">
+<kw name="Abrir navegador">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${Pagina}</arg>
+<arg>${Navegador}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240527 19:20:08.346" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<status status="PASS" starttime="20240527 19:20:08.346" endtime="20240527 19:20:12.199"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Atención a Clientes</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20240527 19:20:12.208" level="INFO">Page title is 'Atención a Clientes'.</msg>
+<status status="PASS" starttime="20240527 19:20:12.200" endtime="20240527 19:20:12.208"/>
+</kw>
+<status status="PASS" starttime="20240527 19:20:08.346" endtime="20240527 19:20:12.209"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240527 19:20:12.209" endtime="20240527 19:20:12.244"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 19:20:17.244" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 19:20:12.244" endtime="20240527 19:20:17.244"/>
+</kw>
+<kw name="Seleccionar dominio">
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name:Domain</arg>
+<arg>SFYC</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20240527 19:20:17.246" level="INFO">Selecting options from selection list 'name:Domain' by label SFYC.</msg>
+<status status="PASS" starttime="20240527 19:20:17.245" endtime="20240527 19:20:17.354"/>
+</kw>
+<status status="PASS" starttime="20240527 19:20:17.245" endtime="20240527 19:20:17.355"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 19:20:22.357" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 19:20:17.356" endtime="20240527 19:20:22.357"/>
+</kw>
+<kw name="Ingresar usuario contrasena">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Username</arg>
+<arg>${Usuario}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 19:20:22.358" level="INFO">Typing text 'dhernandezd' into text field 'name:Username'.</msg>
+<status status="PASS" starttime="20240527 19:20:22.358" endtime="20240527 19:20:22.508"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Password</arg>
+<arg>${Pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 19:20:22.509" level="INFO">Typing text 'Mega12345' into text field 'name:Password'.</msg>
+<status status="PASS" starttime="20240527 19:20:22.508" endtime="20240527 19:20:22.604"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 19:20:25.605" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 19:20:22.604" endtime="20240527 19:20:25.605"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240527 19:20:25.605" level="INFO">Clicking button 'name:button'.</msg>
+<status status="PASS" starttime="20240527 19:20:25.605" endtime="20240527 19:20:26.458"/>
+</kw>
+<status status="PASS" starttime="20240527 19:20:22.357" endtime="20240527 19:20:26.459"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 19:20:31.459" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 19:20:26.459" endtime="20240527 19:20:31.459"/>
+</kw>
+<kw name="Ingresar contrato">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${btnVenta}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240527 19:20:31.460" level="INFO">Clicking element 'xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/dx-tab-panel[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]/div[1]/span[1]'.</msg>
+<msg timestamp="20240527 19:20:31.549" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20240527 19:20:31.549" level="FAIL">Element with locator 'xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/dx-tab-panel[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]/div[1]/span[1]' not found.</msg>
+<status status="FAIL" starttime="20240527 19:20:31.459" endtime="20240527 19:20:31.551"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Lista_sucursal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>8s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Campo_sucursal}</arg>
+<arg>${Sucursal}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Seleccion_sucursal}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Input_venta}</arg>
+<arg>${venta}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${btnConsultar}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.552" endtime="20240527 19:20:31.552"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>90s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.553" endtime="20240527 19:20:31.553"/>
+</kw>
+<kw name="Double Click Element" library="SeleniumLibrary">
+<arg>${Seleccionar_contrato}</arg>
+<doc>Double clicks the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.553" endtime="20240527 19:20:31.553"/>
+</kw>
+<status status="FAIL" starttime="20240527 19:20:31.459" endtime="20240527 19:20:31.553"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240527 19:20:31.554" endtime="20240527 19:20:31.554"/>
+</kw>
+<kw name="Cerrar navegador">
+<status status="NOT RUN" starttime="20240527 19:20:31.555" endtime="20240527 19:20:31.555"/>
+</kw>
+<status status="FAIL" starttime="20240527 19:20:08.345" endtime="20240527 19:20:31.556">Element with locator 'xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[1]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/dx-tab-panel[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[6]/div[1]/span[1]' not found.</status>
+</test>
+<status status="FAIL" starttime="20240527 19:20:08.085" endtime="20240527 19:20:31.558"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Busqueda Suscriptor Por Folio Venta">Busqueda Suscriptor Por Folio Venta</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

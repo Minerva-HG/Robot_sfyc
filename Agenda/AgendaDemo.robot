@@ -5,9 +5,9 @@ Library  String
 *** Variables ***
 
 ${Navegador}  Chrome
-${Pagina}  http://qa.sfycnextgen.com.mx/schedule360/ui/
-${Usuario}  softteck01
-${Pass}  123456c
+${Pagina}  https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
+${Usuario}  dhernandezd
+${Pass}  Mega12345
 
 *** Test Cases ***
 Ingresar usuario
@@ -21,7 +21,7 @@ Ingresar usuario
     Cerrar navegador
 
 
-*** Keyword ***
+*** Keywords ***
 Cerrar navegador
     Sleep   3s
     close browser
@@ -35,10 +35,10 @@ Ingresar usuario contrasena
     Click Button    name:button
 
 Seleccionar dominio
-    Select From List By Index     name:Domain   0
+    Select From List By Label     name:Domain   SFYC
 
 
 
 Abrir navegador
     Open browser    ${Pagina}   ${Navegador}
-    title should be  Atención a Clientes Web
+    title should be  Atención a Clientes

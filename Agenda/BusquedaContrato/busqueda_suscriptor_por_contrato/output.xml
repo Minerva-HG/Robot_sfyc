@@ -1,82 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20231116 10:40:28.873" rpa="false" schemaversion="3">
-<suite id="s1" name="Busqueda Suscriptor Por Contrato" source="C:\proyectos\robotFramework\Robot_sfyc\Agenda\BusquedaContrato\busqueda_suscriptor_por_contrato\busqueda_suscriptor_por_contrato.robot">
-<test id="s1-t1" name="Ingresar usuario" line="18">
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20240527 13:45:14.835" rpa="false" schemaversion="3">
+<suite id="s1" name="Busqueda Suscriptor Por Contrato" source="C:\proyectos\robotFramework\Robot-LastVersion\Robot_sfyc\agenda\BusquedaContrato\busqueda_suscriptor_por_contrato\busqueda_suscriptor_por_contrato.robot">
+<test id="s1-t1" name="Ingresar usuario" line="14">
 <kw name="Abrir navegador">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${Pagina}</arg>
 <arg>${Navegador}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20231116 10:40:29.112" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
-<msg timestamp="20231116 10:40:30.882" level="INFO">Cannot capture screenshot because no browser is open.</msg>
-<msg timestamp="20231116 10:40:30.882" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
-</msg>
-<status status="FAIL" starttime="20231116 10:40:29.112" endtime="20231116 10:40:30.885"/>
+<msg timestamp="20240527 13:45:15.075" level="INFO">Opening browser 'Chrome' to base url 'https://agenda.qa-cluster.sfycnextgen.com.mx/ui/'.</msg>
+<status status="PASS" starttime="20240527 13:45:15.075" endtime="20240527 13:45:16.271"/>
 </kw>
 <kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Atención a Clientes Web</arg>
+<arg>Atención a Clientes</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<msg timestamp="20240527 13:45:18.704" level="INFO">Page title is 'Atención a Clientes'.</msg>
+<status status="PASS" starttime="20240527 13:45:16.271" endtime="20240527 13:45:18.704"/>
 </kw>
-<status status="FAIL" starttime="20231116 10:40:29.111" endtime="20231116 10:40:30.886"/>
+<status status="PASS" starttime="20240527 13:45:15.074" endtime="20240527 13:45:18.704"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<status status="PASS" starttime="20240527 13:45:18.705" endtime="20240527 13:45:18.744"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<msg timestamp="20240527 13:45:23.745" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:18.745" endtime="20240527 13:45:23.745"/>
 </kw>
 <kw name="Seleccionar dominio">
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name:Domain</arg>
+<arg>SFYC</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20240527 13:45:23.747" level="INFO">Selecting options from selection list 'name:Domain' by label SFYC.</msg>
+<status status="PASS" starttime="20240527 13:45:23.746" endtime="20240527 13:45:23.855"/>
+</kw>
+<status status="PASS" starttime="20240527 13:45:23.746" endtime="20240527 13:45:23.855"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<msg timestamp="20240527 13:45:28.857" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:23.855" endtime="20240527 13:45:28.857"/>
 </kw>
 <kw name="Ingresar usuario contrasena">
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Username</arg>
+<arg>${Usuario}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:28.859" level="INFO">Typing text 'dhernandezd' into text field 'name:Username'.</msg>
+<status status="PASS" starttime="20240527 13:45:28.858" endtime="20240527 13:45:29.002"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Password</arg>
+<arg>${Pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:29.003" level="INFO">Typing text 'Mega12345' into text field 'name:Password'.</msg>
+<status status="PASS" starttime="20240527 13:45:29.002" endtime="20240527 13:45:29.111"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 13:45:32.113" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:29.111" endtime="20240527 13:45:32.113"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:32.113" level="INFO">Clicking button 'name:button'.</msg>
+<status status="PASS" starttime="20240527 13:45:32.113" endtime="20240527 13:45:32.954"/>
+</kw>
+<status status="PASS" starttime="20240527 13:45:28.858" endtime="20240527 13:45:32.954"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 13:45:37.956" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:32.954" endtime="20240527 13:45:37.956"/>
+</kw>
+<kw name="Ingresar contrato">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//input[@name='subscriber']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:37.957" level="INFO">Clicking element 'xpath=//input[@name='subscriber']'.</msg>
+<status status="PASS" starttime="20240527 13:45:37.957" endtime="20240527 13:45:38.051"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 13:45:40.052" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:38.051" endtime="20240527 13:45:40.052"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/app-subscriber-search-contract-form[1]/form[1]/div[1]/dx-text-box[1]/div[1]/div[1]/input[1]</arg>
+<arg>${Contrato}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:40.052" level="INFO">Typing text '0120063814' into text field 'xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/app-subscriber-search-contract-form[1]/form[1]/div[1]/dx-text-box[1]/div[1]/div[1]/input[1]'.</msg>
+<status status="PASS" starttime="20240527 13:45:40.052" endtime="20240527 13:45:40.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 13:45:43.326" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:40.324" endtime="20240527 13:45:43.326"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/div[1]/div[1]/dx-button[2]/div[1]/span[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240527 13:45:43.326" level="INFO">Clicking element 'xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/app-subscriber-search-container[1]/div[1]/div[2]/div[1]/div[1]/dx-button[2]/div[1]/span[1]'.</msg>
+<status status="PASS" starttime="20240527 13:45:43.326" endtime="20240527 13:45:43.406"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>10s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.886" endtime="20231116 10:40:30.886"/>
+<msg timestamp="20240527 13:45:53.407" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:43.406" endtime="20240527 13:45:53.407"/>
 </kw>
-<kw name="Ingresar suscriptor por contrato">
-<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>10s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
-</kw>
-<kw name="Seleccionar boton consultar">
-<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+<status status="PASS" starttime="20240527 13:45:37.956" endtime="20240527 13:45:53.407"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>10s</arg>
+<arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+<msg timestamp="20240527 13:45:58.408" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:53.407" endtime="20240527 13:45:58.408"/>
 </kw>
 <kw name="Cerrar navegador">
-<status status="NOT RUN" starttime="20231116 10:40:30.887" endtime="20231116 10:40:30.887"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240527 13:46:01.410" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240527 13:45:58.409" endtime="20240527 13:46:01.410"/>
 </kw>
-<status status="FAIL" starttime="20231116 10:40:29.111" endtime="20231116 10:40:30.887">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
-</status>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240527 13:46:01.410" endtime="20240527 13:46:03.500"/>
+</kw>
+<status status="PASS" starttime="20240527 13:45:58.409" endtime="20240527 13:46:03.500"/>
+</kw>
+<status status="PASS" starttime="20240527 13:45:15.074" endtime="20240527 13:46:03.501"/>
 </test>
-<status status="FAIL" starttime="20231116 10:40:28.876" endtime="20231116 10:40:30.888"/>
+<status status="PASS" starttime="20240527 13:45:14.837" endtime="20240527 13:46:03.504"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Busqueda Suscriptor Por Contrato">Busqueda Suscriptor Por Contrato</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Busqueda Suscriptor Por Contrato">Busqueda Suscriptor Por Contrato</stat>
 </suite>
 </statistics>
 <errors>
