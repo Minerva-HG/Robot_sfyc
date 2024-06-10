@@ -10,31 +10,32 @@ ${username}    xpath=//input[contains(@id,'Username')]
 ${password}    xpath=//input[contains(@type,'password')]
 ${server}      xpath=//select[contains(@id,'Domain')]
 ${Navegador}  Chrome
-${Pagina}  https://global.qa-cluster.sfycnextgen.com.mx/ui/
-${Usuario}  ICHAVEZO                                           
-${Pass}  Megacable2023*    
+${Pagina}  https://servicios.qa-cluster.sfycnextgen.com.mx/ui/
+${Usuario}  JMARQUEZG                                          
+${Pass}  sfyc123    
 ${Botondominio}    xpath=//select[@id='Domain']
 ${SFyC}    xpath=//*[@id="Domain"]/option[3]
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 #menu
 ${Services}   xpath=(//div[contains(.,'Servicios')])[9]
-${cajero}    xpath=//li[@aria-label='Cajero']
+${cajero}    xpath=(//span[contains(.,'Cajero')])[1]
 #suscriptor
 ${dropsuscriptor}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[2]
 ${plus}    xpath=//i[@class='dx-icon dx-icon-plus']
 ${Inputsuscriptor}    xpath=(//input[contains(@role,'textbox')])[6]
-${suscriptor}    0660000010
+${suscriptor}    0440601389
 ${Consultar}    xpath=//div[@class='dx-button-content'][contains(.,'Consultar')]
-${Csuscriptor}    xpath=(//td[contains(@role,'gridcell')])[5]
+${Csuscriptor}    xpath=(//td[contains(@role,'gridcell')])[5] 
+...                    #(//td[contains(@role,'gridcell')])[10]
 #cajero
 ${Dropsucursal}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
 ${inputsucursal}    xpath=(//input[@type='text'])[18]
 ${sucursal}    GUADALAJARA
-${SelectSucursal}    xpath=(//td[@aria-describedby='dx-col-72'][contains(.,'Guadalajara')])[1]
+${SelectSucursal}    xpath=//td[contains(.,'Guadalajara')]
 ${DropCis}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${ClicInputCIS}    xpath=//input[contains(@maxlength,'7081')]
-${inputcis}     CIS P INDEPENDENCIA 
-${CIS}    xpath=//td[@aria-describedby='dx-col-74'][contains(.,'CIS P INDEPENDENCIA')]
+${ClicInputCIS}    xpath=//input[contains(@aria-invalid,'true')]
+${inputcis}     CIS DEPTO INGRESOS  
+${CIS}    xpath=//td[@aria-describedby='dx-col-302'][contains(.,'CIS DEPTO INGRESOS')]
 ${seleccionarCis}    xpath=//td[@aria-describedby='dx-col-41'][contains(.,'CIS P INDEPENDENCIA')]
 ${DropCajero}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[6]
 ${InputCajero}    xpath=(//input[contains(@autocomplete,'off')])[22]
@@ -70,11 +71,11 @@ Enter to cashier
     Consultar suscriptor
     Ingresar Cajero
 
-calculate balances
+#calculate balances
   #  Consultar Saldo fin de mes
-    Sleep   5s
-    Consultar Saldo hoy
-    Sleep   2m
+#    Sleep   5s
+#    Consultar Saldo hoy
+#    Sleep   2m
 
 *** Keywords ***
 Ingresar usuario contrasena
@@ -87,8 +88,8 @@ Ingresar usuario contrasena
     Click Element    name:button
 Ingresar a Servicios
     Sleep    5s
-    Click Element    ${Services}
-    Sleep    5s
+  #  Click Element    ${Services}
+  #  Sleep    5s
     Click Element    ${cajero}
 
 Consultar suscriptor
@@ -101,30 +102,33 @@ Consultar suscriptor
     Sleep    3s
     Click Element    ${Consultar}
     Sleep    5s
-    Click Element    ${Csuscriptor} 
+   # Click Element    ${Csuscriptor} 
 Ingresar Cajero
     Sleep    3s
     Click Element    ${Dropsucursal}
-    Sleep    3s
+    Sleep    2s
     Input Text    ${inputsucursal}    ${sucursal} 
-    Sleep    3s
+    Sleep    2s
     Click Element     ${SelectSucursal} 
-    Sleep   3s
+    Sleep    3s
+        ### Verificar o mejorar esta parte
+        Click Element    ${Dropsucursal} 
+        Sleep    2s
     Click Element     ${DropCis} 
-    Sleep    3s
+    Sleep    2s
     Input Text    ${ClicInputCIS}     ${inputcis}
-    Sleep    3s
+    Sleep    2s
     Click Element     ${CIS}
     Sleep    3s
-    Click Element     ${DropCajero}
-    Sleep    3s
-    Input Text   ${InputCajero}    ${InputC}
-    Sleep    3s
-    Click Element   ${ClicInputC}    
-    Sleep    3s
-    Input Text    ${inputContraseña}    ${contraseña} 
-    Sleep    3s
-    Click Element    ${acept}
+   # Click Element     ${DropCajero}
+   # Sleep    3s
+   # Input Text   ${InputCajero}    ${InputC}
+   # Sleep    3s
+   # Click Element   ${ClicInputC}    
+   # Sleep    3s
+   # Input Text    ${inputContraseña}    ${contraseña} 
+   # Sleep    3s
+   # Click Element    ${acept}
 
 Consultar Saldo hoy
     Sleep    5s

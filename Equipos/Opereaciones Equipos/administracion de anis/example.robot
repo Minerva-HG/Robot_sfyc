@@ -6,9 +6,11 @@ Library  String
 ${Serie}  AA831BWWR
 ${Cajadetextoserie}  xpath=//input[@name='serieId']
 ${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
+${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  softteck01
 ${Pass}  123456c
+${Botondominio}     xpath=//*[@id="Domain"]/option[3]
+${Iniciar}    xpath=//button[@name='button']
 ${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
 ${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
 ${Bottonregistroserie}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]/ul/li
@@ -36,6 +38,8 @@ ${Bottonejecutar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawe
 Ingresar usuario
     Open browser    ${Pagina}   ${Navegador}
     Maximize Browser Window
+    Sleep   5s
+    Click Element    ${Botondominio} 
     Sleep   5s
     Ingresar usuario contrasena
 
@@ -121,7 +125,7 @@ Quitar notificacion y validar en transacciones
 
 Descargar detalle de validaciones
     Sleep   4s
-    IF    '${Bottonejecutar}'== 'True'    Run Keywords    Seleccionar ejecutar
+    IF    '${Bottonejecutar}'== 'True'    Run Keywords    #Seleccionar ejecutar
    ...    ELSE    Seleccionar descargar detalle de validaciones
 
 Dar de baja por serie

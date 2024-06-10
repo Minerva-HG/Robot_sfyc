@@ -5,9 +5,10 @@ Library  String
 
 *** Variables ***
 ${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
+${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  softteck01
 ${Pass}  123456c
+${Botondominio}     xpath=//*[@id="Domain"]/option[3]
 ${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
 ${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
 ${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
@@ -27,6 +28,8 @@ Ingresar usuario
     Maximize Browser Window
     #Set Selenium Timeout    50s
     Sleep   5s
+    Click Element    ${Botondominio} 
+    Sleep    5s
     Ingresar usuario contrasena
 
 Pantalla de Liquidaciones
