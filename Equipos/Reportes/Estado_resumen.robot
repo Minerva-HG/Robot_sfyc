@@ -4,13 +4,13 @@ Library    RPA.Browser.Selenium    auto_close=${FALSE}
 
 *** Variables ***
 ${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
+${Pagina}  https://servicios.dev-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  softteck01
 ${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
+${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Bottonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
 ${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
+${Campodescripcion}  xpath=//input[contains(@maxlength,'7081')]
 ${Nombrereporte}    Resumen de equipos por estado
 ${Reporte}    xpath=//td[normalize-space()='Resumen de equipos por estado']
 ${Bottoncancelar}    xpath=//span[contains(.,'Cancelar')]

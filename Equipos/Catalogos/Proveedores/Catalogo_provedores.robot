@@ -5,13 +5,19 @@ Library    DateTime
 Library    XML
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottoncatalogos}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[7]
-${Bottonproveedores}  xpath=//span[normalize-space()='Proveedores']
+#######################################Validación de usuarios######################################################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #MAGONZALEZ    LPLOZANO    joriospe                                                                                              
+@{passL}=    Create List    Mega12345    #Magcbegs1    Chatito.    Mega12345                                                                                                                                                                                                                                                                                                                                                                                            
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+#######################################Pantalla catalogo de proveedores#######################################################################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botoncatalogos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[4]
+${Botonproveedores}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[4]/ul/li[3]
 ${Bottonagregar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-app-equipment-catalog-provider-grid/div/dx-data-grid/div/div[4]/div/div/div[3]/div[2]/div/div    
 ${Campodescripcion}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-app-equipment-catalog-provider-grid/div/dx-data-grid/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td[2]/div/div/div/div[1]/input
 ${Nombreproveedor}  CISCO SA DE CV
@@ -33,22 +39,13 @@ ${Guardarmodificacion}  xpath=//a[contains(@href, '#')]
 ${Nuevoproveedorabuscar}  LENOVO
 ${Iconoeliminar}  xpath=//a[2]
 ${Bottonok}  xpath=(.//*[normalize-space(text()) and normalize-space(.)='¿Está seguro que desea eliminar este registro?'])[1]/following::span[1]
+##############################################Refrescar datos#####################################################
+${Icono_refrescar}    xpath=//i[contains(@class,'dx-icon dx-icon-plus')]
 
 *** Test Cases ***
 #Función para la espera de los elementos
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Sleep   5s
-    Ingresar usuario contrasena
-
-Pantalla catalogo de transportistas
-    Sleep   15s
-    Seleccionar menu
-    Sleep   5s
-    Seleccionar catálogos
-    Sleep   3s
-    Seleccionar proveedores
+Usuarios que tienen permisos a la pantalla
+    Validacion de usuarios
 
 Registrar proveedores
     Sleep   5s
@@ -128,28 +125,46 @@ Modificar
     Sleep    5s
     Teclear nuevo proveedor a buscar
 
-Eliminar 
+Eliminar
     Sleep    5s
     Seleccionar icono Eliminar
     Sleep    5s
     Presionar botton ok
     Sleep    3s
 
+Refrescar
+    Actualizar datos
+
 *** Keywords ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botoncatalogos}
+        Click Element    ${Botoncatalogos}
+        Sleep    5s
+        Scroll Element Into View    ${Botonproveedores}
+        Wait Until Element Is Visible    ${Botonproveedores}
+        Click Element    ${Botonproveedores} 
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Click element  ${Bottonmenu}
-
-Seleccionar catálogos
-    Click element  ${Bottoncatalogos}
-
-Seleccionar proveedores
-    Click element  ${Bottonproveedores}
 
 Seleccionar botton agregar
     Click element   ${Bottonagregar}
@@ -213,3 +228,7 @@ Seleccionar icono Eliminar
 
 Presionar botton ok
     Click Element    ${Bottonok}
+
+Actualizar datos
+    Wait Until Element Is Visible    ${Icono_refrescar}
+    Click Element    ${Icono_refrescar}

@@ -1,166 +1,193 @@
-** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+*** Settings ***
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
-${Nombrereporte}    Depuración de equipos por SfyC
-${Reporte}    xpath=//td[normalize-space()='Depuración de equipos por SfyC']
+#######################################Validación de usuarios######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Checkboxtodoslostiposdeequipos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
-${Bottonparadesplegartiposdeequipos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Equipo}    xpath=//td[contains(.,'MAXCOM eMTA')]
-${Checkboxtodoslosequipos}    xpath=(//span[@class='dx-checkbox-icon'])[2]
-${Bottonparadesplegarmodelos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Modelo}    xpath=//td[contains(.,'SB5101M')]
-${Bottonparadesplegarfechadesde}    xpath=(//div[@class='dx-dropdowneditor-icon'])[5]
-${Fechadesde}    xpath=(//span[contains(.,'28')])[1]
-${Bottonparadesplegarfechahasta}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[6]
-${Fechahasta}    xpath=(//span[contains(.,'1')])[45]
-${Checkboxubiaciondestino}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
-${Bottonparadesplegarubicaciondestino}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[7]
-${Ubicaciondestino}    xpath=//td[contains(.,'Aguascalientes')]
-${Bottonaceptar}    xpath=//span[contains(.,'Aceptar')]
-${Checkboxresumen}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[4]
-${Ubicaciondestinovacio}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[4]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Mega12345    #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE DEPURACIÓN DE EQUIPOS POR SFYC##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Reporte}  xpath=//td[contains(.,'Depuración de equipos por SfyC')]
+#################################Checkbox#########################################################################
+${Todos_tipos_equipos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
+${Todos_modelos_equipos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
+${Todos_ubicaciones}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
+${Resumen}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[4]
+#################################Combos################################################################################
+${Combo_tipos_equipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-debugging-by-sfyc-form/form/div/app-reporting-type-equipment-and-model-parameters/div/div/div[1]/div[2]/app-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_modelos_equipos}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-debugging-by-sfyc-form/form/div/app-reporting-type-equipment-and-model-parameters/div/div/div[2]/div[2]/app-model-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_fecha_desde}    xpath=(//i[contains(@class,'dx-icon dx-icon-event')])[1]
+${Combo_fecha_hasta}    xpath=(//i[contains(@class,'dx-icon dx-icon-event')])[2]
+${Combo_ubicacion_destino}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-debugging-by-sfyc-form/form/div/div/div[1]/div[2]/app-location-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+################################Equipo########################################################################
+${Equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+################################Modelos##################################################################################
+${Modelos}    xpath=(//td[contains(.,'3COM')])[1]
+################################Fechas############################################################################
+${Desde}    xpath=(//span[contains(.,'2')])[1]
+${Hasta}    xpath=(//span[contains(.,'15')])[3]
+${Fecha_mayor_desde}    xpath=(//span[contains(.,'1')])[46]
+#################################Estados################################################################################
+${Ubicacion_destino}    xpath=//td[contains(.,'Actopan')]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+###############################Campos vacios################################################################################
+${Tipo_equipo_vacio}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
-Pantalla de reporte depuracion de equipos por SFYC
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar campo descripcion
-    Teclear nombre de reporte
-    Seleccionar reporte
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Depuracion de equipos por SFyC sin resumen
-    Seleccionar checkbox todos los tipos de equipos
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar equipo
-    Seleccionar checkbox todos los modelos de equipos
-    Seleccionar botton para desplegar modelos
-    Seleccionar modelo
-    Seleccionar botton para desplegar fecha desde
-    Seleccionar fecha desde
-    Seleccionar botton para desplegar fecha hasta
-    Seleccionar fecha hasta
-    Seleccionar checkbox ubicacion destino
-    Seleccionar botton para desplegar la ubicacion destino
-    Seleccionar ubicacion destino
-    Seleccionar botton aceptar
+Depuración de Equipos por SFyC con resumen
+    [Documentation]    Validando que genere reporte con resumen
+    [Tags]    test_dos
+    Combo tipos equipo
+    Combo modelos equipo
+    Fecha desde
+    Fecha hasta
+    Ubicación destino
+    Checkbox resumen
+    Boton aceptar
 
-Depuracion de equipos por SFyC con resumen
-    Seleccionar checkbox resumen
-    Seleccionar botton aceptar
+Depuración de Equipos por SFyC sin resumen
+    [Documentation]    Validando que genere reporte sin resumen
+    [Tags]    test_tres
+    Checkbox resumen
+    Boton aceptar
 
 Campos vacios
-    Campo vacio ubicacion destino
+    [Documentation]    Validando que no habilite el botón aceptar si existen campos vacios
+    [Tags]    test_cuatro
+    Tipos equipo vacio
+
+Fechas mayor
+    [Documentation]    Validando que no permita una fecha menor a fecha desde
+    [Tags]    test_cinco
+    Fecha hasta mayor a desde
 
 Combos
-    Seleccionar botton para desplegar tipos de equipos
-    Sleep    5s
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar botton para desplegar modelos
-    Sleep    5s
-    Seleccionar botton para desplegar modelos
-    Seleccionar botton para desplegar fecha desde
-    Sleep    5s
-    Seleccionar botton para desplegar fecha desde
-    Seleccionar botton para desplegar fecha hasta    
-    Sleep    5s
-    Seleccionar botton para desplegar fecha hasta
-    Seleccionar botton para desplegar la ubicacion destino
-    Sleep    5s
-    Seleccionar botton para desplegar la ubicacion destino
-
-
+    [Documentation]    Validando que funcionen de manera correcta cada uno de los combos
+    [Tags]    test_seis
+    Boton limpiar
+    Combo tipos equipo
+    Combo modelos equipo
+    Fecha desde
+    Fecha hasta
+    Ubicación destino
+    
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Reporte}
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
+Combo tipos equipo
+    Wait Until Element Is Visible    ${Todos_tipos_equipos}
+    Click Element    ${Todos_tipos_equipos}
+    Sleep    5s
+    Click Element    ${Combo_tipos_equipo}
+    Wait Until Element Is Visible    ${Equipo}
+    Click Element    ${Equipo}
+
+Combo modelos equipo
+    Wait Until Element Is Visible    ${Todos_modelos_equipos}
+    Click Element    ${Todos_modelos_equipos}
+    Sleep    5s
+    Click Element    ${Combo_modelos_equipos}
+    Wait Until Element Is Visible    ${Modelos}
+    Click Element    ${Modelos}
+
+Fecha desde
+    Wait Until Element Is Visible    ${Combo_fecha_desde}
+    Click Element    ${Combo_fecha_desde}
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
+
+Fecha hasta
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
+
+Ubicación destino
+    Wait Until Element Is Visible    ${Todos_ubicaciones}
+    Click Element    ${Todos_ubicaciones}
+    Sleep    5s
+    Click Element    ${Combo_ubicacion_destino}
+    Wait Until Element Is Visible    ${Ubicacion_destino}
+    Click Element    ${Ubicacion_destino}
+
+Checkbox resumen
+    Wait Until Element Is Visible    ${Resumen}
+    Click Element    ${Resumen}
+
+Tipos equipo vacio
+    Wait Until Element Is Visible    ${Tipo_equipo_vacio}
+    Click Element    ${Tipo_equipo_vacio}
+
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
+
+Fecha hasta mayor a desde
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    Wait Until Element Is Visible    ${Fecha_mayor_desde}
+    Click Element    ${Fecha_mayor_desde}
+
+Boton limpiar
     Sleep    15s
-    Click Element    ${Bottonmenu}
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
-
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
-
-Seleccionar campo descripcion
-    Wait Until Element Is Visible    ${Campodescripcion}   
-    Click Element    ${Campodescripcion}
-
-Teclear nombre de reporte
-    Input Text When Element Is Visible    ${Campodescripcion}   ${Nombrereporte}
-
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
-
-Seleccionar checkbox todos los tipos de equipos
-    Click Element When Visible    ${Checkboxtodoslostiposdeequipos}
-
-Seleccionar botton para desplegar tipos de equipos
-    Click Element When Visible    ${Bottonparadesplegartiposdeequipos}
-
-Seleccionar equipo
-    Click Element When Visible    ${Equipo}
-
-Seleccionar checkbox todos los modelos de equipos
-    Click Element When Visible    ${Checkboxtodoslosequipos}
-
-Seleccionar botton para desplegar modelos
-    Click Element When Visible    ${Bottonparadesplegarmodelos}
-
-Seleccionar modelo
-    Click Element When Visible    ${Modelo}
-
-Seleccionar botton para desplegar fecha desde
-    Click Element When Visible    ${Bottonparadesplegarfechadesde}
-
-Seleccionar fecha desde
-    Click Element When Visible    ${Fechadesde}
-
-Seleccionar botton para desplegar fecha hasta
-    Click Element When Visible    ${Bottonparadesplegarfechahasta}
-
-Seleccionar fecha hasta
-    Click Element When Visible    ${Fechahasta}
-
-Seleccionar checkbox ubicacion destino
-    Click Element When Visible    ${Checkboxubiaciondestino}
-
-Seleccionar botton para desplegar la ubicacion destino
-    Click Element When Visible    ${Bottonparadesplegarubicaciondestino}
-
-Seleccionar ubicacion destino
-    Click Element When Visible    ${Ubicaciondestino}
-
-Seleccionar botton aceptar
-    Click Element When Visible    ${Bottonaceptar}
-
-Seleccionar checkbox resumen
-    Click Element When Visible    ${Checkboxresumen}
-
-Campo vacio ubicacion destino
-    Click Element When Visible    ${Ubicaciondestinovacio}
+Boton cancelar
+    Sleep    15s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END

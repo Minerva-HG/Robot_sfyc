@@ -1,28 +1,33 @@
 *** Settings ***
 Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+#Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Library    SeleniumLibrary
 Library    XML
 Library    RPA.Windows
 
 *** Variables ***
+##########################Pantalla registro de movimientos####################################################################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  softteck01
-${Pass}  123456c
-${Botondominio}    xpath=//select[@id='Domain']
-${SFyC}    xpath=//*[@id="Domain"]/option[2]
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${Bottonregistrodemovimientos}    xpath=//span[contains(.,'Registro de Movimientos')]
-${Cajadetextoserie}    xpath=(//input[@autocomplete='off'])[2]
+${Pagina}    https://global.dev-cluster.sfycnextgen.com.mx/ui    #https://servicios.qa-cluster.sfycnextgen.com.mx/ui 
+${Usuario}  softteck01                                          
+${Pass}  123456c                       
+${Botondominio}    xpath=/html/body/div/div/div/div/div/div[2]/div[2]/form/div/div/div/section[1]/label/div/select
+${SFyC}    xpath=/html/body/div/div/div/div/div/div[2]/div[2]/form/div/div/div/section[1]/label/div/select/option[3]
+${BotondominioQA}    xpath=/html/body/div/div/div/div/div/div[3]/div[2]/form/div/div/section/label/div/select
+${SFyCQA}    xpath=/html/body/div/div/div/div/div/div[3]/div[2]/form/div/div/section/label/div/select/option[2]
+#########################################################################################################################################################################################
+${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Bottonoperacionesequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/div[1]
+${Bottonregistrodemovimientos}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[3]/div/div/span
+${Cajadetextoserie}    xpath=(//input[contains(@autocomplete,'off')])[3]
 ${Serie}    0008B92BE198                       
 ${Iconobuscar}    xpath=//i[contains(@class,'dx-icon dx-icon-search')]
 ${Serieinvalida}    06H7GR2V1997    
 ${Closenotificacion}    xpath=//i[contains(@class,'dx-icon dx-icon-close')]
 ${Pestañaubicaciones}    xpath=//span[@class='dx-tab-text'][contains(.,'Ubicaciones')]
 ${Iconoagregar}    xpath=(//i[contains(@class,'dx-icon dx-icon-edit-button-addrow')])[1]
-${Desplegarubicaciones}    xpath=(//div[@class='dx-dropdowneditor-icon'])[3]
+${Desplegarubicaciones}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-register-movements-equipment-container/div/div[3]/dx-tab-panel/div[2]/div/div/div[2]/div/div/app-mov-location-equipment-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[2]/div/div/app-location-equipment-dropdown/dx-drop-down-box/div[1]/div/div[1]/input
 ${Ubicacion}    xpath=//td[normalize-space()='INGRESOS AUD ALT/CAM']
 ${Iconoguardar}    xpath=//a[contains(@class,'dx-link dx-link-save dx-icon-save dx-link-icon')]
 ${Notificacionprocesoterminadoconexito}    xpath=//body/div/div/div/div/div[3]/div/div/div/div/i
@@ -71,7 +76,7 @@ ${Serieconubicacionobsoleta}    0001AAF014CD
 
 *** Test Cases ***
 Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
+    Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")
     Maximize Browser Window
     Ingresar usuario contrasena
 
@@ -80,12 +85,12 @@ Pantalla registro de movimientos
     Seleccionar operaciones equipos
     Seleccionar registro de movimientos
 
-#Buscar equipo
-    #Ingresando serie ha buscar
-    #Buscar serie
+Buscar equipo
+    Ingresando serie ha buscar
+    Buscar serie
 
 Serie invalida
-    #Ingresando serie que no existe
+    Ingresando serie que no existe
     Buscar serie 
     Cerrar notificacion
     
@@ -218,12 +223,15 @@ Validar la obsolencia
 
 *** Keyword ***
 Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element When Visible    ${Botondominio}
-    Click Element When Visible    ${SFyC}
-    Click Element If Visible   name:button
+    Wait Until Element Is Visible    ${Localizadorpagina}  
+    Click Element    ${Botondominio}
+    #Click Element When Visible    ${BotondominioQA}
+    Wait Until Element Is Visible    ${SFyC}
+    Click Element    ${SFyC}  
+    #Click Element When Visible    ${SFyCQA}
+    Input Text    name:Username   ${Usuario}
+    Input Text    name:Password   ${Pass}
+    Click Element    name:button
 
 Seleccionar menu
     Wait Until Element Is Visible    ${Bottonmenu}
@@ -231,170 +239,210 @@ Seleccionar menu
     Click Element    ${Bottonmenu}
 
 Seleccionar operaciones equipos
-    Click element  ${Bottonoperacionesequipos}
+    Wait Until Element Is Visible    ${Bottonoperacionesequipos}
+    Click Element  ${Bottonoperacionesequipos}
 
 Seleccionar registro de movimientos
-    Click Element When Visible    ${Bottonregistrodemovimientos}
+    Wait Until Element Is Visible    ${Bottonregistrodemovimientos}
+    Click Element    ${Bottonregistrodemovimientos}
 
 Ingresando serie ha buscar
     Sleep    10s
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serie}
+    Input Text    ${Cajadetextoserie}    ${Serie}
 
 Buscar serie
-    Click Element When Visible    ${Iconobuscar}
+    Wait Until Element Is Visible    ${Iconobuscar}
+    Click Element    ${Iconobuscar}
 
 Ingresando serie que no existe
     Clear Element Text    ${Cajadetextoserie}
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serieinvalida}
+    Sleep    5s
+    Input Text    ${Cajadetextoserie}    ${Serieinvalida}
 
 Cerrar notificacion
     Sleep    5s
-    Click Element When Visible    ${Closenotificacion}
+    Click Element    ${Closenotificacion}
 
 Ubicaciones
-    Click Element When Visible    ${Pestañaubicaciones}
+    Wait Until Element Is Visible    ${Pestañaubicaciones}
+    Click Element    ${Pestañaubicaciones}
 
 Icono agregar
     Sleep    5s
-    Click Element When Visible    ${Iconoagregar}
+    Click Element    ${Iconoagregar}
 
 Ubicacion
-    Click Element When Visible    ${Desplegarubicaciones}
-    Click Element When Visible    ${Ubicacion}
+    Wait Until Element Is Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Ubicacion}    
+    Click Element    ${Ubicacion}
 
 Guardar
-    Click Element When Visible    ${Iconoguardar}
+    Wait Until Element Is Visible    ${Iconoguardar}
+    Click Element    ${Iconoguardar}
 
 Cerrar notificacion proceso terminado con exito
     Sleep    5s
-    Click Element When Visible    ${Notificacionprocesoterminadoconexito}
+    Click Element    ${Notificacionprocesoterminadoconexito}
 
 Ingresando serie tipo 4
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serietipo4}
+    Click Element    ${Cajadetextoserie}
+    Sleep    5s
+    Input Text    ${Cajadetextoserie}    ${Serietipo4}
 
 Grid bitacora
-    Click Element When Visible    ${Gridbitacora}
+    Wait Until Element Is Visible    ${Gridbitacora}
+    Click Element    ${Gridbitacora}
 
 Boton movimientos
     Sleep    5s
-    Click Element When Visible    ${Botonmovimientos}
+    Click Element    ${Botonmovimientos}
 
 Boton cancelar
-    Click Element When Visible    ${Botoncancelar}
+    Wait Until Element Is Visible    ${Botoncancelar}
+    Click Element    ${Botoncancelar}
 
 Ingresando serie con ubicacion cli
-    Click Element When Visible    ${Cajadetextoserie}
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serieconubicacioncli}
+    Wait Until Element Is Visible    ${Cajadetextoserie}
+    Click Element    ${Cajadetextoserie}
+    Sleep    5s
+    Input Text    ${Cajadetextoserie}    ${Serieconubicacioncli}
 
 Cerrar notificacion cancele antes el contrato
     Sleep    5s
-    Click Element When Visible    ${Notificacioncanceleanteselcontrato}
+    Click Element    ${Notificacioncanceleanteselcontrato}
 
 Sucursal puebla
-    Click Element When Visible    ${Sucursales}
+    Wait Until Element Is Visible    ${Sucursales}
+    Click Element    ${Sucursales}
     Sleep    5s
-    Input Text When Element Is Visible    ${Campoidentificador}    ${Numerosucursalpuebla}
-    Click Element When Visible    ${Sucursalpuebla}
+    Input Text    ${Campoidentificador}    ${Numerosucursalpuebla}
+    Wait Until Element Is Visible    ${Sucursalpuebla}
+    Click Element    ${Sucursalpuebla}
 
 Cerrar notificacion no existe el equipo
     Sleep    5s    
-    Click Element When Visible    ${Notificacionnoexisteelequipo}
+    Click Element    ${Notificacionnoexisteelequipo}
 
 Ingresando serie sin mac adress
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoseriesucursalpuebla}
-    Input Text When Element Is Visible    ${Cajadetextoseriesucursalpuebla}    ${Seriesinmacadress}
+    Click Element    ${Cajadetextoseriesucursalpuebla}
+    Sleep    5s
+    Input Text    ${Cajadetextoseriesucursalpuebla}    ${Seriesinmacadress}
 
 Ubicacion CIS 11 SUR
-    Click Element When Visible    ${Desplegarubicaciones}
-    Click Element When Visible    ${Ubicacioncis11sur}
+    Wait Until Element Is Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Ubicacioncis11sur}
+    Click Element    ${Ubicacioncis11sur}
 
 Cerrar notificacion el equipo no cuenta con mac
     Sleep    5s
-    Click Element When Visible    ${Notificacionelequiponocuentaconmac}
+    Click Element    ${Notificacionelequiponocuentaconmac}
 
 Ubicacion CNR
-    Click Element When Visible    ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}
     Sleep    4s
-    Input Text When Element Is Visible    ${Cajadetextodescripcion}    ${Textocnr}
+    Input Text    ${Cajadetextodescripcion}    ${Textocnr}
     
 Cerrando sesion
     Sleep    5s
-    Click Element When Visible    ${Iconocerrarsesion}
-    Click Element When Visible    ${Cerrandosesion}
+    Click Element    ${Iconocerrarsesion}
+    Wait Until Element Is Visible    ${Cerrandosesion}
+    Click Element    ${Cerrandosesion}
 
 Ingresando usuario tipo 39
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuariotipo39}
-    Input Text When Element Is Visible    name:Password   ${Passtipo39}
-    Click Element If Visible   name:button
+    Wait Until Element Is Visible    ${Localizadorpagina}  
+    Click Element    ${Botondominio}
+    #Click Element When Visible    ${BotondominioQA}
+    Wait Until Element Is Visible    ${SFyC}
+    Click Element    ${SFyC}  
+    #Click Element When Visible    ${SFyCQA}
+    Input Text    name:Username   ${Usuariotipo39}
+    Input Text    name:Password   ${Passtipo39}
+    Click Element    name:button
 
 Guardando nueva ubicacion cnr
-    Click Element When Visible    ${Ubicacioncnr}
-    Click Element When Visible    ${Desplegarmotivosbajas}
-    Click Element When Visible    ${Baja}
-    Click Element When Visible    ${Iconoguardar}
+    Wait Until Element Is Visible    ${Ubicacioncnr}
+    Click Element    ${Ubicacioncnr}
+    Wait Until Element Is Visible    ${Desplegarmotivosbajas}
+    Click Element    ${Desplegarmotivosbajas}
+    Wait Until Element Is Visible    ${Baja}
+    Click Element    ${Baja}
+    Wait Until Element Is Visible    ${Iconoguardar}    
+    Click Element    ${Iconoguardar}
 
 Ingresando serie que tiene mas de 8 años registrado
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}    
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serieconmasde8años}
+    Click Element    ${Cajadetextoserie}    
+    Input Text    ${Cajadetextoserie}    ${Serieconmasde8años}
 
 Ingresando serie tipo equipo 4 que no pueda migrar
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}    
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serietipoequipo4}
+    Click Element    ${Cajadetextoserie}    
+    Input Text    ${Cajadetextoserie}    ${Serietipoequipo4}
 
 Ingresando serie tipo equipo 19
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}    
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serietipoequipo19}
+    Click Element    ${Cajadetextoserie}    
+    Input Text    ${Cajadetextoserie}    ${Serietipoequipo19}
 
 Ubicacion laboratorio
-    Click Element When Visible    ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}
     Sleep    5s
-    Input Text When Element Is Visible    ${Cajadetextodescripcion}    ${Textolaboratorio}
+    Input Text    ${Cajadetextodescripcion}    ${Textolaboratorio}
 
 Grid estados
     Sleep    5s
-    Click Element When Visible    ${Desplegarubicaciones}
-    Click Element When Visible    ${Gridestados}
+    Click Element    ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Gridestados}    
+    Click Element    ${Gridestados}
 
 Agregando estado
-    Click Element When Visible    ${Desplegarestados}
-    Click Element When Visible    ${Estado}
+    Wait Until Element Is Visible    ${Desplegarestados}
+    Click Element    ${Desplegarestados}
+    Wait Until Element Is Visible    ${Estado}
+    Click Element    ${Estado}
 
 Grid ubicaciones
-    Click Element When Visible    ${Gridubicaciones}
+    Wait Until Element Is Visible    ${Gridubicaciones}
+    Click Element    ${Gridubicaciones}
 
 Boton enviar
-    Click Element When Visible    ${Botonenviar}
+    Wait Until Element Is Visible    ${Botonenviar}
+    Click Element    ${Botonenviar}
 
 Icono quemar
-    Click Element When Visible    ${Iconoquemar}
+    Wait Until Element Is Visible    ${Iconoquemar}
+    Click Element    ${Iconoquemar}
 
 Ingresando serie tipo equipo 4 con ubicacion ALM
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}    
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serietipo4ubialm}
+    Click Element    ${Cajadetextoserie}    
+    Input Text    ${Cajadetextoserie}    ${Serietipo4ubialm}
 
 Ingresando serie con modelo DIR-600
     Clear Element Text    ${Cajadetextoserie}
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serieconmodelodir-600}
+    Sleep    5s
+    Input Text    ${Cajadetextoserie}    ${Serieconmodelodir-600}
 
 Ubicacion Cua o CIS
-    Click Element When Visible    ${Desplegarubicaciones}
-    Input Text When Element Is Visible    ${Cajadetextodescripcion}    ${Textocis}
+    Wait Until Element Is Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}
     Sleep    5s
-    Input Text When Element Is Visible    ${Cajadetextodescripcion}    ${Textocua}
+    Input Text    ${Cajadetextodescripcion}    ${Textocis}
+    Sleep    5s
+    Input Text    ${Cajadetextodescripcion}    ${Textocua}
     
 Ingresando serie con ubicacion obsoleta
     Sleep    5s
-    Click Element When Visible    ${Cajadetextoserie}    
-    Input Text When Element Is Visible    ${Cajadetextoserie}    ${Serieconubicacionobsoleta}
+    Click Element   ${Cajadetextoserie}
+    Sleep    5s    
+    Input Text    ${Cajadetextoserie}    ${Serieconubicacionobsoleta}
 
 Cerrar combo ubicaciones
     Sleep    5s
-    Click Element When Visible    ${Desplegarubicaciones}
+    Click Element    ${Desplegarubicaciones}

@@ -1,8 +1,0 @@
-host: https://sfycqa.testrail.io/
-project: Sfyc-Global-Robot
-username: joriospe@megacable.com.mx
-password: Megajos2023*
-title: Global - Servicios - QA
-#milestone_id: Sprint_163_QA_Global
-#suite_id: https://sfycqa.testrail.io/index.php?/runs/view/534&group_by=cases:title&group_order=asc&group_id=-1
-run_id: 534

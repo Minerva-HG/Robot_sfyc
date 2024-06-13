@@ -1,98 +1,114 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcionreporte}  xpath=//input[@role='textbox'] 
-${Textoreporte}  Resumen de equipos por ubicación
-${Reporte}  xpath=//td[normalize-space()='Resumen de equipos por ubicación']
-${Bottonenviar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[2]/footer/app-general-button/div/div[1]/dx-button
-${checkboxsoloporubicacion}  xpath=//div[@class='dx-radiobutton-icon']
-${Bottonlimpiar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[2]/footer/app-general-button/div/div[3]/dx-button
-${Bottoncancelar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[2]/footer/app-general-button/div/div[2]/dx-button
+#######################################Validación de usuarios######################################################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE RESUMEN DE EQUIPOS POR UBICACIÓN##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Resumen de equipos por ubicación
+${Reporte}  xpath=//td[contains(.,'Resumen de equipos por ubicación')]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+##############################Radio button##############################################
+${Por_modelo_ubicacion}    xpath=//div[@class='dx-radiobutton-icon']
+${Solo_por_ubicacion}    xpath=//div[@class='dx-radiobutton-icon']
+
 
 *** Test Cases ***
-Ingresar usuario
-    
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    #Set Selenium Timeout    50s
-    Sleep   5s
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Pantalla resumen de equipos por ubicacion
-    Sleep   15s
-    Seleccionar menu
-    Sleep   5s
-    Seleccionar reportes
-    Sleep   8s    
-    Seleccionar botton para desplegar reportes
-    Sleep   5s
-    Seleccionar campo descripcion reporte
-    Sleep   5s
-    Teclear nombre del reporte
-    Sleep   5s
-    Seleccionar reporte
-    Sleep   5s
+Botón (por modelo y ubicación)
+    [Documentation]    Validando que permita la consulta por modelo y ubicaión
+    [Tags]    test_dos
+    Por modelo y ubicacion
 
-Botton por modelo y ubicacion
-    Sleep   5s    
-    Seleccionar botton enviar
+Botón (Solo por ubicación)
+    [Documentation]    Validando que permita la consulta solo por modelo
+    [Tags]    test_tres
+    Solo por ubicacion
 
-Botton solo por ubicacion
-    Sleep    10s
-    Seleccionar checkbox solo por ubicacion
-    Sleep    5s
-    Seleccionar botton enviar
-
-Botton limpiar
-    Sleep    5s
-    Seleccionar botton limpiar
-
-Botton cancelar
-    Sleep    5s
-    Seleccionar botton cancelar
+Imprimir
+    [Documentation]    Validacion de reporte
+    [Tags]    test_cuatro
+    Boton aceptar
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Click element  ${Bottonmenu}
+Por modelo y ubicacion
+    Wait Until Element Is Visible    ${Por_modelo_ubicacion}
+    Click Element    ${Por_modelo_ubicacion}
 
-Seleccionar reportes
-    Click element  ${Bottonreportes}
+Solo por ubicacion
+    Wait Until Element Is Visible    ${Solo_por_ubicacion}
+    Click Element    ${Solo_por_ubicacion}
 
-Seleccionar botton para desplegar reportes
-    Click Element    ${Bottonparadesplegarreportes}
-
-Seleccionar campo descripcion reporte
-    Click Element    ${Campodescripcionreporte}
-
-Teclear nombre del reporte
-    Input Text    ${Campodescripcionreporte}    ${Textoreporte}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
     
-Seleccionar reporte
-    Click Element    ${Reporte}
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar botton enviar
-    Click Element    ${Bottonenviar}
-
-Seleccionar checkbox solo por ubicacion
-    Click Element    ${checkboxsoloporubicacion}
-
-Seleccionar botton limpiar
-    Click Element    ${Bottonlimpiar}
-
-Seleccionar botton cancelar
-    Click Element    ${Bottoncancelar}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END

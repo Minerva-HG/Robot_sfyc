@@ -1,131 +1,160 @@
-** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+*** Settings ***
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
-${Nombrereporte}    Swap de equipos    
-${Reporte}    xpath=//td[normalize-space()='Swap de equipos']
+#######################################Validación de usuarios######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Bottondesplegarequipos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Equipo}    xpath=(//td[contains(.,'SET TOPS')])[1]
-${Bottondesplegarubicaciones}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Ubicacion}    xpath=//td[contains(.,'CIRCUNV ALTAS/CAMBIO')]
-${Bottonparadesplegarfecha}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${Fecha}    xpath=(//span[contains(.,'1')])[1]
-${Bottonaceptar}    xpath=//span[contains(.,'Aceptar')]
-${Equiposeleccionado}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[2]
-${Bottonlimpiar}    xpath=//div[@class='dx-button-content'][contains(.,'Limpiar')]
-${Bottoncancelar}    xpath=//div[@class='dx-button-content'][contains(.,'Cancelar')]
-
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE SWAP DE EQUIPOS##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Swap de equipos
+${Reporte}  xpath=//td[contains(.,'Swap de equipos')]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+##############################Combos######################################################################################
+${Combo_tipo_de_equipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-swap-form/form/div/div/div[1]/app-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_ubicacion}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-swap-form/form/div/div/div[2]/app-location-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Entre_el}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-swap-form/form/div/div/div[3]/dx-date-box/div/div/div[1]/input
+############################Campos vacios######################################################################
+${Campo_vacio_tipo_de_equipo}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+############################Registros##################################################################################
+${Tipo_equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+${Ubicacion}    xpath=//td[contains(.,'CIS REVOL. ALT/CAM')]
+${Fecha}    xpath=(//span[contains(.,'1')])[2]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
-Pantalla de reporte swap de equipos
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar campo descripcion
-    Teclear nombre de reporte
-    Seleccionar reporte
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Combo tipo de equipo
-    Seleccionar botton para desplegar todos los equipos
-    Seleccionar equipo
+Swap de Equipos
+    [Documentation]    Validar que el sistema muestre el reporte
+    [Tags]    test_dos
+    Tipo de equipo
+    Ubicacion
+    Entre el
 
-Combo ubicacion
-    Seleccionar botton para desplegar ubicaciones
-    Seleccionar ubicacion
+Combos
+    [Documentation]    Validar que no habilite el boton aceptar si existen campos vacios
+    [Tags]    test_tres
+    Combo tipo de equipo
+    Combo ubicacion
+    Combo entre el
 
-Combo fecha
-    Seleccionar botton para desplegar fecha
-    Sleep    5s
-    Seleccionar fecha
+Botón aceptar
+    [Documentation]    Validar que funcione de manera correcta el botón aceptar
+    [Tags]    test_cuatro
+    Boton aceptar
 
-Boton Aceptar
-    Sleep    5s
-    Seleccionar botton aceptar
+PDF
+    [Documentation]    Validar que genere el PDF
+    [Tags]    test_cinco
+    Boton aceptar
 
 Campos vacios
-    Sleep    5s
-    Quitar equipo seleccionado
-
-Boton limpiar
-    Sleep    3s
-    Seleccionar botton limpiar
-
-Boton cancelar
-    Sleep    3s
-    Seleccionar botton cancelar
+    [Documentation]    Validar que no habilite el boton aceptar si existen campos vacios
+    [Tags]    test_seis
+    Campo vacio tipo de equipo
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
+Tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_de_equipo}
+    Click Element    ${Combo_tipo_de_equipo}
+    Wait Until Element Is Visible    ${Tipo_equipo}
+    Click Element    ${Tipo_equipo}
 
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
+Ubicacion
+    Wait Until Element Is Visible    ${Combo_ubicacion}
+    Click Element    ${Combo_ubicacion}
+    Wait Until Element Is Visible    ${Ubicacion}
+    Click Element    ${Ubicacion}
 
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
+Entre el
+    Wait Until Element Is Visible    ${Entre_el}
+    Click Element    ${Entre_el}
+    Wait Until Element Is Visible    ${Fecha}
+    Click Element    ${Fecha}
 
-Seleccionar campo descripcion
-    Wait Until Element Is Visible    ${Campodescripcion}   
-    Click Element    ${Campodescripcion}
+Campo vacio tipo de equipo
+    Wait Until Element Is Visible    ${Campo_vacio_tipo_de_equipo}
+    Click Element    ${Campo_vacio_tipo_de_equipo}
 
-Teclear nombre de reporte
-    Input Text When Element Is Visible    ${Campodescripcion}   ${Nombrereporte}
+Combo tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_de_equipo}
+    Click Element    ${Combo_tipo_de_equipo}
 
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
+Combo ubicacion
+    Wait Until Element Is Visible    ${Combo_ubicacion}
+    Click Element    ${Combo_ubicacion}
 
-Seleccionar botton para desplegar todos los equipos
-    Click Element When Visible    ${Bottondesplegarequipos}
+Combo entre el
+    Wait Until Element Is Visible    ${Entre_el}
+    Click Element    ${Entre_el}
 
-Seleccionar equipo
-    Click Element When Visible    ${Equipo}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
+    
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar botton para desplegar ubicaciones
-    Click Element When Visible    ${Bottondesplegarubicaciones}
-
-Seleccionar ubicacion
-    Click Element When Visible    ${Ubicacion}
-
-Seleccionar botton para desplegar fecha
-    Click Element When Visible    ${Bottonparadesplegarfecha}
-
-Seleccionar fecha
-    Click Element When Visible    ${Fecha}
-
-Seleccionar botton aceptar
-    Click Element When Visible    ${Bottonaceptar}
-
-Quitar equipo seleccionado
-    Click Element When Visible    ${Equiposeleccionado}
-
-Seleccionar botton limpiar
-    Click Element When Visible    ${Bottonlimpiar}
-
-Seleccionar botton cancelar
-    Click Element When Visible    ${Bottoncancelar}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END

@@ -121,8 +121,8 @@ Quitar notificacion y validar en transacciones
 
 Descargar detalle de validaciones
     Sleep   4s
-    IF    '${Bottonejecutar}'== 'True'    Run Keywords    Seleccionar ejecutar
-   ...    ELSE    Seleccionar descargar detalle de validaciones
+    #IF    '${Bottonejecutar}'== 'True'    Run Keywords    Seleccionar ejecutar
+   #...    ELSE    Seleccionar descargar detalle de validaciones
 
 Dar de baja por serie
     Sleep   6s

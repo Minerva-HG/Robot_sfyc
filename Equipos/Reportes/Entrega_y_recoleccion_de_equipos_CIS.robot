@@ -1,155 +1,183 @@
-** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+*** Settings ***
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
-${Nombrereporte}    Entrega y recolección equipos en CIS
-${Reporte}    xpath=//td[normalize-space()='Entrega y recolección equipos en CIS']
+#######################################Validación de usuarios######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Checkboxtodoslosmovimientos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
-${Bottonparadesplegartiposdemovimientos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Tipodemovimiento}    xpath=//td[contains(.,'Descarga')]
-${CheckboxtodoslosCIS}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
-${BottonparadesplegartodoslostiposdeCIS}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${CIS}    xpath=//td[contains(.,'CENTRAL')]
-${Bottonparadesplegarfechadesde}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${Fechadesde}    xpath=(//span[contains(.,'29')])[1]
-${Bottonparadesplegarfechahasta}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[6]
-${Fechahasta}    xpath=(//span[contains(.,'3')])[22]
-${Checkboxresumen}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
-${Bottonaceptar}    xpath=//span[contains(.,'Aceptar')]
-${Campovaciomovimiento}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[2]
-${Bottonlimpiar}    xpath=//span[contains(.,'Limpiar')]
-${Bottoncancelar}    xpath=//span[contains(.,'Cancelar')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE ENTREGA Y RECOLECCIÓN EQUIPOS EN CIS##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Reporte}  xpath=//td[contains(.,'Entrega y recolección equipos en CIS')]
+#################################Checkbox#########################################################################
+${Todos_tipos_de_movimientos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
+${Todos_CIS}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
+${Resumen}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
+#################################Combos################################################################################
+${Combo_tipos_de_movimiento}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-delivery-and-collection-cis-form/form/div/div[1]/div[1]/div[2]/app-type-movement-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_Cis}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-delivery-and-collection-cis-form/form/div/div[1]/div[2]/div[2]/app-cis-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_fecha_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-delivery-and-collection-cis-form/form/div/app-reporting-start-end-date-parameters/div/div/div[1]/dx-date-box/div/div/div[1]/input
+${Combo_fecha_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipment-delivery-and-collection-cis-form/form/div/app-reporting-start-end-date-parameters/div/div/div[2]/dx-date-box/div/div/div[1]/input
+################################Movimiento########################################################################
+${Movimiento}    xpath=//td[contains(.,'Descarga')]
+################################Cis##################################################################################
+${Cis}    xpath=//td[contains(.,'CIS DEPTO INGRESOS')]
+################################Fechas############################################################################
+${Desde}    xpath=(//span[contains(.,'4')])[1]
+${Hasta}    xpath=(//span[contains(.,'17')])[3]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+###############################Campos vacios################################################################################
+${Tipo_movimiento}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+################################Fecha hasta menor a Desde################################################################################
+${Fecha_menor}    xpath=(//span[contains(.,'1')])[18]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
-Pantalla de Entrega y Recoleccion de Equipos en CIS
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar campo descripcion
-    Teclear nombre de reporte
-    Seleccionar reporte
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Entrega y recoleccion de equipos en CIS
-    Seleccionar checkbox todos los tipos de movimientos
-    Seleccionar botton para desplegar todos los tipos de movimientos
-    Seleccionar tipo de movimiento
-    Seleccionar botton para desplegar todos los tipos de movimientos
-    Seleccionar checkbox todos los CIS
-    Seleccionar botton para desplegar todos los tipos de CIS
-    Seleccionar CIS
-    Selecccionar botton para desplegar fecha desde
-    Seleccionar fecha desde
-    Seleccionar botton para desplegar fecha hasta
-    Seleccionar fecha hasta
-    Seleccionar checkbox resumen
-    Seleccionar botton aceptar
+Entrega y Recolección de Equipos en CIS.
+    [Documentation]    Validacion de reporte
+    [Tags]    test_dos
+    Tipo de movimiento
+    Cis
+    Fecha desde
+    Fecha hasta
+    Checkbox resumen
+    Boton aceptar
 
 Campos vacios
-    Tipo de movimiento vacio
+    [Documentation]    Validacion de campos vacios
+    [Tags]    test_tres
+    Campo vacio tipo de movimiento
+    
 
-Boton aceptar
-    Sleep    5s
-    Seleccionar botton para desplegar todos los tipos de movimientos
-    Seleccionar tipo de movimiento
-    Seleccionar botton aceptar
+Fechas mayor
+    [Documentation]    Validacion de fechas
+    [Tags]    test_cuatro
+    Fecha hasta menor ha fecha desde
+    Sleep    15s
 
-Boton limpiar
-    Sleep    3s
-    Seleccionar botton limpiar
-    Seleccionar botton aceptar
+Botón limpiar
+    [Documentation]    Validacion de botón limpiar
+    [Tags]    test_cinco
+    Boton limpiar
 
-Boton cancelar
-    Sleep    3s
-    Seleccionar botton cancelar
-
+Botón Cancelar
+    [Documentation]    Validacion de botón cancelar
+    [Tags]    test_seis
+    Boton cancelar
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Reporte}
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
+Tipo de movimiento
+    Wait Until Element Is Visible    ${Todos_tipos_de_movimientos}
+    Click Element    ${Todos_tipos_de_movimientos}
+    Sleep    5s
+    Click Element    ${Combo_tipos_de_movimiento}
+    Wait Until Element Is Visible    ${Movimiento}
+    Click Element    ${Movimiento}
 
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
+Cis
+    Wait Until Element Is Visible    ${Todos_CIS}
+    Click Element    ${Todos_CIS}
+    Sleep    5s
+    Click Element    ${Combo_Cis}
+    Wait Until Element Is Visible    ${Cis}
+    Click Element    ${Cis}
 
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
+Fecha desde
+    Wait Until Element Is Visible    ${Combo_fecha_desde}
+    Click Element    ${Combo_fecha_desde}
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
 
-Seleccionar campo descripcion
-    Wait Until Element Is Visible    ${Campodescripcion}   
-    Click Element    ${Campodescripcion}
+Fecha hasta
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
 
-Teclear nombre de reporte
-    Input Text When Element Is Visible    ${Campodescripcion}   ${Nombrereporte}
+Checkbox resumen
+    Wait Until Element Is Visible    ${Resumen}
+    Click Element    ${Resumen}
 
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
+Campo vacio tipo de movimiento
+    Wait Until Element Is Visible    ${Tipo_movimiento}
+    Click Element    ${Tipo_movimiento}
 
-Seleccionar checkbox todos los tipos de movimientos
-    Click Element When Visible    ${Checkboxtodoslosmovimientos}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
 
-Seleccionar botton para desplegar todos los tipos de movimientos
-    Click Element When Visible    ${Bottonparadesplegartiposdemovimientos}
+Fecha hasta menor ha fecha desde
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    Sleep    3s
+    ${Bandera_fecha_visible}=    Run Keyword And Return Status    Page Should Contain Element    ${Fecha_menor}    
+    IF    '${Bandera_fecha_visible}' == 'True'
+        Sleep    3s
+    ELSE
+        Sleep    3s
+    END
 
-Seleccionar tipo de movimiento
-    Click Element When Visible    ${Tipodemovimiento}
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar checkbox todos los CIS
-    Click Element When Visible    ${CheckboxtodoslosCIS}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END
 
-Seleccionar botton para desplegar todos los tipos de CIS
-    Click Element When Visible    ${BottonparadesplegartodoslostiposdeCIS}
-
-Seleccionar CIS
-    Click Element When Visible    ${CIS}
-
-Selecccionar botton para desplegar fecha desde    
-    Click Element When Visible    ${Bottonparadesplegarfechadesde}
-
-Seleccionar fecha desde
-    Click Element When Visible    ${Fechadesde}
-
-Seleccionar botton para desplegar fecha hasta
-    Click Element When Visible    ${Bottonparadesplegarfechahasta}
-
-Seleccionar fecha hasta
-    Click Element When Visible    ${Fechahasta}
-
-Seleccionar checkbox resumen
-    Click Element When Visible    ${Checkboxresumen}
-
-Seleccionar botton aceptar
-    Click Element When Visible    ${Bottonaceptar}
-
-Tipo de movimiento vacio
-    Click Element When Visible    ${Campovaciomovimiento}
-
-Seleccionar botton limpiar
-    Click Element When Visible    ${Bottonlimpiar}
-
-Seleccionar botton cancelar
-    Click Element When Visible    ${Bottoncancelar}

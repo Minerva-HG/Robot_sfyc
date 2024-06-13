@@ -1,36 +1,36 @@
 *** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Documentation    Asignar equipos a cuadrilla
 Library    XML
-Library    RPA.Windows
-#Library    RPA.Robocloud.Items
+Library    SeleniumLibrary
 
 *** Variables ***
+#######################################Variables de inicio de sesion tanto para dev como para QA######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Navegador}  Chrome
-${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  softteck01
-${Pass}  123456c
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List     joriospe    #AHERNANDEZSI    SGONZALEZG    ALARIOSG    VBECERRAE    EIBARRAC    RCORTESA    LSANTOSH    joriospe                                                                                                             
+@{passL}=    Create List     Mega12345    #Megacable2022*    Omega1012    Mega2022    Omega.2019    Mega1234    rcortesa    Mega2023    Mega12345                                                                                                                                                                                                                                                                                                                                                                                                                           
 ${Botondominio}    xpath=//select[@id='Domain']
-${SFyC}    xpath=//*[@id="Domain"]/option[2]
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${Bottonasignarequiposacuadrilla}    xpath=//span[contains(.,'Asignar Equipos a Cuadrilla')]
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
+##################Pantalla asignar equipos a cuadrilla#####################################################################################################################################
+${Bottonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Bottonoperacionesequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]
+${Bottonasignarequiposacuadrilla}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[4]/div/div/span
+##################################################################################################################
 ${Desplegartipodeequipos}    xpath=//dx-drop-down-box[@id='typeEquipmentDropdown']/div/div/div[2]/div/div/div
-${Equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+${Equipo}    xpath=//td[@aria-describedby='dx-col-18'][contains(.,'ACCESS POINT')]
 ${Desplegartipocuadrilla}    xpath=//dx-drop-down-box[@id='typeCrewDropdown']/div/div/div[2]/div/div/div
-${Tipocuadrillaauditoria}    xpath=(//td[@aria-describedby='dx-col-11'])[2]
+${Tipocuadrillaauditoria}    xpath=(//td[contains(@tabindex,'0')])[12]
 ${Desplegarcuadrilla}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
 ${Cuadrilla0001}    xpath=//td[contains(.,'0001')]
 ${Cerrarnotificacion}    xpath=//i[contains(@class,'dx-icon dx-icon-close')]
 ${Tipocuadrillaalm}    xpath=//td[contains(.,'ALM Almacen')]
 ${Cajadetextoagregarserie}    xpath=//input[@maxlength='35']
-${Serie}    249602323        
+${Serie}    Q2BN65BECRQ9                                                                             
 ${Checkboxporubicacion}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
 ${Desplegarubicaciones}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Ubicacion120}    xpath=//td[contains(.,'PRE UBI OBLATOS')]
-${Desplegarinformacion}    xpath=//div[contains(@class,'dx-datagrid-group-closed')]
-${Filtroestado}    xpath=//*[@id="dx-col-387"]/div[1]/span[2]    
+${Ubicacion001}    xpath=(//td[contains(.,'001')])[2]    
 ${Botoncacelarfiltroestado}    xpath=(//span[@class='dx-button-text'][contains(.,'Cancelar')])[2]
 ${Cuadrillavacia}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
 ${Registro}    xpath=//td[contains(.,'249602323')]
@@ -41,203 +41,382 @@ ${Botonlimpiar}    xpath=//span[contains(.,'Limpiar')]
 ${Serieconlimitedecaracteres}    24960232324960232324960232324       
 ${Seriemasde8años}    00028995    
 ${Iconoexcel}    xpath=//i[contains(@class,'dx-icon dx-icon-export-excel-button')]
-${Iconoimprimir}    xpath=//i[contains(@class,'dx-icon dx-icon-print')]
+${Iconoimprimir}    xpath=(//i[contains(@class,'dx-icon dx-icon-print')])[2]
 ${Serie07MJ968D3HS8}    07MJ968D3HS8    
 ${Bottonfiltrarserie}    xpath=//td[@id='dx-col-325']/div/span[2]
 ${Cajadetextobuscar}    xpath=//input[contains(@aria-label,'Buscar en la tabla de datos')]
+${Cuadrilla004}    xpath=//td[contains(.,'0004')]
+${Botonexpandirtodos}    xpath=//span[contains(.,'Expandir todos')]
+${Registrohaeliminar}    xpath=//td[contains(.,'Q2BN65BECRQ9')]
+${Serieubicacioncli}    00210102403588    
+${Serieconmasde8años}    0015A4648CCE    
+${Iconoexportarparaprocesos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
+########################################Filtros#################################################################
+${Filtroestado}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[5]/div[1]/span[2]
+${Filtroserie}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[2]/div[1]/span[2]
+${Seriehafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
+${Filtrotipoequipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[3]/div[1]/span[1]
+${Tipoequipohafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
+${Filtromodelo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[4]/div[1]/span[2]
+${Modelohafiltrar}    xpath= (//span[contains(@class,'dx-checkbox-icon')])[5]   
+${Estadohafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]  
+${Filtrofecha}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[6]/div[1]/span[2]
+${Fechahafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[6]    
+${Filtrodias}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[7]/div[1]/span[1]
+${Diahafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[8]
+${Filtromigrado}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-assign-equipment-crew-main-container/div/div[1]/div[2]/app-assign-equipment-crew-grid/dx-data-grid/div/div[5]/div/table/tbody/tr/td[8]/div[1]/span[2]
+${Migradohafiltrar}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
+${Botonaceptar}    xpath=//span[contains(.,'Aceptar')]
+######################################Campo vacio ubicacion##############################################
+${Campovacioubicacion}    xpath=(//span[@class='dx-icon dx-icon-clear'])[2]
+#####################################Ubicacion CIS###########################################################
+${Campodescripcioncis}    xpath=//input[contains(@maxlength,'7094')]
+${CIS}    CIS
+${UbicacionCIS}    xpath=//td[contains(.,'CIS REVOL. ALT/CAM')]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+    Validacion de usuarios
 
-Pantalla asignar equipos a cuadrilla
-    Seleccionar menu
-    Seleccionar operaciones equipos
-    Seleccionar asignar equipos a cuadrilla
+Por ubicacion agregando serie con ubicacion cua y tipo_cuadrilla alm
+    Checbox por ubicacion
+    Tipo de equipo 
+    Ubicacion CIS
+    Serie 249602323
+    Desasignar serie
+
+Validando si existe una notificacion que impida pasar a la siguiente test case
+    Validacion de notificacion
+
+Icono exportar para procesos
+    Exportar datos para procesos
+
+Filtros
+    Filtro serie
+    Filtro tipo equipo
+    Filtro tipo equipo
+    Filtro modelo
+    Filtro modelo
+    Filtro estado
+    Filtro estado
+    Filtro fecha
+    Filtro fecha
+    Filtro dias
+    Filtro dias
+    Filtro migrado
+    Filtro migrado
 
 Buscar cuadrilla con antiguedad mayor a 10 dias
+    Checbox por ubicacion
     Tipo de equipo
     Tipo cuadrilla A auditoria
     Cuadrilla 0001
 
-Por ubicacion
+Asignar por cuadrilla
     Cerrar notificacion
-    Checbox por ubicacion
-    Tipo de equipo 
-    Ubicacion 120
-
-Buscar cuadrilla
-    Checbox por ubicacion
-    Tipo de equipo
-    Tipo cuadrilla ALM
-    Cuadrilla 0001
-
-Agregar serie
+    Cuadrilla 0004
     Serie 249602323
-    
+    Sleep    5s
+
+Serie con ubicacion Cli
+    Serie con ubicacion cli    
+    Cerrar notificacion    
+
+Serie con mas de 8 años    
+    Serie 0015A4648CCE
+    Cerrar notificacion
+
+Serie repetida
+    Serie 249602323
+    Cerrar notificacion
+
 Exportar excel
     Icono excel
 
 Boton imprimir
     Icono imprimir
 
-Datos generales
-    Mostrar datos generales
+Boton desasignar
+    Desasignar serie de cuadrilla
 
-Filtros
-    Serie 07MJ968D3HS8
-    Mostrar datos generales
-    Filtro buscar
+#Por ubicacion
+    #Checbox por ubicacion
+    #Tipo de equipo 
+    #Ubicacion 001
+    #Serie 249602323
+    #Serie 249602323
+    #Cerrar notificacion
+    #Serie 605027972    
+    #Cerrar notificacion  
+    #Serie 0015A4648CCE
+    #Cerrar notificacion
+    #Desasignar serie de cuadrilla
 
 Campos vacios
-    Campo vacio cuadrilla
+    Campo vacio ubicacion
 
-Combos
-    Combo tipo de equipo
-    Combo tipo de cuadrilla
-    Combo cuadrilla
-
-Serie repetida
-    Serie 249602323
-    Cerrar notificacion
-
-Desasignar
-    Mostrar datos generales
-    Desasignar
-    
 Limpiar
     Boton limpiar
     
 Serie con limite de caracteres
-    Combo tipo de equipo
-    Combo tipo de cuadrilla
-    Combo cuadrilla
+    Checbox por ubicacion
+    Tipo de equipo 
+    Ubicacion 001
     Serie con limite de caracteres
-
-Equipo mayor a 8 años
-    Serie mas de 8 años
-    Cerrar notificacion
 
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element When Visible    ${Botondominio}
-    Click Element When Visible    ${SFyC}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Bottonequipos}
+        Wait Until Element Is Visible    ${Bottonoperacionesequipos}
+        Click Element    ${Bottonoperacionesequipos}
+        Wait Until Element Is Visible    ${Bottonasignarequiposacuadrilla}
+        Click Element    ${Bottonasignarequiposacuadrilla} 
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
-
-Seleccionar operaciones equipos
-    Click element  ${Bottonoperacionesequipos}
-
-Seleccionar asignar equipos a cuadrilla
-    Click Element When Visible    ${Bottonasignarequiposacuadrilla}
 
 Tipo de equipo
     Sleep    5s
-    Click Element If Visible    ${Desplegartipodeequipos}
-    Click Element When Visible    ${Equipo}
+    Click Element    ${Desplegartipodeequipos}
+    Wait Until Element Is Visible    ${Equipo}
+    Click Element    ${Equipo}
 
 Tipo cuadrilla A auditoria
     Sleep    5s
-    Click Element If Visible   ${Desplegartipocuadrilla}
-    Click Element When Visible     ${Tipocuadrillaauditoria}
+    Click Element   ${Desplegartipocuadrilla}
+    Sleep    5s
+    Click Element     ${Tipocuadrillaauditoria}
     
 Cuadrilla 0001
     Sleep    5s
-    Click Element If Visible    ${Desplegarcuadrilla}
-    Click Element When Visible    ${Cuadrilla0001}    
+    Click Element    ${Desplegarcuadrilla}
+    Wait Until Element Is Visible    ${Cuadrilla0001}
+    Click Element    ${Cuadrilla0001}    
 
 Cerrar notificacion
-    Sleep    5s
-    Click Element When Visible    ${Cerrarnotificacion}
+    #Set Selenium Timeout    25
+    Sleep    20s
+    Click Element    ${Cerrarnotificacion}
 
 Tipo cuadrilla ALM
     Sleep    5s
-    Click Element If Visible   ${Desplegartipocuadrilla}
-    Click Element When Visible     ${Tipocuadrillaalm}
+    Click Element   ${Desplegartipocuadrilla}
+    Wait Until Element Is Visible    ${Tipocuadrillaalm}
+    Click Element     ${Tipocuadrillaalm}
 
 Serie 249602323
     Sleep    5s
-    Input Text When Element Is Visible    ${Cajadetextoagregarserie}    ${Serie}
+    Input Text    ${Cajadetextoagregarserie}    ${Serie}
+    Sleep    5s    
     Press Keys    ${Cajadetextoagregarserie}    ENTER
 
 Checbox por ubicacion
-    Click Element When Visible    ${Checkboxporubicacion}
-
-Ubicacion 120
     Sleep    5s
-    Click Element If Visible    ${Desplegarubicaciones}
-    Click Element When Visible    ${Ubicacion120}
+    Click Element    ${Checkboxporubicacion}
 
-Mostrar datos generales
+Ubicacion 001
     Sleep    5s
-    Click Element When Visible    ${Desplegarinformacion}
+    Click Element   ${Desplegarubicaciones}
+    Wait Until Element Is Visible    ${Ubicacion001}
+    Click Element    ${Ubicacion001}
 
 Campo vacio cuadrilla    
     Sleep    3s
-    Click Element When Visible    ${Cuadrillavacia}
-
-Combo tipo de equipo
-    Click Element If Visible    ${Desplegartipodeequipos}
-    Sleep    7s
-    Click Element When Visible    ${Equipo}
-
-Combo tipo de cuadrilla
-    Click Element If Visible   ${Desplegartipocuadrilla}
-    Sleep    7s
-    Click Element When Visible     ${Tipocuadrillaalm}
-
-Combo cuadrilla    
-    Click Element If Visible    ${Desplegarcuadrilla}
-    Sleep    7s
-    Click Element When Visible    ${Cuadrilla0001}  
-
-Desasignar
-    Sleep    7s
-    Click Element When Visible    ${Registro}
-    Click Element When Visible    ${Botondesasignar}
-    Sleep    5s
-    Click Element When Visible    ${Botonenviar}
-    Sleep    7s
-    Click Element When Visible    ${Notificacionprocesoterminadoconexito}
-
+    Click Element    ${Cuadrillavacia}
+ 
 Boton limpiar
     Sleep    5s
-    Click Element When Visible    ${Botonlimpiar}
+    Click Element    ${Botonlimpiar}
 
 Serie con limite de caracteres
-    Sleep    5s      
-    Input Text When Element Is Visible    ${Cajadetextoagregarserie}    ${Serieconlimitedecaracteres}
+    Sleep    10s      
+    Input Text    ${Cajadetextoagregarserie}    ${Serieconlimitedecaracteres}
+    Sleep    7s
+    Close Browser
 
 Serie mas de 8 años
     Sleep    5s
     Clear Element Text    ${Cajadetextoagregarserie}
-    Input Text When Element Is Visible    ${Cajadetextoagregarserie}    ${Seriemasde8años}
+    Sleep    5s
+    Input Text    ${Cajadetextoagregarserie}    ${Seriemasde8años}
+    Sleep    5s
     Press Keys    ${Cajadetextoagregarserie}    ENTER    
 
 Icono excel
     Sleep    5s
-    Click Element When Visible    ${Iconoexcel}
+    Click Element    ${Iconoexcel}
 
 Icono imprimir
     Sleep    5s
-    Click Element When Visible    ${Iconoimprimir}
-
-Serie 07MJ968D3HS8
-    Input Text When Element Is Visible    ${Cajadetextoagregarserie}    ${Serie07MJ968D3HS8}
-    Press Keys    ${Cajadetextoagregarserie}    ENTER
+    Click Element    ${Iconoimprimir}
 
 Filtro buscar
     Sleep    5s
-    Input Text When Element Is Visible    ${Cajadetextobuscar}    ${Serie}
+    Input Text    ${Cajadetextobuscar}    ${Serie}
     Sleep    7s
     Clear Element Text    ${Cajadetextobuscar}
+
+Cuadrilla 0004
+    Wait Until Element Is Visible    ${Desplegarcuadrilla}
+    Click Element    ${Desplegarcuadrilla}
+    Wait Until Element Is Visible    ${Cuadrilla004}
+    Click Element    ${Cuadrilla004}
+
+Desasignar serie
+    Sleep    5s
+    Click Element    ${Botonexpandirtodos}
+    Wait Until Element Is Visible    ${Cajadetextobuscar}
+    Input Text    ${Cajadetextobuscar}    ${Serie}
+    Sleep    5s
+    Click Element    ${Registrohaeliminar}
+    Sleep    5s
+    Click Element    ${Botondesasignar}
+    Sleep    7s
+    Click Element    ${Botonenviar}
+    Sleep    7s
+    Click Element    ${Notificacionprocesoterminadoconexito}
+    
+    
+
+Serie con ubicacion cli    
+    Sleep    5s
+    Input Text    ${Cajadetextoagregarserie}    ${Serieubicacioncli}
+    Sleep    5s
+    Press Keys    ${Cajadetextoagregarserie}    ENTER
+
+Serie 0015A4648CCE
+    Sleep    5s
+    Input Text    ${Cajadetextoagregarserie}    ${Serieconmasde8años}
+    Press Keys    ${Cajadetextoagregarserie}    ENTER
+    
+Exportar datos para procesos
+    Sleep    5s
+    Clear Element Text    ${Cajadetextobuscar}
+    Wait Until Element Is Visible    ${Iconoexportarparaprocesos}
+    Click Element    ${Iconoexportarparaprocesos}
+    Sleep    5s
+    Click Element    ${Iconoexcel}
+
+Filtro serie
+    Sleep    5s
+    Wait Until Element Is Visible    ${Iconoexportarparaprocesos}
+    Click Element    ${Iconoexportarparaprocesos}
+    Wait Until Element Is Visible    ${Filtroserie}
+    Click Element    ${Filtroserie}
+    Sleep    4s
+    Click Element    ${Seriehafiltrar}
+    Sleep    5s
+    Click Element   ${Botonaceptar}
+    Sleep    7s
+    Wait Until Element Is Visible    ${Filtroserie}
+    Click Element    ${Filtroserie}
+    Sleep    4s
+    Click Element    ${Seriehafiltrar}
+    Sleep    5s
+    Click Element    ${Botonaceptar}
+
+Filtro tipo equipo
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtrotipoequipo}
+    Click Element    ${Filtrotipoequipo}
+    Sleep    3s
+    Click Element    ${Tipoequipohafiltrar}
+    Sleep    3s
+    Click Element    ${Botonaceptar}
+
+Filtro modelo
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtromodelo}
+    Click Element    ${Filtromodelo}
+    Sleep    3s
+    Click Element    ${Modelohafiltrar}
+    Sleep    3s
+    Click Element     ${Botonaceptar}
+
+Filtro estado
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtroestado}
+    Click Element    ${Filtroestado}
+    Sleep    3s
+    Click Element    ${Estadohafiltrar}
+    Sleep    3s
+    Click Element    ${Botonaceptar}
+
+Filtro fecha
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtrofecha}
+    Click Element    ${Filtrofecha}
+    Sleep    3s
+    Click Element    ${Fechahafiltrar}
+    Sleep    3s
+    Click Element    ${Botonaceptar}
+
+Filtro dias
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtrodias}
+    Click Element    ${Filtrodias}
+    Sleep    3s
+    Click Element    ${Diahafiltrar}
+    Sleep    3s
+    Click Element    ${Botonaceptar}
+
+Filtro migrado
+    Sleep    5s
+    Wait Until Element Is Visible    ${Filtromigrado}
+    Click Element    ${Filtromigrado}
+    Sleep    3s
+    Click Element    ${Migradohafiltrar}
+    Sleep    3s
+    Click Element    ${Botonaceptar}
+
+Campo vacio ubicacion
+    Sleep    5s
+    Click Element    ${Campovacioubicacion}
+
+Ubicacion CIS
+    Sleep    5s
+    Click Element    ${Desplegarubicaciones}
+    Sleep    3s
+    Input Text    ${Campodescripcioncis}    ${CIS}
+    Sleep    5s
+    Click Element    ${UbicacionCIS}
+
+Desasignar serie de cuadrilla
+    Sleep    5s
+    Click Element    ${Botonexpandirtodos}
+    Wait Until Element Is Visible    ${Cajadetextobuscar}
+    Input Text    ${Cajadetextobuscar}    ${Serie}
+    Sleep    5s
+    Click Element    ${Registrohaeliminar}
+    Sleep    5s
+    Click Element    ${Botondesasignar}
+    Sleep    7s
+    Click Element    ${Botonenviar}
+    Sleep    7s
+    Click Element    ${Notificacionprocesoterminadoconexito}
+
+Validacion de notificacion
+    Sleep    5s
+    ${Bandera_notificacion}=    Run Keyword And Return Status    Click Element    ${Cerrarnotificacion}
+    IF    '${Bandera_notificacion}' == True
+        Sleep    5s    
+    END

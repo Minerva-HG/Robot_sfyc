@@ -1,132 +1,154 @@
 *** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
-${Nombrereporte}    Listado de equipos CIS, ALM y CUA por estado
-${Reporte}    xpath=//td[normalize-space()='Listado de equipos CIS, ALM y CUA por estado']
+#######################################Validación de usuarios######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Listatipodeequipos}    xpath=(//div[@class='dx-dropdowneditor-icon'])[3]
-${Equipo}    xpath=//td[contains(.,'SET TOPS CAS')]
-${Listaestados}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Estado}    xpath=//td[contains(.,'DAÑADOS')]
-${Iconocruzestado}    xpath=(//span[@class='dx-icon dx-icon-clear'])[3]
-${Bottonlimpiar}    xpath=//span[contains(.,'Limpiar')]
-${Bottoncancelar}    xpath=//span[contains(.,'Cancelar')]
-${Bottonaceptar}    xpath=//span[contains(.,'Aceptar')]
-${Campotipodeequipo}    xpath=//input[contains(@inputmode,'decimal')]
-${Tipodeequipo}    007
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE LISTADO DE EQUIPOS CIS, ALM Y CUA POR ESTADO##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Listado de equipos CIS, ALM y CUA por estado
+${Reporte}  xpath=//td[contains(.,'Listado de equipos CIS, ALM y CUA por estado')]
+#########################################Combos#################################################################################
+${Combo_tipo_de_equipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-cis-alm-cua-by-state-form/form/div/div/div[1]/app-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_estado}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-cis-alm-cua-by-state-form/form/div/div/div[2]/app-state-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+#######################################Registros combos##################################################################################
+${Tipo_de_equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+${Estado}    xpath=//td[contains(.,'ENVIADOS DE SISTEMAS')]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+######################################Campo vacio############################################################################################
+${Campo_vacio_tipo_equipo}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
-Pantalla de listado de equipos CIS
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar campo descripcion
-    Teclear nombre de reporte
-    Seleccionar reporte
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
 Listado
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar equipo
+    [Documentation]    Validacion de listado de combos
+    [Tags]    test_dos
+    Tipo de equipo
+    Estado
 
-Estado
-    Seleccionar botton para desplegar estados
-    Seleccionar estado
+Combos
+    [Documentation]    Validacion de combos
+    [Tags]    test_tres
+    Combo tipo de equipo
+    Combo estado
 
-campos vacios
-    Seleccionar icono cruz estado 
-    Sleep    5s
-    Seleccionar botton para desplegar estados
-    Seleccionar estado
-    
 PDF
-    Seleccionar botton aceptar    
+    [Documentation]    Validando que genere el PDF
+    [Tags]    test_cuatro
+    Boton aceptar
+    
+Botón Limpiar
+    [Documentation]    Validando que boton limpiar funcione de manera correcta
+    [Tags]    test_cinco
+    Boton limpiar
 
-Validar por id
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar campo tipo de equipo
-    Teclear el numero del tipo de equipo
-    Sleep    5s
-    Seleccionar botton para desplegar tipos de equipos
+Botón cancelar
+    [Documentation]    Validando que boton cancelar funcione de manera correcta
+    [Tags]    test_seis
+    Boton cancelar
 
-Boton limpiar
-    Seleccionar botton limpiar
-
-Boton cancelar
-    Seleccionar botton cancelar
 
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
+Tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_de_equipo}
+    Click Element    ${Combo_tipo_de_equipo}
+    Wait Until Element Is Visible    ${Tipo_de_equipo}
+    Click Element    ${Tipo_de_equipo}    
 
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
+Estado
+    Wait Until Element Is Visible    ${Combo_estado}
+    Click Element    ${Combo_estado}
+    Wait Until Element Is Visible    ${Estado}
+    Click Element    ${Estado}
 
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
 
-Seleccionar campo descripcion
-    Wait Until Element Is Visible    ${Campodescripcion}   
-    Click Element    ${Campodescripcion}
+Campo vacio tipo equipo
+    Sleep    5s
+    Click Element    ${Campo_vacio_tipo_equipo}
 
-Teclear nombre de reporte
-    Input Text When Element Is Visible    ${Campodescripcion}   ${Nombrereporte}
+Combo tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_de_equipo}
+    Click Element    ${Combo_tipo_de_equipo}
+    Sleep    5s
+    Click Element    ${Combo_tipo_de_equipo}
 
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
+Combo estado    
+    Wait Until Element Is Visible    ${Combo_estado}
+    Click Element    ${Combo_estado}
+    Sleep    5s
+    Click Element    ${Combo_estado}
+    
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar botton para desplegar tipos de equipos
-    Click Element When Visible    ${Listatipodeequipos}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END
 
-Seleccionar equipo
-    Click Element When Visible    ${Equipo}
-
-Seleccionar botton para desplegar estados
-    Click Element When Visible    ${Listaestados}
-
-Seleccionar estado
-    Click Element When Visible    ${Estado}
-
-Seleccionar icono cruz estado
-    Click Element When Visible    ${Iconocruzestado}
-
-Seleccionar botton limpiar
-    Click Element When Visible    ${Bottonlimpiar}
-
-Seleccionar botton cancelar
-    Click Element When Visible    ${Bottoncancelar}
-
-Seleccionar botton aceptar
-    Click Element When Visible    ${Bottonaceptar}
-
-Seleccionar campo tipo de equipo
-    Click Element When Visible    ${Campotipodeequipo}
-
-Teclear el numero del tipo de equipo
-    Input Text When Element Is Visible    ${Campotipodeequipo}    ${Tipodeequipo}

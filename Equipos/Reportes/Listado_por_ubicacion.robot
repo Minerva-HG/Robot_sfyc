@@ -1,337 +1,383 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcionreporte}  xpath=//input[@role='textbox'] 
-${Textoreporte}  Listado de equipos por ubicación
-${Reporte}  xpath=//td[normalize-space()='Listado de equipos por ubicación']
-${Gridclasificacion}  xpath=//span[normalize-space()='Clasificación']
-${Identificador}  xpath=(//div[contains(@class,'dx-radiobutton-icon')])[3]
-${Serie}  xpath=(//div[contains(@class,'dx-radiobutton-icon')])[1]
-${Gridseleccion}  xpath=//span[normalize-space()='Selección']
-${Checkboxtodostiposdeequipos}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
-${Listadesplegabletiposdeequipos}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Equipo}  xpath=(//td[contains(.,'SET TOPS')])[1]
-${Listadesplegablemodelos}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Modelo}  xpath=//td[contains(.,'B866V2F')]
-${Checkboxtodoslosmodelos}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
-${Bottonenviar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[2]/footer/app-general-button/div/div[1]/dx-button
-${Checkboxtodaslasubicaciones}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
-${Listadesplegableubicaciondesde}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${Ubicaciondesde}  xpath=//td[normalize-space()='CIS TONALA  ALT/CAM']
-${Listadesplegableubicacionhasta}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[6]
-${Ubicacionhasta}  xpath=//td[@aria-describedby='dx-col-9'][contains(.,'TERRANOVA ALTAS/CAM')]
-${Gridmasopciones}  xpath=(//span[@class='dx-tab-text'][contains(.,'Más opciones')])[1]
-${Checkboxtodosestados}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[4]
-${Listadesplegableestadosdesde}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[7]
-${Estadodesde}  xpath=//td[contains(.,'NO INICIALIZA')]
-${Listadesplegableestadoshasta}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[8]
-${Checkboxtodostipocuadrilla}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
-${Listadesplegabletipodecuadrilladesde}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[9]
-${Tipodecuadrilladesde}  xpath=//td[normalize-space()='ALM Almacen']
-${Listadesplegablecuadrilladesde}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[10]
-${Listadesplegabletipodecuadrillahasta}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[11]
-${Cuadrillahasta}  xpath=//td[contains(.,'ALM Almacen')]
-${Listadesplegablecuadrillahasta}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[12]
-${Gridmasopciones2}  xpath=(//span[@class='dx-tab-text'][contains(.,'Más opciones')])[2]
-${Checkboxserie}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[8]
-${Campotextoserie}  xpath=//input[@name='serieId']
-${Textoserie}  @$%/!_*
-${Checkboxtodoslossuscriptores}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[7]
-${Listadesplegablesuscriptores}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[13]
-${Suscriptor}  xpath=//td[normalize-space()='MA.DEL CARMEN RAMELLA OSUNA']
-${Radiobuttonresidenciales}  xpath=(//div[contains(@class,'dx-radiobutton-icon')])[7]
-${Radiobuttonempresariales}  xpath=(//div[contains(@class,'dx-radiobutton-icon')])[9]
-${Radiobuttonambos}  xpath=(//div[contains(@class,'dx-radiobutton-icon')])[5]
-
+#######################################Validación de usuarios######################################################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE LISTADO DE EQUIPOS POR UBICACIÓN##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Listado de equipos por ubicación
+${Reporte}  xpath=//td[contains(.,'Listado de equipos por ubicación')]
+#######################################Radio button#########################################################################
+${Serie}    xpath=(//div[contains(@class,'dx-radiobutton-icon')])[1]
+${Identificador}    xpath=(//div[contains(@class,'dx-radiobutton-icon')])[3]
+${Ambos}    xpath=(//div[contains(@class,'dx-radiobutton-icon')])[5]
+${Residenciales}    xpath=(//div[contains(@class,'dx-radiobutton-icon')])[7]
+${Empresariales}    xpath=(//div[contains(@class,'dx-radiobutton-icon')])[9]
+####################################Checkbox###########################################################################
+${Todos_tipos_de_equipo}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
+${Todos_modelos}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
+${Todas_ubicaciones}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[3]
+${Todos_estados}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[4]
+${Todos_tipo_cuadrilla_desde}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
+${Todos_tipo_cuadrilla_hasta}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[6]
+${Todos_suscriptores}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[7]
+${Todos_serie}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[8]
+#########################################Combos#################################################################################
+${Combo_tipo_de_equipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[2]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-type-equipment-and-model-parameters/div/div/div[1]/div[2]/app-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_modelos}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[2]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-type-equipment-and-model-parameters/div/div/div[2]/div[2]/app-model-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_ubicacion_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[2]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-source-target-location-equipment-parameters/div/div/div[1]/div[2]/app-location-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_ubicacion_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[2]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-source-target-location-equipment-parameters/div/div/div[2]/app-location-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_estado_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-state-equipment-parameters/div/div/div[1]/div[2]/app-state-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_estado_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-state-equipment-parameters/div/div/div[2]/app-state-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_tipo_cuadrilla_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-crew-parameters[1]/div/div/div[1]/div[2]/app-type-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_cuadrilla_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-crew-parameters[1]/div/div/div[2]/app-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_tipo_cuadrilla_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-crew-parameters[2]/div/div/div[1]/div[2]/app-type-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_cuadrilla_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-crew-parameters[2]/div/div/div[2]/app-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_suscriptores}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[4]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-serie-and-subscriber-parameters/div/div/div[1]/div[2]/app-subscriber-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Campo_series}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-location-form/form/dx-tab-panel/div[2]/div/div/div[4]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-serie-and-subscriber-parameters/div/div/div[2]/div[2]/dx-text-box/div/div[1]/input
+#######################################Registros combos##################################################################################
+${Tipo_de_equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+${Modelo}    xpath=//td[contains(.,'2500')]
+${Ubicacion_desde}    xpath=//td[contains(.,'CENTRAL ALTAS/CAMBIO')]
+${Ubicacion_hasta}    xpath=(//td[contains(.,'CIS REVOL. ALT/CAM')])[2]
+${Estado_desde}    xpath=//td[contains(.,'ENVIADOS DE SISTEMAS')]
+${Estado_hasta}    xpath=(//td[contains(.,'ERROR DE VIDEO')])[2]
+${Tipo_cuadrilla_desde}    xpath=//td[contains(.,'ALM Almacen')]
+${Cuadrilla_desde}    xpath=//td[contains(.,'0001')]
+${Tipo_cuadrilla_hasta}    xpath=/html/body/div/div/div/div/dx-data-grid/div/div[6]/div/div/div[1]/div/table/tbody/tr[3]
+${Cuadrilla_hasta}    xpath=/html/body/div/div/div/div/dx-data-grid/div/div[6]/div/div/div[1]/div/table/tbody/tr[7]
+${Suscriptor}    xpath=//td[contains(.,'SABINE MARTINA SHCUSTER SCHOLZ')]
+${Serie_ha_ingresar}     131455334CD
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+######################################Campo vacio############################################################################################
+${Campo_vacio_tipo_equipo}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+######################################Pestañas################################################################################################
+${Clasificacion}    xpath=//span[contains(.,'Clasificación')]
+${Seleccion}    xpath=//span[contains(.,'Selección')]
+${Mas_opciones1}    xpath=(//span[contains(.,'Más opciones')])[1]
+${Mas_opciones2}    xpath=(//span[contains(.,'Más opciones')])[2]
 
 *** Test Cases ***
-Ingresar usuario
-    
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    #Set Selenium Timeout    50s
-    Sleep   5s
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Pantalla resumen de equipos por ubicacion
-    Sleep   15s
-    Seleccionar menu
-    Sleep   5s
-    Seleccionar reportes
-    Sleep   8s    
-    Seleccionar botton para desplegar reportes
-    Sleep   5s
-    Seleccionar campo descripcion reporte
-    Sleep   5s
-    Teclear nombre del reporte
-    Sleep   5s
-    Seleccionar reporte
-
-Pestaña clasificacion
-    Sleep   5s
-    Seleccionar grid clasificación
+Pestaña Clasificación
+    [Documentation]    Validando que cuente con la opcion por serie y por identificador
+    [Tags]    test_dos
+    Pestaña clasificacion
+    Sleep    3s
 
 Identificador
-    Sleep   5s
-    Seleccionar radio button indentificador
+    [Documentation]    Validando que permita la consulta por identificador
+    [Tags]    test_tres
+    Identificador
+    Sleep    3s
+    Boton aceptar
 
 Serie
-    Sleep   5s    
-    Seleccionar radio button serie
+    [Documentation]    Validando que permita la consulta por serie
+    [Tags]    test_cuatro
+    Serie
+    Sleep    3s
+    Boton aceptar
 
-Pestaña Seleccion
-    Sleep    5s
-    Seleccionar grid seleccion
-
-Tipos de equipo
-    Sleep    5s
-    Seleccionar checkbox todos de tipos de equipos
-    Sleep    5s
-    Seleccionar lista desplegable tipos de equipo
-    Sleep    5s
-    Seleccionar equipo
+Pestaña Selección
+    [Documentation]    Validando que pueda seleccionar la pestaña seleccion
+    [Tags]    test_cinco
+    Pestaña seleccion
+    
+Tipos de Equipo
+    [Documentation]    Validando combo tipos de equipo
+    [Tags]    test_seis
+    Checkbox todos tipos de equipo
+    Tipo de equipo
 
 Modelo
-    Sleep    5s
-    Seleccionar checkbox todos los modelos
-    Sleep    5s
-    Seleccionar lista desplegable modelos
-    Sleep    5s
-    Seleccionar modelo
+    [Documentation]    Validando combo modelo
+    [Tags]    test_siete
+    Checkbox modelos
+    Modelo
 
-Todas las ubicaciones
-    Sleep    5s
-    Seleccionar botton enviar
-
-Ubicaciones por rango
-    Sleep    15s
-    Seleccionar checkbox todas las ubicaciones
-    Sleep    5s
-    Seleccionar botton lista desplegable ubicaciones
-    Sleep    5s
-    Seleccionar ubicacion
-    Sleep    5s
-    Seleccionar botton lista desplegable ubicaciones hasta
-    Sleep    5s
-    Seleccionar ubicacion hasta
-    Sleep    5s
+Ubicación
+    [Documentation]    Validando combos ubicaciones
+    [Tags]    test_ocho
+    Checkbox todas las ubicaciones
+    Ubicacion desde
+    Ubicacion hasta
 
 Mas opciones
-    Sleep    5s
-    Seleccionar grid mas opciones
+    [Documentation]    Validando que pueda seleccionar la pestaña mas opciones 1
+    [Tags]    test_nueve
+    Pestaña mas opciones 1
 
-Validar estados
-    Sleep    5s
-    Seleccionar checkbox todos estados
-    Sleep    5s
-    Seleccionar lista desplegable estados desde
-    Sleep    5s
-    Seleccionar estado desde
-    Sleep    5s
-    Seleccionar lista desplegable estados hasta
-    Sleep    10s
-    Seleccionar lista desplegable estados hasta
+Validar Estados
+    [Documentation]    Validando combo estados
+    [Tags]    test_diez
+    Checkbox todos estados
+    Estado desde
+    Estado hasta
 
-Validar tipo cuadrillas
-    Sleep   5s
-    Seleccionar checkbox todos tipo de cuadrilla
-    Sleep   5s    
-    Seleccionar lista desplegable tipo de cuadrilla desde
-    Sleep   5s
-    Seleccionar tipo de cuadrilla desde
-    Sleep   5s
-    Seleccionar lista desplegable cuadrilla desde
-    Sleep   10s
-    Seleccionar lista desplegable cuadrilla desde
-    
-#Validar cuadrillas
-    #Sleep    5s
-    #Seleccionar lista desplegable tipo de cuadrilla hasta
-    #Sleep    5s
-    #Seleccionar cuadrilla hasta
-    #Sleep    5s
-    #Seleccionar lista desplegable cuadrilla hasta
+Validar Tipo Cuadrillas
+    [Documentation]    Validando combo tipos de cuadrillas
+    [Tags]    test_once
+    Checkbox todos tipo de cuadrilla desde
+    Tipo de cuadrilla desde
+    Cuadrilla desde
 
-Mas opciones 2
-    Sleep    5s
-    Seleccionar grid mas opciones 2
+Validar Cuadrillas 
+    [Documentation]    Validando que muestre las cuadrillas
+    [Tags]    test_doce
+    Tipo de cuadrilla hasta
+    Cuadrilla hasta
 
-Validar serie que no permita caracteres no validos
-    Sleep    5s
-    Seleccionar checbox todas las series
-    Sleep    5s
-    Seleccionar campo de texto serie
-    Sleep    5s
-    Teclear serie
-    
-Validar suscriptores
-    Sleep    5s
-    Seleccionar checkbox todos los suscriptores
-    Sleep    5s
-    Seleccionar lista desplegable suscriptores
-    Sleep    8s
-    Seleccionar suscriptor
+Mas opciones (2)
+    [Documentation]    Validando que pueda seleccionar la pestaña Mas opciones 2
+    [Tags]    test_trece
+    Pestaña mas opciones 2
 
-Validar tipo suscriptores
-    Sleep    5s
-    Seleccionar residenciales
-    Sleep    10s
-    Seleccionar empresariales    
-    Sleep    5s
-    Seleccionar ambos
+Validar serie
+    [Documentation]    Validando que pueda consultar por serie
+    [Tags]    test_catorce
+    Checkbox todas las series
+    Campo serie
+    Boton aceptar
+    Checkbox todas las series
 
-Campos vacios
-    Sleep    5s
-    Limpiar campo texto serie
-    
+Validar Suscriptores
+    [Documentation]    Validando que pueda seleccionar la pestaña seleccion
+    [Tags]    test_quince
+    Checkbox todos los suscriptores
+    Suscriptor
+
+Validar Tipos Suscriptores
+    [Documentation]    Validando que pueda consultar por diferente tipo de ssucriptor
+    [Tags]    test_diezciseis
+    Suscriptor ambos
+    Boton aceptar
+    Suscriptor residenciales
+    Boton aceptar
+    Suscriptor empresariales
+
+Imprimir
+    [Documentation]    Validando que imprima el reporte en formato PDF
+    [Tags]    test_diezcisiete
+    Boton aceptar
+
+Campos Vacios 
+    [Documentation]    Validando que no habilite el botón aceptar si existen campos vacios
+    [Tags]    test_diezciocho
+    Pestaña seleccion
+    Campo vacio tipo equipo
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Click element  ${Bottonmenu}
+Identificador
+    Wait Until Element Is Visible    ${Identificador}
+    Click Element    ${Identificador} 
 
-Seleccionar reportes
-    Click element  ${Bottonreportes}
-
-Seleccionar botton para desplegar reportes
-    Click Element    ${Bottonparadesplegarreportes}
-
-Seleccionar campo descripcion reporte
-    Click Element    ${Campodescripcionreporte}
-
-Teclear nombre del reporte
-    Input Text    ${Campodescripcionreporte}    ${Textoreporte}
-
-Seleccionar reporte
-    Click Element    ${Reporte}
-
-Seleccionar grid clasificación
-    Click Element    ${Gridclasificacion}
-
-Seleccionar radio button indentificador
-    Click Element    ${Identificador}    
-
-Seleccionar radio button serie
+Serie
+    Wait Until Element Is Visible    ${Serie}
     Click Element    ${Serie}
 
-Seleccionar grid seleccion
-    Click Element    ${Gridseleccion}
+Campo serie
+    Wait Until Element Is Visible    ${Campo_series}
+    Click Element    ${Campo_series}  
+    Input Text    ${Campo_series}    ${Serie_ha_ingresar} 
+    
+Pestaña seleccion
+    Wait Until Element Is Visible    ${Seleccion}
+    Click Element    ${Seleccion}
 
-Seleccionar checkbox todos de tipos de equipos
-    Click Element    ${Checkboxtodostiposdeequipos}
+Checkbox todos tipos de equipo
+    Wait Until Element Is Visible    ${Todos_tipos_de_equipo}
+    Click Element    ${Todos_tipos_de_equipo}
 
-Seleccionar lista desplegable tipos de equipo
-    Click Element    ${Listadesplegabletiposdeequipos}
+Tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_de_equipo}
+    Click Element    ${Combo_tipo_de_equipo}
+    Wait Until Element Is Visible    ${Tipo_de_equipo}
+    Click Element    ${Tipo_de_equipo}    
 
-Seleccionar equipo
-    Click Element    ${Equipo}
+Checkbox modelos
+    Wait Until Element Is Visible    ${Todos_modelos}
+    Click Element    ${Todos_modelos}
 
-Seleccionar lista desplegable modelos
-    Click Element    ${Listadesplegablemodelos}
-
-Seleccionar modelo
+Modelo
+    Wait Until Element Is Visible    ${Combo_modelos}
+    Click Element    ${Combo_modelos}
+    Wait Until Element Is Visible    ${Modelo}
     Click Element    ${Modelo}
 
-Seleccionar checkbox todos los modelos
-    Click Element    ${Checkboxtodoslosmodelos}
+Checkbox todas las ubicaciones
+    Wait Until Element Is Visible    ${Todas_ubicaciones}
+    Click Element    ${Todas_ubicaciones}
 
-Seleccionar botton enviar
-    Click Element    ${Bottonenviar}
+Ubicacion desde
+    Wait Until Element Is Visible    ${Combo_ubicacion_desde}
+    Click Element    ${Combo_ubicacion_desde}
+    Wait Until Element Is Visible    ${Ubicacion_desde}
+    Click Element    ${Ubicacion_desde}    
 
-Seleccionar checkbox todas las ubicaciones
-    Click Element    ${Checkboxtodaslasubicaciones}
+Ubicacion hasta
+    Wait Until Element Is Visible    ${Combo_ubicacion_hasta}
+    Click Element    ${Combo_ubicacion_hasta}
+    Wait Until Element Is Visible    ${Ubicacion_hasta}
+    Click Element    ${Ubicacion_hasta} 
 
-Seleccionar botton lista desplegable ubicaciones
-    Click Element    ${Listadesplegableubicaciondesde}
+Pestaña mas opciones 1
+    Wait Until Element Is Visible    ${Mas_opciones1}
+    Click Element    ${Mas_opciones1} 
 
-Seleccionar ubicacion
-    Click Element    ${Ubicaciondesde}
+Checkbox todos estados
+    Wait Until Element Is Visible    ${Todos_estados}
+    Click Element    ${Todos_estados}
 
-Seleccionar botton lista desplegable ubicaciones hasta
-    Click Element    ${Listadesplegableubicacionhasta}
+Estado desde
+    Wait Until Element Is Visible    ${Combo_estado_desde}
+    Click Element    ${Combo_estado_desde} 
+    Wait Until Element Is Visible    ${Estado_desde}
+    Click Element    ${Estado_desde}   
 
-Seleccionar ubicacion hasta
-    Click Element    ${Ubicacionhasta}
+Estado hasta
+    Wait Until Element Is Visible    ${Combo_estado_hasta}
+    Click Element    ${Combo_estado_hasta}
+    Wait Until Element Is Visible    ${Estado_hasta}
+    Click Element    ${Estado_hasta}
 
-Seleccionar grid mas opciones
-    Click Element    ${Gridmasopciones}
+Checkbox todos tipo de cuadrilla desde
+    Wait Until Element Is Visible    ${Todos_tipo_cuadrilla_desde}
+    Click Element    ${Todos_tipo_cuadrilla_desde}
 
-Seleccionar checkbox todos estados
-    Click Element    ${Checkboxtodosestados}
+Tipo de cuadrilla desde
+    Wait Until Element Is Visible    ${Combo_tipo_cuadrilla_desde}
+    Click Element    ${Combo_tipo_cuadrilla_desde}
+    Wait Until Element Is Visible    ${Tipo_cuadrilla_desde}
+    Click Element    ${Tipo_cuadrilla_desde}
 
-Seleccionar lista desplegable estados desde
-    Click Element    ${Listadesplegableestadosdesde}
+Cuadrilla desde
+    Wait Until Element Is Visible    ${Combo_cuadrilla_desde}
+    Click Element    ${Combo_cuadrilla_desde}
+    Wait Until Element Is Visible    ${Cuadrilla_desde}
+    Click Element    ${Cuadrilla_desde}
 
-Seleccionar estado desde
-    Click Element    ${Estadodesde}
+Tipo de cuadrilla hasta
+    Wait Until Element Is Visible    ${Combo_tipo_cuadrilla_hasta}
+    Scroll Element Into View    ${Aceptar}
+    Click Element    ${Combo_tipo_cuadrilla_hasta}
+    Wait Until Element Is Visible    ${Tipo_cuadrilla_hasta}
+    Click Element    ${Tipo_cuadrilla_hasta}
 
-Seleccionar lista desplegable estados hasta
-    Click Element    ${Listadesplegableestadoshasta}
+Cuadrilla hasta
+    Wait Until Element Is Visible    ${Combo_cuadrilla_hasta}
+    Click Element    ${Combo_cuadrilla_hasta}
+    Wait Until Element Is Visible    ${Cuadrilla_hasta}
+    Click Element    ${Cuadrilla_hasta}
 
-Seleccionar checkbox todos tipo de cuadrilla
-    Click Element    ${Checkboxtodostipocuadrilla}
+Pestaña mas opciones 2
+    Wait Until Element Is Visible    ${Mas_opciones2}
+    Click Element    ${Mas_opciones2}  
 
-Seleccionar lista desplegable tipo de cuadrilla desde
-    Click Element    ${Listadesplegabletipodecuadrilladesde}
+Checkbox todas las series
+    Wait Until Element Is Visible    ${Todos_serie}
+    Click Element    ${Todos_serie}  
 
-Seleccionar tipo de cuadrilla desde
-    Click Element    ${Tipodecuadrilladesde}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
 
-Seleccionar lista desplegable cuadrilla desde
-    Click Element    ${Listadesplegablecuadrilladesde}
+Campo vacio tipo equipo
+    Sleep    5s
+    Click Element    ${Campo_vacio_tipo_equipo}
 
-Seleccionar lista desplegable tipo de cuadrilla hasta
-    Click Element    ${Listadesplegabletipodecuadrillahasta}
+Pestaña clasificacion
+    Wait Until Element Is Visible    ${Clasificacion}
+    Click Element    ${Clasificacion}
 
-Seleccionar cuadrilla hasta
-    Click Element    ${Cuadrillahasta}
+Checkbox todos los suscriptores
+    Wait Until Element Is Visible    ${Todos_suscriptores}
+    Click Element    ${Todos_suscriptores}
 
-Seleccionar lista desplegable cuadrilla hasta
-    Click Element    ${Listadesplegablecuadrillahasta}
-
-Seleccionar grid mas opciones 2
-    Click Element    ${Gridmasopciones2}
-
-Seleccionar checbox todas las series
-    Click Element    ${Checkboxserie}
-
-Seleccionar campo de texto serie
-    Click Element    ${Campotextoserie}
-
-Teclear serie
-    Input Text    ${Campotextoserie}    ${Textoserie}
-
-Seleccionar checkbox todos los suscriptores
-    Click Element    ${Checkboxtodoslossuscriptores}
-
-Seleccionar lista desplegable suscriptores
-    Click Element    ${Listadesplegablesuscriptores}
-
-Seleccionar suscriptor
+Suscriptor
+    Wait Until Element Is Visible    ${Combo_suscriptores}
+    Click Element    ${Combo_suscriptores}
+    Wait Until Element Is Visible    ${Suscriptor}
     Click Element    ${Suscriptor}
 
-Seleccionar residenciales
-    Click Element    ${Radiobuttonresidenciales}
+Suscriptor ambos
+    Wait Until Element Is Visible    ${Ambos}
+    Click Element    ${Ambos}
 
-Seleccionar empresariales
-    Click Element    ${Radiobuttonempresariales}
+Suscriptor residenciales
+    Wait Until Element Is Visible    ${Residenciales}
+    Click Element    ${Residenciales}
 
-Seleccionar ambos
-    Click Element    ${Radiobuttonambos}
+Suscriptor empresariales
+    Wait Until Element Is Visible    ${Empresariales}
+    Click Element    ${Empresariales}
+    
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Limpiar campo texto serie
-    Clear Element Text    ${Campotextoserie}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END

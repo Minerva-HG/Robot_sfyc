@@ -5,49 +5,43 @@ Library    DateTime
 Library    XML
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
+#########################Validacion de usuarios######################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #MAGONZALEZ    LPLOZANO    joriospe                                                                                              
+@{passL}=    Create List    Mega12345    #Magcbegs1    Chatito.    Mega12345                                                                                                                                                                                                                                                                                                                                                                                            
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
 ${Usuariotipo5}  ADELACRUZPO    
 ${Passtipo5}  Megacable2022*
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottoncatalogos}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[7]
-${Bottonproveedores}  xpath=//span[normalize-space()='Usuarios Entregas Equipos']
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botoncatalogos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[4]
+${Botonusuariosentrega}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[4]/ul/li[4]
 ${Bottonagregarnuevoregistro}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[4]/div/div/div[3]/div[2]/div/div/div/i
-${Bottonusuario}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[1]/div/div/app-user-dropdown/dx-drop-down-box/div/div/div[2]/div/div/div
-${Seleccionarusuario}  xpath=//td[normalize-space()='ANGY GUADALUPE ACEVES RUVALCABA']
-${Bottoncuadrilla}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[3]/div/div/app-crew-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Bottonusuario}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[1]/div/div/app-user-dropdown/dx-drop-down-box
+${Seleccionarusuario}  xpath=//td[contains(.,'AORTEGAD')]
+${Bottoncuadrilla}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[3]/div/div/app-crew-dropdown/dx-drop-down-box
 ${Seleccionarcuadrilla}  xpath=//td[normalize-space()='0003']
 ${Seleccionarbottonguardar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[4]/a[1]
 ${Bottoncancelar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[4]/a[2]
 ${Bottonactualizar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-user-signature-digital-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[4]/a[1]
 ${Bottoneliminar}  xpath=//a[2]
 ${Iconook}  xpath=(.//*[normalize-space(text()) and normalize-space(.)='¿Está seguro que desea eliminar este registro?'])[1]/following::div[8]
-${Usuariomodificado}  xpath=//td[normalize-space()='ALEJANDRO GARCIA REYES']
+${Usuariomodificado}  xpath=//td[contains(.,'CAROSALESL')]
 ${Cuadrillamodificada}  xpath=//td[normalize-space()='0003']
 ${Bottonsucursales}  xpath=//div[2]/div[2]/div/div
-${Bottonparadesplieguedesesion}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-header/div/header/dx-toolbar/div/div[3]/div[3]/dxi-item/div/dx-button/div/i
-${Cerrarsesion}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-header/div/header/dx-toolbar/div/div[3]/div[3]/dxi-item/div/div[3]/div[2]
+${Bottonparadesplieguedesesion}  xpath=//span[contains(@class,'username-label')]
+${Cerrarsesion}  xpath=//span[contains(.,'Cerrar sesión')]
+${Si}    xpath=//div[@class='dx-button-content'][contains(.,'Si')]
 
 *** Test Cases ***
 #Función para la espera de los elementos
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Sleep   5s
-    Ingresar usuario contrasena
+Usuarios que tienen permisos a la pantalla
+    Validacion de usuarios
 
-Pantalla de usuarios entregas de equipos
-    Sleep   15s
-    Seleccionar menu
-    Sleep   5s
-    Seleccionar catálogos
-    Sleep   5s
-    Seleccionar Usuarios Entregas Equipos
-    Sleep   5s
-
-Cancelar registro    
+Cancelar registro   
     Sleep   5s    
     Seleccionar agregar nuevo registro
     Sleep   5s
@@ -109,7 +103,7 @@ Eliminar registro
     Seleccionar ok
     Sleep    5s
 
-Campos vacios o null
+Campos vacios o null 
     Sleep    5s
     Seleccionar agregar nuevo registro
     Sleep    5s
@@ -123,7 +117,7 @@ Campos vacios o null
     Sleep    5s
     Seleccionar botton guardar
 
-Moverser entre sucursales
+Moverse entre sucursales
     Sleep    5s
     Seleccionar botton sucursales
     Sleep    5s
@@ -143,26 +137,57 @@ Usuarios tipo 5
     Seleccionar menu
     
 *** Keywords ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botoncatalogos}
+        Click Element    ${Botoncatalogos}
+        Sleep    5s
+        Scroll Element Into View    ${Botonusuariosentrega}
+        Wait Until Element Is Visible    ${Botonusuariosentrega}
+        Click Element    ${Botonusuariosentrega} 
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END
+
 
 Ingresar usuario contrasena con usuario tipo 5
-    Input text    name:Username   ${Usuariotipo5}
-    Input text    name:Password   ${Passtipo5}
-    Sleep   2s
-    Click Button    name:button
+    Wait Until Element Is Visible    ${Localizadorpagina}  
+    Click Element     ${Botondominio}
+    #Click Element When Visible    ${BotondominioQA}
+    Wait Until Element Is Visible    ${SFyC} 
+    Click Element    ${SFyC}  
+    #Click Element When Visible    ${SFyCQA}
+    Input Text    name:Username   ${Usuariotipo5}
+    Input Text    name:Password   ${Passtipo5}
+    Click Element   name:button
 
 Seleccionar menu
-    Click element  ${Bottonmenu}
+    Click element  ${Botonequipos}
 
 Seleccionar catálogos
-    Click element  ${Bottoncatalogos}
+    Click element  ${Botoncatalogos}
 
 Seleccionar Usuarios Entregas Equipos
-    Click element  ${Bottonproveedores}
+    Sleep    5s
+    Wait Until Element Is Visible    ${Botonusuariosentrega}
+    Click element  ${Botonusuariosentrega}
 
 Seleccionar agregar nuevo registro
     Click element   ${Bottonagregarnuevoregistro} 
@@ -208,3 +233,5 @@ Seleccionar botton para desplegar cerrar sesion
 
 Seleccionar cerrar sesion
     Click Element    ${Cerrarsesion}
+    Sleep    10s
+    Click Element    ${Si}

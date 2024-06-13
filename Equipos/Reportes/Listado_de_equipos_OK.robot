@@ -1,129 +1,193 @@
-** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+*** Settings ***
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Campodescripcion}  xpath=//input[@role='textbox']
-${Nombrereporte}    Listado de equipos Ok vs cliente
-${Reporte}    xpath=//td[normalize-space()='Listado de equipos Ok vs cliente']
+#######################################Validación de usuarios######################################################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Bottonfechadesde}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Fechadesde}    xpath=(//span[contains(.,'28')])[1]
-${Bottonfechahasta}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Fechahasta}    xpath=(//span[contains(.,'30')])[4]
-${Listatipodeequipos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${Equipo}    xpath=//td[contains(.,'MAXCOM eMTA')]
-${Iconocruztipodeequipo}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[2]
-${Bottonaceptar}    xpath=//span[contains(.,'Aceptar')]
-${Bottonlimpiar}    xpath=//span[contains(.,'Limpiar')]
-${Bottoncancelar}    xpath=//span[contains(.,'Cancelar')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE LISTADO DE EQUIPOS OK VS CLIENTE##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Listado de equipos Ok CIS, ALM y CUA vs CLI    
+${Reporte}  xpath=//td[contains(.,'Listado de equipos Ok CIS, ALM y CUA vs CLI')]
+#########################################Combos#################################################################################
+${Combo_fecha_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-ok-status-vs-client-form/form/div/app-reporting-start-end-date-parameters/div/div/div[1]/dx-date-box/div/div/div[1]/input
+${Combo_fecha_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-ok-status-vs-client-form/form/div/app-reporting-start-end-date-parameters/div/div/div[2]/dx-date-box/div[1]/div/div[1]/input
+${Combo_tipo_equipo}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-list-ok-status-vs-client-form/form/div/div/div/app-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+######################################Registros combos##################################################################################
+${Desde}    xpath=/html/body/div/div/div/div/div[1]/div/div[1]/table/tbody/tr[1]/td[3]
+${Hasta}    xpath=(//span[contains(.,'21')])[3]
+${Tipo_de_equipo}    xpath=//td[contains(.,'CABLE MODEMS')]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+######################################Campo vacio############################################################################################
+${Campo_vacio_tipo_equipo}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+#####################################Filtros####################################################################
+${Campo_descripcion}    xpath=(//input[contains(@autocomplete,'off')])[9]    
+${Descripcion_equipo}    SWITCH    
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
-Pantalla de reporte listado de equipos ok
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar campo descripcion
-    Teclear nombre de reporte
-    Seleccionar reporte
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Combo fecha desde
-    Seleccionar botton fecha desde
-    Seleccionar fecha desde
+Combo desde
+    [Documentation]    Validacion de combo desde
+    [Tags]    test_dos
+    Combo Desde
 
-Combo fecha hasta
-    Seleccionar botton fecha hasta
-    Seleccionar fecha hasta
+Combo hasta
+    [Documentation]    Validacion de combo hasta
+    [Tags]    test_tres
+    Combo Hasta
+    Sleep    15s
 
-Combo equipos
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar equipo
+Rango de fechas
+    [Documentation]    Validacion de combo hasta
+    [Tags]    test_cuatro
+    Rango de fechas
+
+Combo tipo de equipo
+    [Documentation]    Validacion de combo tipo de equipo
+    [Tags]    test_cinco
+    Combo Tipo de equipo
+
+Botón aceptar
+    [Documentation]    Validacion de combo tipo de equipo
+    [Tags]    test_seis
+    Boton aceptar
 
 Campos vacios
-    Seleccionar icono cruz tipo de equipo
+    [Documentation]    Validacion de combo hasta
+    [Tags]    test_siete
+    Campos vacios
+
+Filtros del drop tipo de equipo
+    [Documentation]    Validando que funcionen los filtros del combo tipo de equipo
+    [Tags]    test_ocho
+    Filtro drop tipo de equipo
+
+Botón limpiar
+    [Documentation]    Validando que boton limpiar funcione de manera correcta
+    [Tags]    test_nueve
+    Boton limpiar
+
+Botón cancelar
+    [Documentation]    Validando que boton cancelar funcione de manera correcta
+    [Tags]    test_diez
+    Boton cancelar
+
+
+
+*** Keyword ***
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
 Boton aceptar
-    Seleccionar botton para desplegar tipos de equipos
-    Seleccionar equipo
-    Seleccionar botton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
+
+Campo vacio tipo equipo
+    Sleep    5s
+    Click Element    ${Campo_vacio_tipo_equipo}
+
+Combo Tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_equipo} 
+    Click Element    ${Combo_tipo_equipo} 
+    Wait Until Element Is Visible    ${Tipo_de_equipo}
+    Click Element    ${Tipo_de_equipo}
+
+Combo Desde
+    Wait Until Element Is Visible    ${Combo_fecha_desde}
+    Click Element    ${Combo_fecha_desde}
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
+
+Combo Hasta
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
+
+Rango de fechas
+    Wait Until Element Is Visible    ${Combo_fecha_hasta}
+    Click Element    ${Combo_fecha_hasta}
+    ${Bandera_fecha_menor_desde_activo}=    Run Keyword And Return Status    Page Should Contain Element    ${Fecha_menor_desde}
+    IF    '${Bandera_fecha_menor_desde_activo}' == 'True'
+        Fail
+    ELSE
+        Click Element    ${Combo_fecha_hasta}
+    END
+
+Campos vacios
+    Wait Until Element Is Visible    ${Campo_vacio_tipo_equipo} 
+    Click Element    ${Campo_vacio_tipo_equipo} 
+
+Filtro drop tipo de equipo
+    Wait Until Element Is Visible    ${Combo_tipo_equipo}
+    Click Element    ${Combo_tipo_equipo}
+    Wait Until Element Is Visible    ${Campo_descripcion}
+    Input Text    ${Campo_descripcion}    ${Descripcion_equipo}
+    Sleep    5s
+    Clear Element Text    ${Campo_descripcion}
 
 Boton limpiar
     Sleep    5s
-    Seleccionar botton limpiar
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
 Boton cancelar
     Sleep    5s
-    Seleccionar botton cancelar    
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END
 
-*** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
-
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
-
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
-
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
-
-Seleccionar campo descripcion
-    Wait Until Element Is Visible    ${Campodescripcion}   
-    Click Element    ${Campodescripcion}
-
-Teclear nombre de reporte
-    Input Text When Element Is Visible    ${Campodescripcion}   ${Nombrereporte}
-
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
-
-Seleccionar botton fecha desde
-    Click Element When Visible    ${Bottonfechadesde}
-
-Seleccionar fecha desde
-    Click Element When Visible    ${Fechadesde}
-
-Seleccionar botton fecha hasta
-    Click Element When Visible    ${Bottonfechahasta}
-
-Seleccionar fecha hasta
-    Click Element When Visible    ${Fechahasta}
-
-Seleccionar botton para desplegar tipos de equipos
-    Click Element When Visible    ${Listatipodeequipos}
-
-Seleccionar equipo
-    Click Element When Visible    ${Equipo}
-
-Seleccionar icono cruz tipo de equipo
-    Click Element When Visible    ${Iconocruztipodeequipo}
-
-Seleccionar botton aceptar
-    Click Element When Visible    ${Bottonaceptar}
-
-Seleccionar botton limpiar
-    Click Element When Visible    ${Bottonlimpiar}
-
-Seleccionar botton cancelar
-    Click Element When Visible    ${Bottoncancelar}

@@ -1,130 +1,197 @@
-*** Settings ***
-Library  SeleniumLibrary
-Library  String
+** Settings ***
+Documentation    Administracion de anis
+#Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Library    XML
+Library    RPA.Windows
+Library    SeleniumLibrary
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  EFIERROS
-${Pass}  Evi180820
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${AdministracionAnis}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[11]/div[1]/div[1]/span[1]
-${Desde}  xpath=//input[@name='anisFrom']
-${Valor1}  16388500
-${Hasta}  xpath=//input[@name='anisTo']
-${Valor2}  16388600
-${Codigo}  xpath=//input[@name='anisLocalCode']
-${Valor3}  33
-${BottonEstado}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[1]/app-admin-anis-form[1]/form[1]/div[1]/div[4]/app-admin-anis-state-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
-${Estados}  xpath=//td[normalize-space()='Activo']
-${BottonTipo}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[1]/app-admin-anis-form[1]/form[1]/div[1]/div[5]/app-admin-anis-type-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
-${Tipos}  xpath=//td[normalize-space()='Normal']
-${BuscarRango}  xpath=//span[normalize-space()='Buscar rango']
-${Element}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[2]/app-admin-anis-grid[1]/dx-data-grid[1]/div[1]/div[6]/span[1]
-${Grid}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[2]/app-admin-anis-grid[1]/dx-data-grid[1]/div[1]/div[5]/div[1]/table[1]/tbody[1]/tr[2]/td[1]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]
-${CrearRango}  xpath=//span[normalize-space()='Crear rango']
-${Notificación1}  xpath=//i[@class='dx-icon dx-icon-close']
-${Transacciones}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[3]/div[1]
-#${Troncales}  xpath=//span[@class='dx-checkbox-icon']
-#${CierroNotificacion}  xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/i[1]
-${Limpiar}  xpath=//dx-button[@title='Limpiar']//div[@class='dx-button-content']
+#########################Validacion de usuarios######################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #RDURANM    joriospe                                                                                                       
+@{passL}=    Create List    Mega12345    #Enero.2020    Mega12345                                                                                                                                                                                                                                                                                                                                                                                                              
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
+#################Screen Administración de anis########################   
+${Botoncargadepallets}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[16]
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonoperacionesequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]
+${Botonadministraciondeanis}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[11]
+#################Active combos##################################################
+${Combostates}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[2]
+${Combotype}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
+###################Dedes / Hasta################################################
+${Desde}    xpath=//input[contains(@name,'anisFrom')]
+${1300}    1300
+${Hasta}    xpath=//input[contains(@name,'anisTo')]
+${13000000}    13000000    
+####################Local code###################################################
+${Localcode}    xpath=//input[contains(@maxlength,'3')]
+${312}    312
+####################Search range#################################################
+${Todosstates}    xpath=//td[@aria-describedby='dx-col-7'][contains(.,'Todos')]
+${Todostype}    xpath=//td[@aria-describedby='dx-col-8'][contains(.,'Todos')]
+${Buttonsearchrange}    xpath=//span[contains(.,'Buscar rango')]
+#####################Validation from , all and code##############################
+${13000000}    13000000
+${1200000}    1200000
+${ADA}    ADA
+#####################Create range################################################
+${Buttonlimpiar}    xpath=//div[@class='dx-button-content'][contains(.,'Limpiar')]
+${Createrange}    xpath=//div[@class='dx-button-content'][contains(.,'Crear rango')]
+${Notificacion}    xpath=//i[contains(@class,'dx-icon dx-icon-close')]
+${1209000}    1209000
+
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Sleep   5s
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+    Validacion de usuarios
 
-Navegar menu
-    Sleep   15s
-    Seleccionar menu
-    Sleep   5s
+Combo state and type
+    Combo states
+    Sleep    10s
+    Combo states
+    Combo type 
+    Sleep    10s
+    Combo type
 
-Seleccionar operaciones equipos
-    Seleccionar Bottonoperacionesequipos
-    Sleep   5s
+Desde / Hasta
+    Numeric ranges from and to
+    
+Local code
+    Local code
 
-Seleccionar Administracion Anis
-    Seleccionar AdministracionAnis
-    Sleep   15s
+Search range
+    Status range all
+    Type all
+    Button search range
 
-Happy path
-    Ingresar Datos
-    Sleep   5s
-    Seleccionar estados
-    Sleep   12s
-    Seleccionar tipos
-    Sleep   5s
-    Seleccionar tipos
-    Sleep   5s
-    Buscar rango
-    Sleep   3s
-    Seleccionar Grid
-    Sleep   5s
-    IF    '${Grid}'== 'FALSE'    Run Keywords    Crear rango
-        Sleep   10s
-        Cerrar notificacion
-        Sleep   10s
-        Seleccionar menu
-        Sleep   3s
-        Seleccionar Transacciones
-    ...    ELSE IF    '${Element}'== 'TRUE'    Run Keywords    Crear rango
-        Sleep   10s
-        Cerrar notificacion
-        Sleep   10s
-        Seleccionar menu
-        Sleep   3s
-        Seleccionar Transacciones
-        END
-    Close browser
+Validation from , to and code
+    Desde
+    Hasta
+    Validation of letters in local code
 
+Create range
+    Button limpiar
+    From 1200000
+    Button create range
+    Close notification
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validacion de usuarios
+        #FOR    ${counter}    IN RANGE    1     3 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonoperacionesequipos}
+        Click Element    ${Botonoperacionesequipos}
+        Sleep    5s
+        Scroll Element Into View    ${Botonadministraciondeanis}
+        Sleep    7s
+        Click Element    ${Botonadministraciondeanis} 
+    #IF    ${counter} <= ${1}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END
 
-Seleccionar menu
-    Click element  ${Bottonmenu}
 
-Seleccionar Bottonoperacionesequipos
-    Click element  ${Bottonoperacionesequipos}
+Combo states
+    Wait Until Element Is Visible    ${Combostates}
+    Click Element    ${Combostates}
 
-Seleccionar AdministracionAnis
-    Click element  ${AdministracionAnis}
+Combo type
+    Sleep    5s
+    Click Element    ${Combotype}
 
-Ingresar Datos
-    Input text    ${Desde}   ${Valor1}
-    Input text    ${Hasta}   ${Valor2}
-    Input text    ${Codigo}   ${Valor3}
+Numeric ranges from and to
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
+    Input Text    ${Desde}    ${1300}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
+    Input Text    ${Hasta}    ${13000000}
 
-Seleccionar estados
-    Click element  ${BottonEstado}
-    Click element  ${Estados}
+Local code
+    Wait Until Element Is Visible    ${Localcode}
+    Click Element    ${Localcode}
+    Input Text    ${Localcode}    ${312}
 
-Seleccionar tipos
-    Click element  ${BottonTipo}
-    Click element  ${Tipos}
+Status range all
+    Wait Until Element Is Visible    ${Combostates}
+    Click Element    ${Combostates}
+    Wait Until Element Is Visible    ${Todosstates}    
+    Click Element    ${Todosstates}
 
-Buscar rango
-    Click element  ${BuscarRango}
+Type all
+    Wait Until Element Is Visible    ${Combotype}
+    Click Element    ${Combotype}
+    Wait Until Element Is Visible    ${Todostype}
+    Click Element    ${Todostype}
 
-Buscar Registro
-    Click element  ${Element}
+Button search range
+    Wait Until Element Is Visible    ${Buttonsearchrange}    
+    Click Element    ${Buttonsearchrange}
 
-Seleccionar Grid
-    Click element  ${Grid}
+Desde
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
+    Input Text    ${Desde}    ${13000000}
 
-Crear Rango
-    Click element  ${CrearRango}
-Cerrar notificacion
-    Click element  ${Notificación1}
-Seleccionar Transacciones
-    Click element  ${Transacciones}
+Hasta
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
+    Input Text    ${Hasta}    ${1200000}
+    
+Validation of letters in local code
+    Sleep    7s
+    Click Element    ${Localcode}
+    Wait Until Element Is Visible    ${Localcode}
+    Input Text    ${Localcode}    ${ADA}
 
-Limpiar
-    Click element  ${Limpiar}
+Button create range
+    Sleep    5s
+    Click Element    ${Createrange}
+
+Close notification
+    Wait Until Element Is Visible    ${Notificacion}
+    Click Element    ${Notificacion}
+
+Button limpiar  
+    Wait Until Element Is Visible    ${Buttonlimpiar}  
+    Click Element    ${Buttonlimpiar}
+
+From 1200000
+    Wait Until Element Is Visible    ${Desde}    
+    Click Element    ${Desde}
+    Input Text    ${Desde}    ${1209000}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
+    Input Text    ${Hasta}    ${13000000}
+    Wait Until Element Is Visible    ${Localcode}
+    Click Element    ${Localcode}
+    Input Text    ${Localcode}    ${312}
+    Wait Until Element Is Visible    ${Combostates}
+    Click Element    ${Combostates}
+    Wait Until Element Is Visible    ${Todosstates}
+    Click Element    ${Todosstates}
+    Wait Until Element Is Visible    ${Combotype}
+    Click Element    ${Combotype}
+    Wait Until Element Is Visible    ${Todostype}
+    Click Element    ${Todostype}

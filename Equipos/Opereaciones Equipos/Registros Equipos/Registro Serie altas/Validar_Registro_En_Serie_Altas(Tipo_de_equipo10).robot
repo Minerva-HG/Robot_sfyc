@@ -3,211 +3,294 @@ Library  SeleniumLibrary
 Library  String
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${Bottonregistroserie}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]/ul/li
-${Bottonaltas}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]/ul/li[1]/ul/li
-${Bottonordendecompra}  name:purchaseOrder
-${Orden}  xpath=//td[normalize-space()='094OC00556740-1']
-${Bottonprovedor}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/form/div/app-transfer-added-invoice-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Provedor}  xpath=//td[normalize-space()='58968']
-${csv}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/dx-data-grid/div/div[4]/div/div/div[3]/div[2]/div/div/div/i
-${Bottonagregar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/dx-data-grid/div/div[4]/div/div/div[3]/div[1]/div/div/dx-button[2]/div/i
+#########################Validacion de usuarios######################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List     joriospe    #RCAMINOS    VMAGALLANESI    GRSOTOM    IESTRADAV    MAPARRAR    LPLOZANO    LMORALESA    AGARCIA                          
+@{passL}=    Create List     Mega12345    #metro1234    Megacable2023    Mega2022    Mega123    Mega1234    Chatito.    Mega123    Jeshua1982                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
+#######################################Pantalla Registro en serie altas#########################
+${Equipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Bottonoperacionesequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/div[1]
+${Bottonregistroserie}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[1]/div[1]/div/span
+${Bottonaltas}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[1]/ul/li[1]/div
+#####################################Altas de series#####################################################################################
+${Bottonagregar}  xpath=//i[contains(@class,'dx-icon dx-icon-add')]
 ${Bottontipoequipo}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-serie-main-container/div/div[1]/div/app-register-serie-add-form/form/div/div[1]/app-type-equipment-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Equipo}  xpath=//td[normalize-space()='MULTIPLEXOR']
+${Equipo}  xpath=//td[contains(.,'SET TOPS')]
 ${Bottonarchivo}  xpath=//*[@id="fileuploader-container"]/dx-file-uploader/div/div/div/div[1]/div[1]
+${csv}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/dx-data-grid/div/div[4]/div/div/div[3]/div[2]/div/div/div/i
 ${Bottonlimpiar}  xpath=//*[@id="fileuploader-container"]/div/dx-button
-${Bottonenviar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-serie-main-container/div/div[2]/footer/app-general-button/div/div[1]/dx-button
-${Bottonmenutransacciones}  xpath=//i[@class='dx-icon dx-icon-menu']
+${Bottonenviar}  xpath=//span[contains(.,'Aceptar')]
+${Notificacion}  xpath=//i[@class='dx-icon dx-icon-close'] 
+${Notificacion_procesando_transacciones}    xpath=(//i[contains(@class,'dx-icon dx-icon-close')])[2]
+####################################Pantalla transacciones##########################################################################################
+${Desplegar_menu}  xpath=//i[contains(@class,'dx-icon dx-icon-chevrondoubleleft')]
 ${Transacciones}  xpath=//span[normalize-space()='Transacciones']
-${Notificacion}  xpath=//i[@class='dx-icon dx-icon-close']
+${Icono_actualizar}    xpath=//i[contains(@class,'dx-icon dx-icon-refresh')]
 ${Campotransaccion}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-main-container/app-main-transactions-grid/div/dx-data-grid/div/div[6]/div/div/div/div/table/tbody/tr[1]/td[3]
+${Bottonejecutar}  xpath=//div[@class='dx-button-content'][contains(.,'Ejecutar')]
+${Button_descargar_detalle_de_validaciones}    xpath=//span[contains(.,'Descargar detalle de validaciones')]
+#####################################Tipo de equipos no disponibles#####################################################################################
+${Tipo_equipo_1}    1
+${Tipo_equipo_5}    5
+${Tipo_equipo_7}    7
+${Tipo_equipo_8}    8
+#############################################################################################################################################
+${Bottonordendecompra}  name:purchaseOrder
+${Orden}  xpath=/html/body/div/div/div/div/dx-data-grid/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td
+${Bottonprovedor}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/form/div/app-transfer-added-invoice-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Provedor}  xpath=/html/body/div/div/div/div/dx-data-grid/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td
 ${Bottondetalledevalidaciones}  xpath=//span[normalize-space()='Ejecutar']
 ${Bottonaceptarequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/dx-data-grid/div/div[4]/div/div/div[1]/div/div/div[1]/dx-button
 ${Bottoneliminarequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-register-accept-equipment-main-container/div/app-transfer-added-grid/dx-data-grid/div/div[4]/div/div/div[1]/div/div/div[2]/dx-button
-${Bottonactualizartransacciones}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-main-container/app-main-transactions-grid/div/dx-data-grid/div/div[4]/div/div/div[3]/div[1]/div/div/dx-button
-${Bottonejecutar}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-main-container/app-main-transactions-grid/div/dx-data-grid/div/div[4]/div/div/div[1]/div/div/div[1]/dx-button
+##########################################Boton cancelar y limpiar########################################################
+${Boton_cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Boton_limpiar}    xpath=(//span[contains(.,'Limpiar')])[2]
+#########################################Rutas de archivos######################################
+${Archivo_csv}
+${Archivo_txt}
+########################################Filtros##############################################
+${Campo_tipo_equipo}    xpath=//input[contains(@inputmode,'decimal')]    
+${Tipo_equipo}    15
+${Campo_descripcion_equipo}     xpath=//input[contains(@maxlength,'7081')] 
+${Descripcion_equipo}    COMBINADORA
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Sleep   5s
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+   Validación de usuarios
 
-Navegar a registro en serie altas
-    Sleep   15s
-    Seleccionar menu
-    Sleep   3s
-    Seleccionar operaciones equipos
-    Sleep   5s
-    Seleccionar registro serie
-    Sleep   5s
-    Seleccionar altas
+Alta de equipos
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Alta de registro en serie
-    Sleep   4s
-    Seleccionar botton orden de compra
-    Sleep   4s
-    Seleccionar orden
-    Sleep   4s
-    Seleccionar botton factura de provedor
-    Sleep   4s
-    Seleccionar provedor
-    Sleep   4s
-    Seleccionar botton aceptar equipos
-    Sleep   20s
-    Seleccionar notificacion
-    Sleep   3s
-    Seleccionar botton orden de compra
-    Sleep   4s
-    Seleccionar orden
-    Sleep   4s
-    Seleccionar botton factura de provedor
-    Sleep   4s
-    Seleccionar provedor
-    Sleep   4s
-    Seleccionar botton eliminar equipos
-    Sleep   7s
-    Seleccionar notificacion
-    Sleep   3s
-    Seleccionar botton orden de compra
-    Sleep   4s
-    Seleccionar orden
-    Sleep   4s
-    Seleccionar botton factura de provedor
-    Sleep   4s
-    Seleccionar provedor
-    Sleep   4s
-
-Encabezado csv y filas duplicadas
-    Sleep   4s
-    Seleccionar botton csv
+Filas duplicadas
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
 Equipos no existentes
-    Sleep   2s
-    Seleccionar botton agregar
-    Sleep   2s
-    Seleccionar botton tipo equipo
-    Sleep   3s
-    Seleccionar equipo
+    Equipos no existentes
 
-Seleccionar el archivo
-    Seleccionar botton archivo
+Alta del mismo equipo
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Valida botton Limpiar
-    Sleep   17s
-    Seleccionar botton limpiar
+Combinado Series completamente nuevas y Series que ya fueron dadas de alta alguna vez
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Enviar
-    Sleep   3s
-    Seleccionar botton tipo equipo
-    Sleep   3s
-    Seleccionar equipo
-    Sleep   3s
-    Seleccionar botton archivo
-    Sleep   10s
-    Seleccionar botton enviar
+Archivos validos
+    Alta de nuevas series
+    Carga archivo csv
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+    Alta de nuevas series
+    Carga archivo txt
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Validar en transacciones
-    Sleep   1s
-    Seleccionar menutransacciones
-    Sleep   3s
-    Seleccionar transacciones
+Campos vacios
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Quitar notificacion y seleccionar transaccion
-    Sleep   20s
-    Seleccionar notificacion
-    Sleep   3s
-    Seleccionar actualizar transacciones
-    Sleep   3s
-    Seleccionar campo transaccion
+Tipo de equipo = 2 y el modelo soporta voz = true
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
 
-Descargar detalle de validaciones
-    Sleep   4s
-    IF    '${Bottonejecutar}'== 'True'    Run Keywords    Seleccionar ejecutar
-   ...    ELSE    Seleccionar descargar detalle de validaciones
-    Sleep   4s
+Soporta_iptv , Soporta_NGV , Tipo_equipo = 4
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+
+Tipo Equipo 2, soporta Voz = 0
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+
+Columna USB_MAC
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+
+Fechas
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+
+Nuevas columnas en .csv
+    Alta de nuevas series
+    Carga archivo
+    Transacciones
+    Regresando a pantalla REGISTRO EN SERIE ALTAS
+
+Filtros
+    Filtro combo tipo equipo
+
+Boton limpiar
+    Limpiar datos seleccionados
+
+Boton cancelar
+    Cancelar proceso
+
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Input text    name:Username   ${Usuario}
-    Input text    name:Password   ${Pass}
-    Sleep   2s
-    Click Button    name:button
+Validación de usuarios
+  #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Equipos}
+        Wait Until Element Is Visible    ${Bottonoperacionesequipos}
+        Click Element    ${Bottonoperacionesequipos}
+        Wait Until Element Is Visible    ${Bottonregistroserie}
+        Click Element    ${Bottonregistroserie}
+        Wait Until Element Is Visible    ${Bottonaltas}
+        Click Element    ${Bottonaltas}   
+        Wait Until Element Is Visible    ${Bottonagregar}
+        Click Element    ${Bottonagregar}  
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END
 
-Seleccionar menu
-    Click element  ${Bottonmenu}
+Alta de nuevas series
+    Wait Until Element Is Visible    ${Bottontipoequipo}
+    Click Element    ${Bottontipoequipo}
+    Wait Until Element Is Visible    ${Equipo}
+    Click Element    ${Equipo}
+    Wait Until Element Is Visible    ${Bottonarchivo}
+    Click Element    ${Bottonarchivo}
+    Sleep    25s
 
-Seleccionar operaciones equipos
-    Click element  ${Bottonoperacionesequipos}
+Carga archivo
+    Wait Until Element Is Visible    ${Bottonenviar}
+    Click Element    ${Bottonenviar}
+    Sleep    30s
+    Click Element    ${Notificacion}
 
-Seleccionar registro serie
-    Click element  ${Bottonregistroserie}
+Transacciones
+    Wait Until Element Is Visible    ${Desplegar_menu}
+    Click Element    ${Desplegar_menu}
+    Wait Until Element Is Visible    ${Equipos}
+    Click Element    ${Equipos}
+    Wait Until Element Is Visible    ${Transacciones}
+    Click Element    ${Transacciones}
+    Wait Until Element Is Visible    ${Icono_actualizar}
+    Click Element    ${Icono_actualizar}
+    Wait Until Element Is Visible    ${Campotransaccion}
+    Click Element    ${Campotransaccion}
+    Sleep    5s
+    ${Banderatransactionverde}=  Run Keyword And Return Status    Click Element   ${Bottonejecutar}
+    ${Banderatransactionyellow}=  Run Keyword And Return Status    Click Element   ${Button_descargar_detalle_de_validaciones} 
+    IF    '${Banderatransactionverde}' == 'True'
+        Wait Until Element Is Visible    ${Notificacion_procesando_transacciones}
+        Click Element    ${Notificacion_procesando_transacciones}
+        Sleep    25s
+        Click Element    ${Notificacion_procesando_transacciones}
+        #${Validando_notificacion}=    Run Keyword And Return Status    Click Element    ${Notificacion_procesando_transacciones}
+        #WHILE    '${Validando_notificacion}' == 'False'
+            #${Validando_notificacion}=    Run Keyword And Return Status    Click Element    ${Notificacion_procesando_transacciones}
+        #END
+    END 
+    IF    '${Banderatransactionyellow}' == 'True'
+        Sleep    5s
+    END
+    IF    '${Banderatransactionverde}' == 'False' and '${Banderatransactionyellow}' == 'False'
+        Sleep    5s
+    END
 
-Seleccionar altas
-    Click element  ${Bottonaltas}
+Regresando a pantalla REGISTRO EN SERIE ALTAS
+    Wait Until Element Is Visible    ${Desplegar_menu}
+    Click Element    ${Desplegar_menu} 
+    Wait Until Element Is Visible    ${Equipos}   
+    Click Element    ${Equipos}
+    Wait Until Element Is Visible    ${Bottonoperacionesequipos}
+    Click Element    ${Bottonoperacionesequipos}
+    Wait Until Element Is Visible    ${Bottonregistroserie}
+    Click Element    ${Bottonregistroserie}
+    Wait Until Element Is Visible    ${Bottonaltas}
+    Click Element    ${Bottonaltas} 
+    Wait Until Element Is Visible    ${Bottonagregar}
+    Click Element    ${Bottonagregar} 
+   
+  
+Filtro combo tipo equipo
+    Wait Until Element Is Visible    ${Bottontipoequipo}
+    Click Element    ${Bottontipoequipo}
+    Input Text    ${Campo_tipo_equipo}    ${Tipo_equipo}
+    Sleep    5s
+    Clear Element Text    ${Campo_tipo_equipo}
+    Input Text    ${Campo_descripcion_equipo}    ${Descripcion_equipo}
+    Sleep    5s
+    Clear Element Text    ${Campo_tipo_equipo}
 
-Seleccionar botton orden de compra
-    Click element  ${Bottonordendecompra}
+Carga archivo csv
+    Choose File    ${Bottonarchivo}    ${Archivo_csv}
+    Wait Until Element Is Visible    ${Bottonenviar}
+    Click Element    ${Bottonenviar}
+    Sleep    20s
+    Click Element    ${Notificacion}
 
-Seleccionar orden
-    Click element  ${Orden}
+Carga archivo txt
+    Choose File    ${Bottonarchivo}    ${Archivo_txt}
+    Wait Until Element Is Visible    ${Bottonenviar}
+    Click Element    ${Bottonenviar}
+    Sleep    20s
+    Click Element    ${Notificacion}
 
-Seleccionar botton factura de provedor
-    Click element  ${Bottonprovedor}
+Limpiar datos seleccionados
+    Wait Until Element Is Visible    ${Boton_limpiar}
+    Click Element    ${Boton_limpiar}
 
-Seleccionar provedor
-    Click element  ${Provedor}
+Cancelar proceso
+    Wait Until Element Is Visible    ${Boton_cancelar}
+    Click Element    ${Boton_cancelar}
 
-Seleccionar botton csv
-    Click element  ${csv}
-
-Seleccionar botton agregar
-    Click element  ${Bottonagregar}
-
-Seleccionar botton tipo equipo
-    Click element  ${Bottontipoequipo}
-
-Seleccionar equipo
-    Click element  ${Equipo}
-
-Seleccionar botton archivo
-    Click element  ${Bottonarchivo}
-
-Seleccionar botton limpiar
-    Click element  ${Bottonlimpiar}
-
-Seleccionar botton enviar
-    Click element  ${Bottonenviar}
-
-Seleccionar menutransacciones
-    Click element  ${Bottonmenutransacciones}
-
-Seleccionar transacciones
-    Click element  ${Transacciones}
-
-Seleccionar notificacion
-    Click element  ${Notificacion}
-
-Seleccionar campo transaccion
-    Click element  ${Campotransaccion}
-
-Seleccionar descargar detalle de validaciones
-    Click element  ${Bottondetalledevalidaciones}
-
-Seleccionar botton aceptar equipos
-    Click element  ${Bottonaceptarequipos}
-
-Seleccionar botton eliminar equipos
-    Click element  ${Bottoneliminarequipos}
-
-Seleccionar actualizar transacciones
-    Click element  ${Bottonactualizartransacciones}
-
-Seleccionar ejecutar
-    Click element  ${Bottonejecutar}
+Equipos no existentes
+    Wait Until Element Is Visible    ${Bottontipoequipo}
+    Click Element    ${Bottontipoequipo}    
+    Wait Until Element Is Visible    ${Campo_tipo_equipo}
+    Click Element    ${Campo_tipo_equipo}
+    Input Text    ${Campo_tipo_equipo}    ${Tipo_equipo_1}
+    Sleep    7s
+    Clear Element Text    ${Campo_tipo_equipo}
+    Input Text    ${Campo_tipo_equipo}    ${Tipo_equipo_5}
+    Sleep    7s
+    Clear Element Text    ${Campo_tipo_equipo}
+    Input Text    ${Campo_tipo_equipo}    ${Tipo_equipo_7}
+    Sleep    7s
+    Clear Element Text    ${Campo_tipo_equipo}
+    Input Text    ${Campo_tipo_equipo}    ${Tipo_equipo_8}
+    Sleep    7s
+    Clear Element Text    ${Campo_tipo_equipo}

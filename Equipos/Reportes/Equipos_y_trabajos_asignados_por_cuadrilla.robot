@@ -1,220 +1,201 @@
 *** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Library  SeleniumLibrary
+Library  String
+#Library    RPA.Desktop
+
 
 *** Variables ***
-${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
-${Usuario}  softteck01
-${Pass}  123456c
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonreportes}  xpath=//*[@id="divcontenedor"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[8]
-${Bottonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
-${Reporte}  xpath=//td[normalize-space()='Equipos y trabajos asignado por cuadrilla']
-${Checkboxtodostipocuadrilla}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
-${Checkboxtodostiposdecuadrilla}  xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
-${Listadesplegabletiposdecuadrilla}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-${Cuadrilla}  xpath=//td[contains(.,'ALM Almacen')]
-${Listadesplegabledesde}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[4]
-${Cuadrilladesde}  xpath=//td[contains(.,'0006')]   
-${Listadesplegablehasta}  xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[5]
-${Cuadrillahasta}  xpath=//td[contains(.,'0011')]
-${Gridtrabajos}  xpath=//span[contains(.,'Trabajos')]
-${Checkboxcontrabajoasignado}  xpath=(//span[@class='dx-checkbox-icon'])[2]
-${Gridequipos}    xpath=//span[contains(.,'Equipos')]
-${Listadesplegableequipos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[6]
-${Equipo1}    xpath=//td[normalize-space()='CONVERTIDORES']
-${Equipo2}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
-${Equipo4}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[6]
-${Equipo5}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[7]
-${Equipo6}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[8]
-${Equipo7}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[9]
-${Gridcuadrillas}    xpath=//span[contains(.,'Cuadrillas')]
-${Quitarcuadrilla}    xpath=(//span[@class='dx-icon dx-icon-clear'])[2]
-${Bottonlistadesplegablecuadrilla}    xpath=(//div[@class='dx-dropdowneditor-icon'])[3]
-${Bottonenviar}    xpath=//span[contains(.,'Aceptar')]
-${Registrocuadrilladesde}    xpath=//td[@aria-describedby='dx-col-4'][contains(.,'0001')]   
-${Bottonlimpiar}    xpath=//div[@class='dx-button-content'][contains(.,'Limpiar')]
-${Bottonimprimir}    xpath=//*[@id="DocumentViewer"]/div/div[1]/div[1]/div[1]/div/div[1]/div[2]/div/div[13]/div/div[1]
+#######################################Validación de usuarios######################################################################
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #KLOPEZJ    DVELES    JSMMARTINEZC    IJIMENEZS    ERHERNANDEZP    ACRUZS    AGROBERTO    BSANDOVALA                                                                                                                                      
+@{passL}=    Create List    Megajos202   #Megacable2020    Megacable2022    Omega2019    Megacable2021    Megacable2022    Megacable2020*    Megacable2021*    Mega2020*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+${Botondominio}    xpath=//select[@id='Domain']
+${SFyC}    xpath=//*[@id="Domain"]/option[3] 
+###################################Pantalla REPORTE EQUIPOS Y TRABAJOS ASIGNADO POR CUADRILLA##################################
+${Botonequipos}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[5]
+${Botonparadesplegarreportes}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div[1]/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[2]/app-shared-reporting-dropdown/dx-drop-down-box/div[1]/div/div[2]/div/div/div
+${Descripcion}    xpath=//input[contains(@maxlength,'7081')]    
+${Descripcion_reporte}    Equipos y trabajos asignado por
+${Reporte}  xpath=//td[contains(.,'Equipos y trabajos asignado por cuadrilla')]
+####################################Checkbox###########################################################################
+${Todos_tipo_cuadrilla}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
+${Con_trabajo_asignado}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[2]
+#########################################Combos#################################################################################
+${Combo_tipo_cuadrilla}    xpath=(//input[contains(@autocomplete,'off')])[5]
+${Combo_desde}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-and-jobs-assigned-by-crews-form/form/dx-tab-panel/div[2]/div/div/div[1]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div[2]/div[1]/app-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_hasta}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-and-jobs-assigned-by-crews-form/form/dx-tab-panel/div[2]/div/div/div[1]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div[2]/div[2]/app-crew-dropdown/dx-drop-down-box/div/div/div[1]/input
+${Combo_considerar_reporte}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/app-reporting-main-container/app-shared-reporting-main-container/div/div/div[1]/div[3]/app-reporting-equipments-and-jobs-assigned-by-crews-form/form/dx-tab-panel/div[2]/div/div/div[3]/div/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/div/app-multiple-type-equipment-dropdown/dx-drop-down-box/div/div/div[1]/input
+#######################################Registros combos##################################################################################
+${Tipo_cuadrilla}    xpath=//td[contains(.,'ALM Almacen')]
+${Desde}    xpath=//td[contains(.,'0001')]
+${Hasta}    xpath=(//td[contains(.,'0007')])[2]
+${Equipo_1}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[4] 
+${Equipo_2}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[5]
+################################Botones##############################################################################################
+${Aceptar}    xpath=//span[contains(.,'Aceptar')]
+${Cancelar}    xpath=//span[contains(.,'Cancelar')]
+${Limpiar}    xpath=//span[contains(.,'Limpiar')]
+######################################Campo vacio############################################################################################
+${Campo_vacio_tipo_cuadrilla}    xpath=(//span[contains(@class,'dx-icon dx-icon-clear')])[3]
+######################################Pestañas################################################################################################
+${Cuadrillas}    xpath=//span[contains(.,'Cuadrillas')]
+${Trabajos}    xpath=//span[contains(.,'Trabajos')]
+${Equipos}    xpath=//span[@class='dx-tab-text'][contains(.,'Equipos')]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
-    
+Usuarios con permisos a la pantalla
+    [Documentation]    Validacion de usuario
+    [Tags]    test_uno
+    Validacion de usuarios
 
-Pantalla de equipos y trabajos asignados por cuadrilla
-    Seleccionar menu
-    Seleccionar reportes
-    Seleccionar botton para desplegar reportes
-    Seleccionar reporte
-
-Validar cuadrillas
-    Seleccionar checkbox todos tipo de cuadrilla
-    Seleccionar checkbox todos tipo de cuadrilla
-
-Validar tipo cuadrilla
-    Seleccionar checkbox todos los tipos de cuadrilla
-    Seleccionar lista desplegable tipos de cuadrilla
-    Seleccionar cuadrilla    
-    Seleccionar lista desplegable desde
-    Seleccionar cuadrilla desde
-    Seleccionar lista desplegable hasta
-    Seleccionar cuadrilla hasta
-    
-Validar trabajos
-    Seleccionar grid trabajos
-    Seleccionar check box con trabajo asignado
-    Seleccionar check box con trabajo asignado
-    
-Validar equipos
-    Seleccionar grid equipos 
-
-Validar combo equipos
-    Seleccionar lista desplegable equipos
-
-Selecciona un equipo
-    Seleccionar un equipo
-
-Selecciona varios equipos
+Validar Cuadrillas
+    [Documentation]    Validando el checkbox todos tipo cuadrilla
+    [Tags]    test_dos
+    Checkbox todos tipo cuadrilla
     Sleep    5s
-    Seleccionar lista desplegable equipos
-    Seleccionar lista desplegable equipos
-    Seleccionar varios equipos
-    
-Campos vacios
-    Sleep    5s
-    Seleccionar lista desplegable equipos
-    Seleccionar grid cuadrillas
-    Quitar cuadrilla
-    Sleep    7s
 
-Boton enviar
-    Seleccionar botton limpiar
-    Seleccionar checkbox todos los tipos de cuadrilla
-    Seleccionar lista desplegable tipos de cuadrilla
-    Seleccionar cuadrilla    
-    Seleccionar lista desplegable desde
-    Seleccionar cuadrilla desde
-    Seleccionar lista desplegable hasta
-    Seleccionar cuadrilla hasta
+Validar Tipo cuadrilla
+    [Documentation]    Validando los combos de tipo cuadrilla
+    [Tags]    test_tres
+    Combo tipo cuadrilla
+    Combo desde
+    Combo hasta
 
-Imprimir
-    Seleccionar botton enviar
+Validar Trabajos
+    [Documentation]    Validando la opción trabajos
+    [Tags]    test_cuatro
+    Pestaña trabajos
+    Checkbox con trabajo asignado
 
-Validar que genere reporte agregando masde 6 equipos
-    Sleep    7s
-    Seleccionar grid equipos
-    Seleccionar lista desplegable equipos
-    Seleccionar un equipo
-    Seleccionar varios equipos
-    Seleccionar botton enviar
+Validar Equipos
+    [Documentation]    Validando la opción Equipos
+    [Tags]    test_cinco
+    Pestaña equipos
+
+Validar combo Equipos
+    [Documentation]    Validando el combo equipos
+    [Tags]    test_seis
+    Combo considerar para reporte
+    Equipos
+
+Consultar
+    [Documentation]    Validando que genere el reporte
+    [Tags]    test_siete
+    Boton aceptar
+
+Campos Vacios
+    [Documentation]    Validacion de campos vacios
+    [Tags]    test_ocho
+    Pestaña cuadrillas
+    Campos vacios
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonreportes}
+        Click Element    ${Botonreportes}
+        Sleep    5s
+        Click Element    ${Botonparadesplegarreportes}
+        Wait Until Element Is Visible    ${Descripcion}
+        Input Text    ${Descripcion}    ${Descripcion_reporte}
+        Sleep    10s
+        Click Element    ${Reporte}
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END 
 
-Seleccionar menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
+Checkbox todos tipo cuadrilla
+    Wait Until Element Is Visible    ${Todos_tipo_cuadrilla}
+    Click Element    ${Todos_tipo_cuadrilla}
 
-Seleccionar reportes
-    Wait Until Element Is Visible    ${Bottonreportes}
-    Click Element    ${Bottonreportes}
+Combo tipo cuadrilla
+    Wait Until Element Is Visible    ${Combo_tipo_cuadrilla}
+    Click Element    ${Combo_tipo_cuadrilla}
+    Sleep    3s
+    Click Element    ${Tipo_cuadrilla}
 
-Seleccionar botton para desplegar reportes
-    Wait Until Element Is Visible    ${Bottonparadesplegarreportes}
-    Click Element    ${Bottonparadesplegarreportes}
+Combo desde
+    Wait Until Element Is Visible    ${Combo_desde}
+    Click Element    ${Combo_desde}
+    Wait Until Element Is Visible    ${Desde}
+    Click Element    ${Desde}
 
-Seleccionar reporte
-    Wait Until Element Is Visible    ${Reporte}   
-    Click Element    ${Reporte}
+Combo hasta
+    Wait Until Element Is Visible    ${Combo_hasta}
+    Click Element    ${Combo_hasta}
+    Wait Until Element Is Visible    ${Hasta}
+    Click Element    ${Hasta}
 
-Seleccionar checkbox todos tipo de cuadrilla
-    Wait Until Element Is Visible    ${Checkboxtodostipocuadrilla}
-    Click Element    ${Checkboxtodostipocuadrilla}
+Pestaña trabajos
+    Wait Until Element Is Visible    ${Trabajos}
+    Click Element    ${Trabajos}
 
-Seleccionar checkbox todos los tipos de cuadrilla
-    Wait Until Element Is Visible    ${Checkboxtodostiposdecuadrilla}
-    Click Element    ${Checkboxtodostiposdecuadrilla}
+Checkbox con trabajo asignado
+    Wait Until Element Is Visible    ${Con_trabajo_asignado}
+    Click Element    ${Con_trabajo_asignado}
 
-Seleccionar lista desplegable tipos de cuadrilla
-    Wait Until Element Is Visible    ${Listadesplegabletiposdecuadrilla}
-    Click Element    ${Listadesplegabletiposdecuadrilla}
+Pestaña equipos
+    Wait Until Element Is Visible    ${Equipos}
+    Click Element    ${Equipos}
 
-Seleccionar cuadrilla
-    Wait Until Element Is Visible    ${Cuadrilla}
-    Click Element    ${Cuadrilla}
+Combo considerar para reporte
+    Wait Until Element Is Visible    ${Combo_considerar_reporte}
+    Click Element    ${Combo_considerar_reporte}
 
-Seleccionar lista desplegable desde
-    Wait Until Element Is Visible    ${Listadesplegabledesde}
-    Click Element    ${Listadesplegabledesde}
+Equipos
+    Wait Until Element Is Visible    ${Equipo_1}
+    Click Element    ${Equipo_1}
+    Sleep    5s
+    Click Element    ${Equipo_2}
 
-Seleccionar cuadrilla desde
-    Wait Until Element Is Visible    ${Cuadrilladesde}
-    Click Element    ${Cuadrilladesde}
+Pestaña cuadrillas
+    Wait Until Element Is Visible    ${Cuadrillas}
+    Click Element    ${Cuadrillas}
 
-Seleccionar lista desplegable hasta
-    Wait Until Element Is Visible    ${Listadesplegablehasta}
-    Click Element    ${Listadesplegablehasta}
+Boton aceptar
+    Wait Until Element Is Visible    ${Aceptar}
+    Click Element    ${Aceptar}    
 
-Seleccionar cuadrilla hasta
-    Wait Until Element Is Visible    ${Cuadrillahasta}
-    Click Element    ${Cuadrillahasta}
+Campos vacios
+    Sleep    5s
+    Click Element    ${Campo_vacio_tipo_cuadrilla}
 
-Seleccionar grid trabajos
-    Wait Until Element Is Visible    ${Gridtrabajos}
-    Click Element    ${Gridtrabajos}
+Boton limpiar
+    Sleep    5s
+    ${Bandera_boton_limpiar}=    Run Keyword And Return Status    Click Element    ${Limpiar}
+    IF    '${Bandera_boton_limpiar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton limpiar
+    END
 
-Seleccionar check box con trabajo asignado
-    Wait Until Element Is Visible    ${Checkboxcontrabajoasignado}
-    Click Element    ${Checkboxcontrabajoasignado}
-
-Seleccionar grid equipos
-    Wait Until Element Is Visible    ${Gridequipos}
-    Click Element    ${Gridequipos}
-
-Seleccionar lista desplegable equipos
-    Wait Until Element Is Visible    ${Listadesplegableequipos}
-    Click Element    ${Listadesplegableequipos}
-
-Seleccionar un equipo
-    Wait Until Element Is Visible    ${Equipo1}
-    Click Element    ${Equipo1}
-
-Seleccionar varios equipos
-    Wait Until Element Is Visible    ${Equipo2}
-    Click Element    ${Equipo2}
-    Wait Until Element Is Visible    ${Equipo4}
-    Click Element    ${Equipo4}
-    Wait Until Element Is Visible    ${Equipo5}
-    Click Element    ${Equipo5}
-    Wait Until Element Is Visible    ${Equipo6}
-    Click Element    ${Equipo6}
-    Wait Until Element Is Visible    ${Equipo7}
-    Click Element    ${Equipo7}
-    
-Seleccionar grid cuadrillas
-    Wait Until Element Is Visible    ${Gridcuadrillas}
-    Click Element    ${Gridcuadrillas}
-
-Quitar cuadrilla
-    Wait Until Element Is Visible    ${Quitarcuadrilla}
-    Click Element    ${Quitarcuadrilla}
-
-Seleccionar botton enviar
-    Wait Until Element Is Visible    ${Bottonenviar}
-    Click Element    ${Bottonenviar}
-
-Seleccionar registro cuadrilla desde
-    Wait Until Element Is Visible    ${Registrocuadrilladesde}
-    Click Element    ${Registrocuadrilladesde}
-
-Seleccionar botton limpiar
-    Wait Until Element Is Visible    ${Bottonlimpiar}
-    Click Element    ${Bottonlimpiar}
+Boton cancelar
+    Sleep    5s
+    ${Bandera_boton_cancelar}=    Run Keyword And Return Status    Click Element    ${Cancelar}
+    IF    '${Bandera_boton_cancelar}' == 'True'
+        Sleep    5s
+    ELSE
+        Boton cancelar
+    END
 

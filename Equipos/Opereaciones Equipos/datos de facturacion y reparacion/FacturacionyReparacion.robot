@@ -1,24 +1,25 @@
 *** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
+Documentation    Datos facturación y reparación equipos
+Library    SeleniumLibrary
 Library    XML
-Library    RPA.Windows
-#Library    RPA.Robocloud.Items
-Library    RPA.Excel.Files
-Library    RPA.Dialogs
+#Library    RPA.Windows
+
 
 *** Variables ***
-#################Pantalla Datos facturacion y reparacion########################   
+#########################Validacion de usuarios######################################
 ${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
-${Navegador}  Chrome
-${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  softteck01
-${Pass}  123456c
+${Navegador}    Chrome  
+${user}    xpath=//input[@id='Username']
+${Pagina}   https://global.qa-cluster.sfycnextgen.com.mx/ui/ 
+@{USERL}=    Create List    joriospe    #VMAGALLANESI    DGONZALEZR    LUHERNANDEZHE    RCAMINOS    joriospe                                                                                  
+@{passL}=    Create List    Mega12345    #Megacable2023    Megacable.2023    Mega2023    metro1234    Mega12345                                                                                                                                                                                                                                                                                                                                         
 ${Botondominio}    xpath=//select[@id='Domain']
-${SFyC}    xpath=//*[@id="Domain"]/option[2]
-${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
-${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${BottonDatosfacturacionyreparacion}    xpath=//span[contains(.,'Datos Facturación y Reparación')]
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
+#################Pantalla Datos facturacion y reparacion########################   
+${Botonequipos}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]
+${Botonoperacionesequipos}     xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]
+${Botonadministraciondeanis}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[9]
+${BotonDatosfacturacionyreparacion}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[3]/ul/li[9]
 ##################Facturar por archivo############################################
 ${Iconocargarporarchivo}    xpath=//i[contains(@class,'dx-icon dx-icon-folder')]
 ${Tiposdeequipos}    xpath=(//div[@class='dx-dropdowneditor-icon'])[2]
@@ -29,8 +30,8 @@ ${Botonaceptar}    xpath=//span[contains(.,'Aceptar')]
 ##################################Notificacion############################################
 ${Notificacion}    xpath=//i[@class='dx-icon dx-icon-close']
 ##################################Transacciones################################################
-${Regresarmenu}    xpath=//i[@class='dx-icon dx-icon-menu']
-${Transacciones}    xpath=//span[contains(.,'Transacciones')]
+${Regresarmenu}    xpath=//i[contains(@class,'dx-icon dx-icon-chevrondoubleleft')]
+${Transacciones}    xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]/div/app-side-navigation-menu/div/dx-tree-view/div[3]/div/div/div[1]/ul/li[2]/ul/li[2]
 ${Checkboxmostrarpendientes}    xpath=(//span[contains(@class,'dx-checkbox-icon')])[1]
 ${Transaccion}    xpath=//td[contains(.,'Datos facturación y reparación equipos')]
 ${Botonejecutar}    xpath=//div[@class='dx-button-content'][contains(.,'Ejecutar')]
@@ -45,7 +46,7 @@ ${Iconorefrescar}    xpath=//i[contains(@class,'dx-icon dx-icon-refresh')]
 ##################################Icono excel####################################################
 ${Iconoexcel}    xpath=//i[@class='dx-icon dx-icon-export-excel-button']
 ##################################Icono unitario#################################################
-${Iconounitario}    xpath=(//i[contains(@class,'dx-icon dx-icon-menu')])[2]
+${Iconounitario}    xpath=//i[contains(@class,'dx-icon dx-icon-menu')]
 ${Tiposdeequipos}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[2]
 ${Tipodeequipo}    xpath=(//td[contains(.,'SET TOPS')])[1]
 ${Campotextoserie}    xpath=//input[contains(@maxlength,'35')]
@@ -57,15 +58,9 @@ ${Botonlimpiar}    xpath=//span[contains(.,'Limpiar')]
 ${Botoncancelar}    xpath=//span[contains(.,'Cancelar')]
 
 *** Test Cases ***
-Ingresar usuario
-    Open browser    ${Pagina}   ${Navegador}
-    Maximize Browser Window
-    Ingresar usuario contrasena
+Usuarios con permisos a la pantalla
+    Validacion de usuarios
 
-Pantalla Datos facturacion y reparacion
-    Menu
-    Operaciones equipos
-    Datos facturacion y reparacion
 
 Facturar por archivo
     Cargar por archivo
@@ -99,93 +94,126 @@ Boton cancelar
     Boton cancelar
 
 *** Keyword ***
-Ingresar usuario contrasena
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element When Visible    ${Botondominio}
-    Click Element When Visible    ${SFyC}
-    Click Element If Visible   name:button
+Validacion de usuarios
+    #FOR    ${counter}    IN RANGE    1     9 
+    FOR    ${counter}    IN RANGE    1     2
+        Open browser    ${Pagina}   ${Navegador}    options=add_argument("--ignore-certificate-errors")    
+        Maximize Browser Window
+        Wait Until Page Contains Element    ${user}
+        Input Text    ${user}      ${USERL}[${counter}]
+        Sleep    2s
+        Input Text    name:Password     ${passL}[${counter}]
+        Wait Until Element Is Visible    ${Botondominio}
+        Click Element    ${Botondominio}
+        Wait Until Element Is Visible    ${SFyC}
+        Click Element    ${SFyC}
+        Wait Until Element Is Visible    name:button
+        Click Element    name:button
+        Sleep    10s
+        Click Element    ${Botonequipos}
+        Wait Until Element Is Visible    ${Botonoperacionesequipos}
+        Click Element    ${Botonoperacionesequipos}
+        Sleep    5s
+        Scroll Element Into View    ${Botonadministraciondeanis}
+        Sleep    5s
+        Click Element    ${BotonDatosfacturacionyreparacion} 
+    #IF    ${counter} <= ${7}
+        #Sleep    10s
+        #Close Browser
+    #END
+   END
 
-Menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
-
-Operaciones equipos
-    Click element  ${Bottonoperacionesequipos}
-
-Datos facturacion y reparacion
-    Click Element When Visible    ${BottonDatosfacturacionyreparacion}
-
-Cargar por archivo    
-    Click Element When Visible    ${Iconocargarporarchivo}
-    Click Element When Visible    ${Tiposdeequipos}
-    Click Element When Visible    ${Equipo}
-    Click Element When Visible    ${Botonseleccionarelarchivo}
+Cargar por archivo 
+    Wait Until Element Is Visible    ${Iconocargarporarchivo}   
+    Click Element    ${Iconocargarporarchivo}
+    Wait Until Element Is Visible    ${Tiposdeequipos}
+    Click Element    ${Tiposdeequipos}
+    Wait Until Element Is Visible    ${Equipo}
+    Click Element    ${Equipo}
+    Wait Until Element Is Visible    ${Botonseleccionarelarchivo}    
+    Click Element    ${Botonseleccionarelarchivo}
 
 Boton aceptar
     Sleep    15s
-    Click Element When Visible    ${Botonaceptar}
+    Click Element    ${Botonaceptar}
 
 Cerrar Notificacion
-    #Wait Until Page Contains Element    ${Notificacion}
-    Sleep    7s
-    Click Element When Visible    ${Notificacion}
+    Sleep    12s
+    Click Element    ${Notificacion}
 
 Transaccion
-    Click Element When Visible    ${Regresarmenu}
-    Click Element When Visible    ${Transacciones}
-    Wait Until Page Contains Element    ${Checkboxmostrarpendientes}
-    Click Element When Visible    ${Checkboxmostrarpendientes}
+    Wait Until Element Is Visible    ${Regresarmenu}
+    Click Element    ${Regresarmenu}
+    Wait Until Element Is Visible    ${Botonequipos}
+    Click Element    ${Botonequipos}
+    Wait Until Element Is Visible    ${Transacciones}
+    Click Element    ${Transacciones}
+    Sleep    7s
+    Click Element    ${Checkboxmostrarpendientes}
     Sleep    5s
-    Click Element When Visible    ${Transaccion}
-    Click Element When Visible    ${Botonejecutar}
+    Click Element    ${Transaccion}
+    Wait Until Element Is Visible    ${Botonejecutar}
+    Click Element    ${Botonejecutar}
     Sleep    3s
-    Click Element When Visible    ${Notificaciontransaccion}
+    Click Element    ${Notificaciontransaccion}
     Sleep    10s
-    Click Element When Visible    ${Notificaciontransaccion}
+    Click Element    ${Notificaciontransaccion}
 
 Regresar a la pantalla datos facturacion y reparacion de equipos
-    Click Element When Visible    ${Regresarmenu}
-    Click Element When Visible    ${Bottonoperacionesequipos}
-    Click Element When Visible    ${BottonDatosfacturacionyreparacion}
+    Wait Until Element Is Visible    ${Regresarmenu}
+    Click Element    ${Regresarmenu}
+    Wait Until Element Is Visible    ${Botonequipos}
+    Click Element    ${Botonequipos}
+    Wait Until Element Is Visible    ${Botonoperacionesequipos}
+    Click Element     ${Botonoperacionesequipos}
+    Sleep    5s
+    Scroll Element Into View    ${Botonadministraciondeanis}
+    Wait Until Element Is Visible    ${BotonDatosfacturacionyreparacion}
+    Click Element    ${BotonDatosfacturacionyreparacion}
 
 Orden de compra
-    Click Element When Visible    ${Ordenesdecompra}
+    Sleep    5s
+    Click Element    ${Ordenesdecompra}
     #Wait Until Page Contains Element    ${Ordendecompra}
     Sleep    15s
-    Click Element When Visible    ${Ordendecompra}
+    Click Element    ${Ordendecompra}
 
 Factura proveedor
-    Click Element When Visible    ${Facturasproveedor}
+    Wait Until Element Is Visible    ${Facturasproveedor}
+    Click Element    ${Facturasproveedor}
     Sleep    5s
-    Click Element When Visible    ${Proveedor}
+    Click Element    ${Proveedor}
 
 Refrescar
-    Click Element When Visible    ${Iconorefrescar}
+    Wait Until Element Is Visible    ${Iconorefrescar}
+    Click Element    ${Iconorefrescar}
 
 Icono exportar todo
     Sleep    7s
-    Click Element When Visible    ${Iconoexcel}
+    Click Element    ${Iconoexcel}
     
 Icono unitario
-    Click Element When Visible    ${Iconounitario}
+    Wait Until Element Is Visible    ${Iconounitario}
+    Click Element    ${Iconounitario}
 
 Tipos de equipos
-    Click Element When Visible    ${Tiposdeequipos}
+    Wait Until Element Is Visible    ${Tiposdeequipos}
+    Click Element   ${Tiposdeequipos}
 
 Tipo de equipo
-    Click Element When Visible    ${Tipodeequipo}
+    Wait Until Element Is Visible    ${Tipodeequipo}
+    Click Element    ${Tipodeequipo}
 
 Serie
-    Input Text When Element Is Visible    ${Campotextoserie}    ${Serie}
-    Click Element When Visible    ${Buscarserie}
+    Sleep    5s
+    Input Text    ${Campotextoserie}    ${Serie}
+    Wait Until Element Is Visible    ${Buscarserie}
+    Click Element    ${Buscarserie}
 
 Limpiar
     Sleep    15s
-    Click Element When Visible    ${Botonlimpiar}
+    Click Element    ${Botonlimpiar}
 
 Boton cancelar
     Sleep    3s
-    Click Element When Visible    ${Botoncancelar}
+    Click Element    ${Botoncancelar}

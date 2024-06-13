@@ -1,169 +1,129 @@
 *** Settings ***
-Documentation    Opciones de Click
-Library    RPA.Browser.Selenium    auto_close=${FALSE}
-Library    XML
-Library    RPA.Windows
-#Library    RPA.Robocloud.Items
-Library    RPA.Excel.Files
-Library    RPA.Dialogs
+Library  SeleniumLibrary
+Library  String
+
 *** Variables ***
-#################Screen Datos facturacion y reparacion########################   
-${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
 ${Navegador}  Chrome
-${Pagina}  https://equipos.qa-cluster.sfycnextgen.com.mx/ui
-${Usuario}  softteck01
-${Pass}  123456c
-${Botondominio}    xpath=//select[@id='Domain']
-${SFyC}    xpath=//*[@id="Domain"]/option[2]
+${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
+${Usuario}  EFIERROS
+${Pass}  Evi180820
 ${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
 ${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
-${Bottonadministraciondeanis}    xpath=//span[contains(.,'Administración de Anis')]
-#################Active combos##################################################
-${Combostates}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[2]
-${Combotype}    xpath=(//div[contains(@class,'dx-dropdowneditor-icon')])[3]
-###################Dedes / Hasta################################################
-${Desde}    xpath=//input[contains(@name,'anisFrom')]
-${1300}    1300
-${Hasta}    xpath=//input[contains(@name,'anisTo')]
-${13000000}    13000000    
-####################Local code###################################################
-${Localcode}    xpath=//input[contains(@maxlength,'3')]
-${312}    312
-####################Search range#################################################
-${Todosstates}    xpath=//td[@aria-describedby='dx-col-7'][contains(.,'Todos')]
-${Todostype}    xpath=//td[@aria-describedby='dx-col-8'][contains(.,'Todos')]
-${Buttonsearchrange}    xpath=//span[contains(.,'Buscar rango')]
-#####################Validation from , all and code##############################
-${13000000}    13000000
-${1200000}    1200000
-${ADA}    ADA
-#####################Create range################################################
-${Buttonlimpiar}    xpath=//div[@class='dx-button-content'][contains(.,'Limpiar')]
-${Createrange}    xpath=//div[@class='dx-button-content'][contains(.,'Crear rango')]
-${Notificacion}    xpath=//i[contains(@class,'dx-icon dx-icon-close')]
-${1209000}    1209000
-
+${AdministracionAnis}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[5]/ul[1]/li[11]/div[1]/div[1]/span[1]
+${Desde}  xpath=//input[@name='anisFrom']
+${Valor1}  16388500
+${Hasta}  xpath=//input[@name='anisTo']
+${Valor2}  16388600
+${Codigo}  xpath=//input[@name='anisLocalCode']
+${Valor3}  33
+${BottonEstado}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[1]/app-admin-anis-form[1]/form[1]/div[1]/div[4]/app-admin-anis-state-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
+${Estados}  xpath=//td[normalize-space()='Activo']
+${BottonTipo}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[1]/app-admin-anis-form[1]/form[1]/div[1]/div[5]/app-admin-anis-type-dropdown[1]/dx-drop-down-box[1]/div[1]/div[1]/div[1]/input[1]
+${Tipos}  xpath=//td[normalize-space()='Normal']
+${BuscarRango}  xpath=//span[normalize-space()='Buscar rango']
+${Element}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/app-admin-anis-main-container[1]/div[1]/div[1]/div[2]/app-admin-anis-grid[1]/dx-data-grid[1]/div[1]/div[6]/span[1]
+${Grid}  xpath=//span[@class='dx-datagrid-nodata']
+${CrearRango}  xpath=//span[normalize-space()='Crear rango']
+${Notificación1}  xpath=//i[@class='dx-icon dx-icon-close']
+#${Transacciones}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[3]/div[1]
+${Transacciones}  xpath=/html[1]/body[1]/app-root[1]/app-side-nav-outer-toolbar[1]/dx-drawer[1]/div[1]/div[1]/app-side-navigation-menu[1]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/dx-tree-view[1]/div[2]/div[1]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[3]/div[1]
+#${Troncales}  xpath=//span[@class='dx-checkbox-icon']
+#${CierroNotificacion}  xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/i[1]
+${Limpiar}  xpath=//dx-button[@title='Limpiar']//div[@class='dx-button-content']
 
 *** Test Cases ***
-Enter user
+Ingresar usuario
     Open browser    ${Pagina}   ${Navegador}
     Maximize Browser Window
-    Enter user and password
+    Sleep   5s
+    Ingresar usuario contrasena
 
-Screen administracion de anis
-    Menu
-    Operaciones equipos
-    Administracion de anis
+Navegar menu
+    Sleep   15s
+    Seleccionar menu
+    Sleep   5s
 
-Combo state and type
-    Combo states
-    Sleep    10s
-    Combo states
-    Combo type 
-    Sleep    10s
-    Combo type
+Seleccionar operaciones equipos
+    Seleccionar Bottonoperacionesequipos
+    Sleep   5s
 
-Desde / Hasta
-    Numeric ranges from and to
-    
-Local code
-    Local code
+Seleccionar Administracion Anis
+    Seleccionar AdministracionAnis
+    Sleep   15s
 
-Search range
-    Status range all
-    Type all
-    Button search range
+Happy path
+    Ingresar Datos
+    Sleep   5s
+    Seleccionar estados
+    Sleep   12s
+    Seleccionar tipos
+    Sleep   5s
+    Seleccionar tipos
+    Sleep   5s
+    Buscar rango
+    Sleep   3s
+    Seleccionar Grid
+    Sleep   5s
+Validaciones del GRID
+    IF    'Seleccionar Grid'== 'TRUE'    Run Keywords    Crear rango
+Crear rango
+    Crear rango
+    Sleep   10s
+    Cerrar notificacion
+    Sleep   10s
+    Seleccionar menu
+    Sleep   3s
+    Seleccionar Transacciones
+    Sleep   15s
+#...    ELSE IF    'Seleccionar Grid'== 'FALSE'    Run Keywords    Limpiar
+#Limpiar formulario
+#    Limpiar
 
-Validation from , to and code
-    Desde
-    Hasta
-    Validation of letters in local code
-
-Create range
-    Button limpiar
-    From 1200000
-    Button create range
-    Close notification
 
 *** Keyword ***
-Enter user and password
-    Wait Until Page Contains Element    ${Localizadorpagina}
-    Input Text When Element Is Visible    name:Username   ${Usuario}
-    Input Text When Element Is Visible    name:Password   ${Pass}
-    Click Element When Visible    ${Botondominio}
-    Click Element When Visible    ${SFyC}
-    Click Element If Visible   name:button
+Ingresar usuario contrasena
+    Input text    name:Username   ${Usuario}
+    Input text    name:Password   ${Pass}
+    Sleep   2s
+    Click Button    name:button
 
-Menu
-    Wait Until Element Is Visible    ${Bottonmenu}
-    Sleep    15s
-    Click Element    ${Bottonmenu}
+Seleccionar menu
+    Click element  ${Bottonmenu}
 
-Operaciones equipos
+Seleccionar Bottonoperacionesequipos
     Click element  ${Bottonoperacionesequipos}
 
-Administracion de anis
-    Click Element When Visible    ${Bottonadministraciondeanis}
+Seleccionar AdministracionAnis
+    Click element  ${AdministracionAnis}
 
-Combo states
-    Click Element When Visible    ${Combostates}
+Ingresar Datos
+    Input text    ${Desde}   ${Valor1}
+    Input text    ${Hasta}   ${Valor2}
+    Input text    ${Codigo}   ${Valor3}
 
-Combo type
-    Sleep    5s
-    Click Element When Visible    ${Combotype}
+Seleccionar estados
+    Click element  ${BottonEstado}
+    Click element  ${Estados}
 
-Numeric ranges from and to
-    Click Element When Visible    ${Desde}
-    Input Text When Element Is Visible    ${Desde}    ${1300}
-    Click Element When Visible    ${Hasta}
-    Input Text When Element Is Visible    ${Hasta}    ${13000000}
+Seleccionar tipos
+    Click element  ${BottonTipo}
+    Click element  ${Tipos}
 
-Local code
-    Click Element When Visible    ${Localcode}
-    Input Text When Element Is Visible    ${Localcode}    ${312}
+Buscar rango
+    Click element  ${BuscarRango}
 
-Status range all
-    Click Element When Visible    ${Combostates}
-    Click Element When Visible    ${Todosstates}
+Buscar Registro
+    Click element  ${Element}
 
-Type all
-    Click Element When Visible    ${Combotype}
-    Click Element When Visible    ${Todostype}
+Seleccionar Grid
+    Click element  ${Grid}
 
-Button search range
-    Click Element When Visible    ${Buttonsearchrange}
+Crear Rango
+    Click element  ${CrearRango}
+Cerrar notificacion
+    Click element  ${Notificación1}
+Seleccionar Transacciones
+    Click element  ${Transacciones}
 
-Desde
-    Click Element When Visible    ${Desde}
-    Input Text When Element Is Visible    ${Desde}    ${13000000}
-
-Hasta
-    Click Element When Visible    ${Hasta}
-    Input Text When Element Is Visible    ${Hasta}    ${1200000}
-    
-Validation of letters in local code
-    Sleep    7s
-    Click Element When Visible    ${Localcode}
-    Input Text When Element Is Visible    ${Localcode}    ${ADA}
-
-Button create range
-    Sleep    5s
-    Click Element When Visible    ${Createrange}
-
-Close notification
-    Click Element When Visible    ${Notificacion}
-
-Button limpiar    
-    Click Element When Visible    ${Buttonlimpiar}
-
-From 1200000
-    Click Element When Visible    ${Desde}
-    Input Text When Element Is Visible    ${Desde}    ${1209000}
-    Click Element When Visible    ${Hasta}
-    Input Text When Element Is Visible    ${Hasta}    ${13000000}
-    Click Element When Visible    ${Localcode}
-    Input Text When Element Is Visible    ${Localcode}    ${312}
-    Click Element When Visible    ${Combostates}
-    Click Element When Visible    ${Todosstates}
-    Click Element When Visible    ${Combotype}
-    Click Element When Visible    ${Todostype}
+Limpiar
+    Click element  ${Limpiar}
