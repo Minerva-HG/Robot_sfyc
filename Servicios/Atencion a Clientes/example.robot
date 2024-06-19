@@ -6,7 +6,7 @@ Library  String
 ${Serie}  AA831BWWR
 ${Cajadetextoserie}  xpath=//input[@name='serieId']
 ${Navegador}  Chrome
-${Pagina}  https://qa.sfycnextgen.com.mx/equipments/ui/
+${Pagina}  https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  softteck01
 ${Pass}  123456c
 ${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]

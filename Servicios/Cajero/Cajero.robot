@@ -71,10 +71,20 @@ ${Fecha17}    xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/dx-data-grid[1]
 #Guardar pago
 ${guardarPago}    xpath=//span[@class='dx-button-text'][contains(.,'Guardar Pago')]
 ${efectivo}    xpath=//span[@class='dx-button-text'][contains(.,'Efectivo')]
-${inputEfectivo}    xpath=(//input[contains(@autocomplete,'off')])[23]
+${inputEfectivo}    xpath=//input[contains(@xpath,'1')]
 ${cambio}    xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/app-charge-save-payment-summary[1]/div[1]/div[2]/div[2]/dx-number-box[1]
-${total}    xpath=//body/div[2]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/app-charge-save-payment-summary[1]/div[1]/div[2]/div[3]/dx-number-box[1]
+${total}    xpath=//body/div[2]/div[1]/div[2]/dx-scroll-view[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/app-charge-save-payment-summary[1]/div[1]/div[2]/div[3]/dx-number-box[1]/div[1]
 ${imprimir}    xpath=(//span[@class='dx-button-text'][contains(.,'Imprimir')])[2]
+#Abrir
+${abrir}    xpath=(//span[@class='dx-button-text'][contains(.,'Abrir')])[1]
+${resultado1}    xpath=//td[contains(text(),'CAJERO PayPal App')]
+${botonAbrir}    xpath=(//span[@class='dx-button-text'][contains(.,'Abrir')])[2]
+#Imprimir ticket
+${imprimirTicket}    xpath=//div[@class='dx-button-content'][contains(.,'Imprimir Ticket')]
+${imprimirSi}    xpath=//span[@class='dx-button-text'][contains(.,'Si')]
+${imprimirNo}    xpath=(//div[@class='dx-button-content'][contains(.,'No')])[4]
+
+
 *** Test Cases ***
 Enter User
     [Tags]    Ingresar usuario
@@ -92,7 +102,12 @@ Enter to cashier
 Calculate balances
     [Tags]    Calcular saldos
     Consultar Saldo fin de mes
-    Sleep    5s
+        Sleep    5s
+        #Guardar Pago
+        #Abrir
+        #Sleep    5s
+        #Imprimir Ticket
+        #Sleep    5s
     Consultar Saldo hoy
     Sleep    5s
     Consultar Saldo un mes adeudo
@@ -124,7 +139,23 @@ Calculate balances
     Consultar Saldo 36 meses
     Sleep    5s
 
+#Save Payment
+   # [Tags]    Guardar pago
+   # Consultar Saldo fin de mes
+   # Sleep    5s
+   # Guardar Pago
+   # Sleep    10s
 
+Open Payment
+    [Tags]    Abrir pago    
+    Abrir
+    Sleep    2s
+
+Print Ticket    
+    [Tags]    Imprimir Ticket
+    Imprimir Ticket
+    Sleep    5s
+    
 *** Keywords ***
 Ingresar usuario contrasena
     Sleep    5s
@@ -134,6 +165,7 @@ Ingresar usuario contrasena
     Click Element    ${Botondominio}
     Click Element    ${SFyC}
     Click Element    name:button
+
 Ingresar a Servicios
     Sleep    7s
   #  Click Element    ${Services}
@@ -150,7 +182,7 @@ Consultar suscriptor
     Sleep    3s
     Click Element    ${Consultar}
     Sleep    7s
-   # Click Element    ${Csuscriptor} 
+    
 Ingresar Cajero
     Sleep    5s
     Click Element    ${Dropsucursal}
@@ -195,6 +227,20 @@ Guardar Pago
     Click Element    ${imprimir}
     Sleep    5s    
 
+Abrir
+    Click Element    ${abrir}
+    Sleep    5s
+    Double Click Element    ${resultado1}   
+    Sleep    5s 
+    Click Element    ${botonAbrir}
+
+Imprimir Ticket
+    Click Element    ${imprimirTicket}
+    Sleep    2s
+    Click Element    ${imprimirSi}
+    Sleep    2s
+
+# Consulta de Saldos
 Consultar Saldo hoy
     Sleep    5s
     Click Element    ${calendario}
@@ -203,7 +249,8 @@ Consultar Saldo hoy
     Click Element    ${Fecha01}
     Sleep    5s
     Click Element    ${calcular}
-    Sleep    30s
+    Sleep    45s
+    
 Consultar Saldo fin de mes
    Sleep    10s
    Click Element    ${calcular}
