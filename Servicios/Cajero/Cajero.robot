@@ -8,9 +8,6 @@ Library    RPA.PDF
 
 *** Variables ***
 #login   
-${username}    xpath=//input[contains(@id,'Username')]
-${password}    xpath=//input[contains(@type,'password')]
-${server}      xpath=//select[contains(@id,'Domain')]
 ${Navegador}  Chrome
 ${Pagina}  https://servicios.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  JMARQUEZG                                          
@@ -167,7 +164,7 @@ Ingresar usuario contrasena
     Click Element    name:button
 
 Ingresar a Servicios
-    Sleep    7s
+    Sleep    10s
   #  Click Element    ${Services}
   #  Sleep    5s
     Click Element    ${cajero}
@@ -253,6 +250,7 @@ Consultar Saldo hoy
     
 Consultar Saldo fin de mes
    Sleep    10s
+   Scroll Element Into View    ${calcular}
    Click Element    ${calcular}
 
 Consultar Saldo un mes adeudo
@@ -330,6 +328,7 @@ Consultar Saldo seis meses naturales
     Click Element    ${calendario}
     Sleep    1s
     Wait Until Element Is Enabled    ${calcular}
+    Scroll Element Into View    ${Fecha10}
     Click Element    ${Fecha10}
     Sleep    5s
     Click Element    ${calcular}

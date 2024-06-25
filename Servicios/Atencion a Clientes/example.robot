@@ -5,10 +5,19 @@ Library  String
 *** Variables ***
 ${Serie}  AA831BWWR
 ${Cajadetextoserie}  xpath=//input[@name='serieId']
+#login
 ${Navegador}  Chrome
 ${Pagina}  https://agenda.qa-cluster.sfycnextgen.com.mx/ui/
 ${Usuario}  softteck01
 ${Pass}  123456c
+${BottonDominio}    xpath=//select[contains(@id,'Domain')]
+${SFyC}    xpath=//*[@id="Domain"]/option[3]
+${Localizadorpagina}    xpath=//input[contains(@id,'Username')]
+#suscriptor
+${inputSuscriptor}    xpath=//input[contains(@name,'subscriber')]
+${suscriptor}    0440601389
+${Consultar}    xpath=//input[contains(@name,'subscriber')]
+
 ${Bottonmenu}  xpath=/html/body/app-root/app-side-nav-outer-toolbar/dx-drawer/div/div[1]
 ${Bottonoperacionesequipos}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]
 ${Bottonregistroserie}  xpath=//*[@id=\"divcontenedor\"]/div[2]/dx-scroll-view/div[1]/div/div[1]/div[2]/div/div/dx-tree-view/div[2]/div/div/div[1]/ul/li/ul/li[5]/ul/li
@@ -38,6 +47,13 @@ Ingresar usuario
     Maximize Browser Window
     Sleep   5s
     Ingresar usuario contrasena
+
+Ingresar suscriptor
+    Sleep    5s
+    Input Text    ${inputSuscriptor}    ${suscriptor}
+    Sleep    5s
+    Click Element    ${Consultar}
+    Sleep    5s
 
 Navegar a registro en serie altas
     Sleep   15s
@@ -155,9 +171,12 @@ Teclear la serie que se dara de baja
 
 *** Keyword ***
 Ingresar usuario contrasena
+    Sleep    2s
+    Wait Until Page Contains Element    ${Localizadorpagina}
     Input text    name:Username   ${Usuario}
     Input text    name:Password   ${Pass}
-    Sleep   2s
+    Click Element    ${BottonDominio}
+    Click Element    ${SFyC}
     Click Button    name:button
 
 Seleccionar menu
